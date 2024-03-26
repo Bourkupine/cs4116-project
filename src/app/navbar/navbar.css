@@ -7,6 +7,10 @@
   );
 }
 
+.logo-link {
+  text-decoration: none !important;
+}
+
 .logo {
   display: flex;
   justify-content: flex-start;
@@ -19,10 +23,6 @@
     object-fit: contain;
     max-width: 56px;
     height: auto;
-  }
-
-  span {
-    text-decoration: none;
   }
 }
 
