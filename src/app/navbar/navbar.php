@@ -1,7 +1,7 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="\cs4116-project\src\app\styles.css" />
+    <link rel="stylesheet" href="\cs4116-project\src\app\styles.css" /> <!-- todo: find better way to use absolute links -->
     <link rel="stylesheet" href="\cs4116-project\src\app\navbar\navbar.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -18,13 +18,14 @@
       src="https://kit.fontawesome.com/3af37769b5.js"
       crossorigin="anonymous"
     ></script>
+    <title></title>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
       <div class="container-fluid">
         <!-- LOGO -->
-        <a href="#"> <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
+        <a class="logo-link" href="#"> <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
           <div class="logo">
             <img
               src="\cs4116-project\src\assets\ll-logo.png"
