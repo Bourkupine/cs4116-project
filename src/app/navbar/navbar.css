@@ -1,11 +1,14 @@
-
 .navbar {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  background: rgb(0,74,173);
-  background: linear-gradient(90deg, rgba(0,74,173,1) 0%, rgba(203,108,230,1) 100%);
+  background: rgb(0, 74, 173);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 74, 173, 1) 0%,
+    rgba(203, 108, 230, 1) 100%
+  );
 }
 
 .logo {
@@ -34,11 +37,11 @@
 }
 
 .indigo {
-  color: #99A1FF;
+  color: #99a1ff;
 }
 
 .lilac {
-  color: #C6C7FF;
+  color: #c6c7ff;
 }
 
 .buttons {
