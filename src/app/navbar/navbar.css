@@ -1,0 +1,64 @@
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background: rgb(0,74,173);
+  background: linear-gradient(90deg, rgba(0,74,173,1) 0%, rgba(203,108,230,1) 100%);
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 1%;
+
+  img {
+    object-fit: contain;
+    max-width: 56px;
+  }
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  font-family: Bungee, sans-serif;
+  font-size: 28px;
+
+  span {
+    margin-left: 3%;
+  }
+}
+
+.indigo {
+  color: #99A1FF;
+}
+
+.lilac {
+  color: #C6C7FF;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 1%;
+
+  button {
+    margin-right: 2%;
+    margin-left: 2%;
+    scale: 2.5 2.5;
+    border: none;
+    color: black;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: gainsboro;
+  }
+}
