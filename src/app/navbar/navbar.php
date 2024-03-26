@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="\cs4116-project\src\app\styles.css" />
+    <link rel="stylesheet" href="\cs4116-project\src\app\navbar\navbar.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -27,7 +27,7 @@
         <a href="#"> <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
           <div class="logo">
             <img
-              src="../../assets/ll-logo.png"
+              src="\cs4116-project\src\assets\ll-logo.png"
               height="594"
               width="703"
               alt="logo"
@@ -75,7 +75,7 @@
               echo '
                 <li class="nav-item">
                   <a class="link nav-link" href="#">
-                    <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+                    <i class="fa-solid fa-magnifying-glass fa-2x"></i> <!--todo: investigate making this white when on that page -->
                     <span class="navbar-toggler text-white border-0">Search</span>
                   </a>
                 </li>
