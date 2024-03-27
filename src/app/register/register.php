@@ -32,9 +32,6 @@ require "../../resources/languages.php";
 </head>
 
 <body>
-<p id="passwordHelp" hidden>Passwords must contain 8 characters, including at least one number, uppercase character, and
-  lowercase character</p>
-
 <div class="container mb-2">
   <div class="row">
     <div class="col">
