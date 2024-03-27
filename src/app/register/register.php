@@ -26,36 +26,37 @@ require "../../resources/languages.php";
 <div class="container mb-2">
   <div class="row">
     <div class="col">
-      <form method="post">
+      <form method="post" action="register-form.php">
 
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
-            <input type="text" class="form-control" aria-describedby="" placeholder="First Name"
+            <input name="firstname" type="text" class="form-control" aria-describedby="" placeholder="First Name"
                    required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="text" class="form-control" placeholder="Last Name"
+            <input name="surname" type="text" class="form-control" placeholder="Last Name"
                    required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="email" class="form-control" placeholder="Email"
+            <input name="email" type="email" class="form-control" placeholder="Email"
                    required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
-                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <input name="password" type="password" class="form-control" placeholder="Password"
+                   aria-describedby="passwordHelp" required minlength="8" maxlength="32"
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
             <small id="passwordHelp" class="form-text text-muted">
               Passwords require at least one number, uppercase character, and lowercase character
             </small>
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Confirm Password"
+            <input name="password-confirm" type="password" class="form-control" placeholder="Confirm Password"
                    required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
           </div>
 
           <div class="gender-preference row ps-2 pe-2 mb-2">
             <div class="col">
-              <select class="form-control" required>
+              <select name="gender" class="form-control" required>
                 <option value="" disabled selected>Gender</option>
                   <?php foreach ($gender_arr as $gender) {
                       echo "<option value=\"$gender\">$gender</option>";
@@ -63,7 +64,7 @@ require "../../resources/languages.php";
               </select>
             </div>
             <div class="col">
-              <select class="form-control col" required>
+              <select name="preference" class="form-control col" required>
                 <option value="" disabled selected>I am looking for...</option>
                   <?php foreach ($preference_arr as $pref) {
                       echo "<option value=\"$pref\">$pref</option>";
@@ -74,7 +75,7 @@ require "../../resources/languages.php";
 
           <div class="location-region row ps-2 pe-2 mb-2">
             <div class="form-group col">
-              <select class="form-control col" required>
+              <select name="country" class="form-control col" required>
                 <option value="" disabled selected>Country</option>
                   <?php foreach ($countries as $country) {
                       echo "<option value=\"$country\">$country</option>";
@@ -82,14 +83,14 @@ require "../../resources/languages.php";
               </select>
             </div>
             <div class="form-group col">
-              <input type="text" class="form-control" placeholder="State/County" required
+              <input name="region" type="text" class="form-control" placeholder="State/County" required
                      minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+">
             </div>
           </div>
 
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="fluent-languages">I am fluent in...</label>
-            <select multiple
+            <select name="fluent-languages[]" multiple
                     class="language-select form-control"
                     id="fluent-languages">
                 <?php foreach ($languages as $language) {
@@ -99,7 +100,7 @@ require "../../resources/languages.php";
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="learning-languages">I am learning...</label>
-            <select multiple
+            <select name="learning-languages[]" multiple
                     class="language-select form-control"
                     id="learning-languages">
                 <?php foreach ($languages as $language) {
