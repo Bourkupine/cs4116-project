@@ -14,11 +14,23 @@ if (isset($_POST['submit'])) {
     $preference = $_POST['preference'];
     $country = $_POST['country'];
     $region = $_POST['region'];
-    $fluent_languages = $_POST['fluent_languages'];
-    $learning_languages = $_POST['learning_languages'];
+    $fluent_languages = array();
+    $learning_languages = array();
 
     if (!validate_password($password, $password_confirm)) {
       $error_message = "<small class=\"text-muted\">Passwords do not match</small>";
+    }
+
+    if (isset($_POST['fluent_languages'])) {
+        $fluent_languages = $_POST['fluent_languages'];
+    } else {
+      $error_message = "<small class=\"text-muted\">Please select at least one fluent language</small>";
+    }
+
+    if (isset($_POST['learning_languages'])) {
+        $learning_languages = $_POST['learning_languages'];
+    } else {
+        $error_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
     }
 }
 
