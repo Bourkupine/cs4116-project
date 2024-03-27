@@ -34,7 +34,7 @@ require "../../resources/languages.php";
                    required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input name="surname" type="text" class="form-control" placeholder="Last Name"
+            <input name="lastname" type="text" class="form-control" placeholder="Last Name"
                    required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
@@ -50,7 +50,7 @@ require "../../resources/languages.php";
             </small>
           </div>
           <div class="form-group m-2">
-            <input name="password-confirm" type="password" class="form-control" placeholder="Confirm Password"
+            <input name="password_confirm" type="password" class="form-control" placeholder="Confirm Password"
                    required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
           </div>
 
@@ -90,7 +90,7 @@ require "../../resources/languages.php";
 
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="fluent-languages">I am fluent in...</label>
-            <select name="fluent-languages[]" multiple
+            <select name="fluent_languages[]" multiple
                     class="language-select form-control"
                     id="fluent-languages">
                 <?php foreach ($languages as $language) {
@@ -99,7 +99,7 @@ require "../../resources/languages.php";
             </select>
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
-            <label for="learning-languages">I am learning...</label>
+            <label for="learning_languages">I am learning...</label>
             <select name="learning-languages[]" multiple
                     class="language-select form-control"
                     id="learning-languages">
