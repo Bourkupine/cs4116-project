@@ -2,9 +2,33 @@
 require "../../resources/gender-preference.php";
 require "../../resources/countries.php";
 require "../../resources/languages.php";
+
+$error_message = '';
+if (isset($_POST['submit'])) {
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['password_confirm'];
+    $gender = $_POST['gender'];
+    $preference = $_POST['preference'];
+    $country = $_POST['country'];
+    $region = $_POST['region'];
+    $fluent_languages = $_POST['fluent_languages'];
+    $learning_languages = $_POST['learning_languages'];
+
+    if (!validate_password($password, $password_confirm)) {
+      $error_message = "<small class=\"text-muted\">Passwords do not match</small>";
+    }
+}
+
+function validate_password($pass1, $pass2): bool
+{
+    return strcasecmp($pass1, $pass2) == 0;
+}
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="stylesheet" href="../styles.css" />
@@ -26,7 +50,7 @@ require "../../resources/languages.php";
 <div class="container mb-2">
   <div class="row">
     <div class="col">
-      <form method="post" action="register-form.php">
+      <form action="" method="post">
 
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
@@ -99,8 +123,8 @@ require "../../resources/languages.php";
             </select>
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
-            <label for="learning_languages">I am learning...</label>
-            <select name="learning-languages[]" multiple
+            <label for="learning-languages">I am learning...</label>
+            <select name="learning_languages[]" multiple
                     class="language-select form-control"
                     id="learning-languages">
                 <?php foreach ($languages as $language) {
@@ -121,7 +145,8 @@ require "../../resources/languages.php";
           </script>
 
           <div class="submit-button">
-            <button type="submit" class="btn text-white">Register</button>
+            <button name="submit" type="submit" class="btn text-white">Register</button>
+            <?php echo $error_message; ?>
           </div>
 
         </div>
