@@ -35,7 +35,7 @@ require "../../resources/languages.php";
           </div>
           <div class="form-group m-2">
             <input type="text" class="form-control" placeholder="Last Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z ']+$">
           </div>
           <div class="form-group m-2">
             <input type="email" class="form-control" placeholder="Email"
