@@ -42,26 +42,27 @@ require "../../resources/languages.php";
 
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
-            <input type="text" class="form-control" aria-describedby="" placeholder="First Name" required
-                   minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+            <input type="text" class="form-control" aria-describedby="" placeholder="First Name"
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="text" class="form-control" placeholder="Last Name" required
-                   minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+            <input type="text" class="form-control" placeholder="Last Name"
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="email" class="form-control" placeholder="Email" required
-                   maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
+            <input type="email" class="form-control" placeholder="Email"
+                   required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Password" required aria-describedby="passwordHelp"
-                   minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
-            <small id="passwordHelp" class="form-text text-muted">Passwords require at least one number,
-              uppercase character, and lowercase character</small>
+            <input type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
+                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <small id="passwordHelp" class="form-text text-muted">
+              Passwords require at least one number, uppercase character, and lowercase character
+            </small>
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Confirm Password" required
-                   minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <input type="password" class="form-control" placeholder="Confirm Password"
+                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
           </div>
 
           <div class="gender-preference row ps-2 pe-2 mb-2">
