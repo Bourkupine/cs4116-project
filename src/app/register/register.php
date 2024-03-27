@@ -83,7 +83,7 @@ $learning_selected = [];
               </select>
             </div>
             <div class="form-group col">
-              <input type="text" class="form-control" placeholder="Region">
+              <input type="text" class="form-control" placeholder="State/County">
             </div>
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
