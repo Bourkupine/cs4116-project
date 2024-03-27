@@ -28,6 +28,9 @@ $learning_selected = [];
     src="https://kit.fontawesome.com/3af37769b5.js"
     crossorigin="anonymous"
   ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
   <title>Love Languages - Register</title>
 </head>
 
@@ -88,7 +91,7 @@ $learning_selected = [];
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="fluent-languages">I am fluent in...</label>
-            <select multiple size="5"
+            <select multiple
                     class="language-select form-control"
                     id="fluent-languages">
                 <?php foreach ($languages as $language) {
@@ -98,7 +101,7 @@ $learning_selected = [];
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="learning-languages">I am learning...</label>
-            <select multiple size="5"
+            <select multiple
                     class="language-select form-control"
                     id="learning-languages">
                 <?php foreach ($languages as $language) {
@@ -106,6 +109,18 @@ $learning_selected = [];
                 } ?>
             </select>
           </div>
+
+          <script>
+            $(document).ready(function(){
+              var learningLanguagesDropdown = new Choices('#learning-languages', {
+                removeItemButton: true,
+              });
+              var fluentLanguagesDropdown = new Choices('#fluent-languages', {
+                removeItemButton: true,
+              });
+            });
+          </script>
+
           <div class="submit-button">
             <button type="submit" class="btn text-white">Register</button>
           </div>

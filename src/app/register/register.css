@@ -1,85 +1,74 @@
 body {
-  background-color: #fcfcff !important;
-  /*todo: maybe move this to styles.css */
-}
-
-.language-select {
-  border: none !important;
-  background-color: #c6c7ff !important;
-
-  option:checked {
-    background: #cb6ce6 linear-gradient(0deg, #cb6ce6 0%, #cb6ce6 100%);
-    color: white;
-    border-radius: 5px;
-  }
+    background-color: #fcfcff !important;
+    /*todo: maybe move this to styles.css */
 }
 
 .submit-button {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: flex-end;
 
-  button {
-    width: 20%;
-    font-size: 16px;
-    background-color: #8c52ff;
-    border-radius: 15px;
-  }
+    button {
+        width: 20%;
+        font-size: 16px;
+        background-color: #8c52ff;
+        border-radius: 15px;
+    }
 
-  button:hover {
-    background-color: #cb6ce6;
-  }
+    button:hover {
+        background-color: #cb6ce6;
+    }
 }
 
 @media (min-width: 992px) {
-  .submit-button {
-    display: flex;
-    margin-left: 104%;
-    justify-content: center;
+    .submit-button {
+        display: flex;
+        margin-left: 104%;
 
-    button {
-      width: 40%;
-      margin-top: -8%;
-      height: 85px;
-      font-size: 32px;
-      border-radius: 70px;
-      z-index: 100;
+        button {
+            width: 40%;
+            margin-top: -8%;
+            height: 85px;
+            font-size: 32px;
+            border-radius: 70px;
+            z-index: 100;
+        }
     }
-  }
 }
 
 .logo-image {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-  img {
-    max-width: 362px;
-  }
+    img {
+        max-width: 362px;
+    }
 }
 
 .slogan {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
-  span {
-    font-family: Bungee, sans-serif;
-    color: #7843e6;
-    text-shadow:
-      -1px 1px #ff00ff,
-      1px -1px #00ffff;
-    font-size: 72px;
-    line-height: 53px;
-    text-align: center;
-  }
+    span {
+        font-family: Bungee, sans-serif;
+        color: #7843e6;
+        text-shadow: -1px 1px #ff00ff,
+        1px -1px #00ffff;
+        font-size: 72px;
+        line-height: 53px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 1200px) {
-  .slogan {
-    span {
-      font-size: 60px;
-      line-height: 45px;
+    .slogan {
+        span {
+            font-size: 60px;
+            line-height: 45px;
+        }
     }
-  }
 }
