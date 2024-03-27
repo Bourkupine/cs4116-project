@@ -32,6 +32,9 @@ require "../../resources/languages.php";
 </head>
 
 <body>
+<p id="passwordHelp" hidden>Passwords must contain 8 characters, including at least one number, uppercase character, and
+  lowercase character</p>
+
 <div class="container">
   <div class="row">
     <div class="col">
@@ -39,24 +42,31 @@ require "../../resources/languages.php";
 
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
-            <input type="text" class="form-control" placeholder="First Name">
+            <input type="text" class="form-control" aria-describedby="" placeholder="First Name" required
+                   minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="text" class="form-control" placeholder="Last Name">
+            <input type="text" class="form-control" placeholder="Last Name" required
+                   minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
           </div>
           <div class="form-group m-2">
-            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+            <input type="email" class="form-control" placeholder="Email" required
+                   maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" required aria-describedby="passwordHelp"
+                   minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <small id="passwordHelp" class="form-text text-muted">Passwords require at least one number,
+              uppercase character, and lowercase character</small>
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Confirm Password">
+            <input type="password" class="form-control" placeholder="Confirm Password" required
+                   minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
           </div>
 
           <div class="gender-preference row ps-2 pe-2 mb-2">
             <div class="col">
-              <select class="form-control">
+              <select class="form-control" required>
                 <option value="" disabled selected>Gender</option>
                   <?php foreach ($gender_arr as $gender) {
                       echo "<option value=\"$gender\">$gender</option>";
@@ -64,7 +74,7 @@ require "../../resources/languages.php";
               </select>
             </div>
             <div class="col">
-              <select class="form-control col">
+              <select class="form-control col" required>
                 <option value="" disabled selected>I am looking for...</option>
                   <?php foreach ($preference_arr as $pref) {
                       echo "<option value=\"$pref\">$pref</option>";
@@ -75,7 +85,7 @@ require "../../resources/languages.php";
 
           <div class="location-region row ps-2 pe-2 mb-2">
             <div class="form-group col">
-              <select class="form-control col">
+              <select class="form-control col" required>
                 <option value="" disabled selected>Country</option>
                   <?php foreach ($countries as $country) {
                       echo "<option value=\"$country\">$country</option>";
@@ -83,7 +93,8 @@ require "../../resources/languages.php";
               </select>
             </div>
             <div class="form-group col">
-              <input type="text" class="form-control" placeholder="State/County">
+              <input type="text" class="form-control" placeholder="State/County" required
+                     minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+">
             </div>
           </div>
 
@@ -109,12 +120,12 @@ require "../../resources/languages.php";
           </div>
 
           <script>
-            $(document).ready(function(){
-              const learningLanguagesDropdown = new Choices('#learning-languages', {
-                removeItemButton: true,
+            $(document).ready(function() {
+              const learningLanguagesDropdown = new Choices("#learning-languages", {
+                removeItemButton: true
               });
-              const fluentLanguagesDropdown = new Choices('#fluent-languages', {
-                removeItemButton: true,
+              const fluentLanguagesDropdown = new Choices("#fluent-languages", {
+                removeItemButton: true
               });
             });
           </script>

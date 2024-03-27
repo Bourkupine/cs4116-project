@@ -3,6 +3,10 @@ body {
     /*todo: maybe move this to styles.css */
 }
 
+#passwordHelp {
+    font-size: 12px !important;
+}
+
 .submit-button {
     display: flex;
     width: 100%;
