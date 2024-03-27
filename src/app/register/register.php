@@ -65,7 +65,7 @@ $learning_selected = [];
             </div>
             <div class="col">
               <select class="form-control col">
-                <option value="" disabled selected>Preference</option>
+                <option value="" disabled selected>I am looking for...</option>
                   <?php foreach ($preference_arr as $pref) {
                       echo "<option value=\"$pref\">$pref</option>";
                   } ?>
