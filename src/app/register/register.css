@@ -1,0 +1,45 @@
+body {
+    background-color: #fcfcff !important;
+    /*todo: maybe move this to styles.css */
+}
+
+.language-select {
+    border: none !important;
+    background-color: #c6c7ff !important;
+
+    option:checked {
+        background: #cb6ce6 linear-gradient(0deg, #cb6ce6 0%, #cb6ce6 100%);
+        color: white;
+        border-radius: 5px;
+    }
+}
+
+.submit-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    button {
+        width: 20%;
+        font-size: 16px;
+        background-color: #8c52ff;
+        border-radius: 15px;
+    }
+
+    button:hover {
+        background-color: #cb6ce6;
+    }
+}
+
+@media (min-width: 992px) {
+    .submit-button {
+        display: flex;
+        width: 200%;
+        justify-content: flex-end;
+
+        button {
+            font-size: 32px;
+            border-radius: 40px;
+        }
+    }
+}
