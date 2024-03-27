@@ -28,7 +28,7 @@ $learning_selected = [];
     src="https://kit.fontawesome.com/3af37769b5.js"
     crossorigin="anonymous"
   ></script>
-  <title>Love Languages - Log In</title>
+  <title>Love Languages - Register</title>
 </head>
 
 <body>
