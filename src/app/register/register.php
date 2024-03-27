@@ -35,10 +35,10 @@ $learning_selected = [];
 <div class="container">
   <div class="row">
     <div class="col">
-      <form class="col-lg-6 col-sm-12" method="post">
+      <form method="post">
         <!-- INPUT FIELDS -->
         <div class="basic-info">
-          <div class="form-group m-2">
+          <div class="form-group m-2 mt-4">
             <input type="text" class="form-control" placeholder="First Name">
           </div>
           <div class="form-group m-2">
@@ -112,11 +112,11 @@ $learning_selected = [];
         </div>
       </form>
     </div>
-    <div class="col">
-      <div class="logo-image">
-        <
+    <div class="col d-none d-lg-block">
+      <div class="logo-image pt-5 pb-5">
+        <img src="../../assets/ll-logo-gradient.png" alt="logo">
       </div>
-      <div class="slogan">
+      <div class="slogan pt-3">
         <span>LOVE SPEAKS EVERY LANGUAGE</span>
       </div>
     </div>

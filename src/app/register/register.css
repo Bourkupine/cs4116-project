@@ -34,12 +34,50 @@ body {
 @media (min-width: 992px) {
     .submit-button {
         display: flex;
-        width: 200%;
-        justify-content: flex-end;
+        margin-left: 104%;
+        justify-content: center;
 
         button {
+            width: 40%;
+            margin-top: -8%;
+            height: 85px;
             font-size: 32px;
-            border-radius: 40px;
+            border-radius: 70px;
+            z-index: 100;
+        }
+    }
+}
+
+.logo-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+        max-width: 362px;
+    }
+}
+
+.slogan {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    span {
+        font-family: Bungee, sans-serif;
+        color: #7843e6;
+        text-shadow: -1px 1px #ff00ff, 1px -1px #00ffff;
+        font-size: 72px;
+        line-height: 53px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .slogan {
+        span {
+            font-size: 60px;
+            line-height: 45px;
         }
     }
 }
