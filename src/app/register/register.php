@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
           </div>
           <div class="form-group m-2">
             <input name="lastname" type="text" class="form-control" placeholder="Last Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$"
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z ']+$"
                 <?php if (isset($_POST['lastname'])) { echo "value=\"" . $_POST['lastname'] . "\""; } ?>>
           </div>
           <div class="form-group m-2">
