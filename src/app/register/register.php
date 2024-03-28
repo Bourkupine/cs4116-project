@@ -45,7 +45,7 @@ require "languages.php";
             <input type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
                    required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
             <small id="passwordHelp" class="form-text text-muted">
-              Passwords require at least one number, uppercase character, and lowercase character
+              Passwords need 8 or more characters with a number, uppercase, and lowercase character
             </small>
           </div>
           <div class="form-group m-2">
@@ -131,7 +131,7 @@ require "languages.php";
       <div class="logo-image pt-5 pb-5">
         <img src="../../assets/ll-logo-gradient.png" alt="logo">
       </div>
-      <div class="slogan pt-3">
+      <div class="slogan slogan-text pt-3">
         <span>LOVE SPEAKS EVERY LANGUAGE</span>
       </div>
     </div>
