@@ -19,23 +19,17 @@ if (isset($_POST['submit'])) {
 
     if (!validate_password($password, $password_confirm)) {
       $error_message = "<small class=\"text-muted\">Passwords do not match</small>";
-    }
-
-    if (isset($_POST['fluent_languages'])) {
-        $fluent_languages = $_POST['fluent_languages'];
-    } else {
+    } else if (!isset($_POST['fluent_languages']) || sizeof($_POST['fluent_languages']) < 1) {
       $error_message = "<small class=\"text-muted\">Please select at least one fluent language</small>";
-    }
-
-    if (isset($_POST['learning_languages'])) {
-        $learning_languages = $_POST['learning_languages'];
+    } else if (!isset($_POST['learning_languages']) || sizeof($_POST['learning_languages']) < 1) {
+      $error_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
     } else {
-        $error_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
+      $fluent_languages = $_POST['fluent_languages'];
+      $learning_languages = $_POST['learning_languages'];
     }
 }
 
-function validate_password($pass1, $pass2): bool
-{
+function validate_password($pass1, $pass2): bool {
     return strcasecmp($pass1, $pass2) == 0;
 }
 ?>
@@ -67,43 +61,61 @@ function validate_password($pass1, $pass2): bool
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
             <input name="firstname" type="text" class="form-control" aria-describedby="" placeholder="First Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$"
+                <?php if (isset($_POST['firstname'])) { echo "value=\"" . $_POST['firstname'] . "\""; } ?>>
           </div>
           <div class="form-group m-2">
             <input name="lastname" type="text" class="form-control" placeholder="Last Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$"
+                <?php if (isset($_POST['lastname'])) { echo "value=\"" . $_POST['lastname'] . "\""; } ?>>
           </div>
           <div class="form-group m-2">
             <input name="email" type="email" class="form-control" placeholder="Email"
-                   required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
+                   required maxlength="64" pattern="^[A-Za-z0-9\.]+@[A-Za-z0-9\.]+[A-Za-z0-9]{2,5}$"
+                <?php if (isset($_POST['email'])) { echo "value=\"" . $_POST['email'] . "\""; } ?>>
           </div>
           <div class="form-group m-2">
             <input name="password" type="password" class="form-control" placeholder="Password"
                    aria-describedby="passwordHelp" required minlength="8" maxlength="32"
-                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                <?php if (isset($_POST['password'])) { echo "value=\"" . $_POST['password'] . "\""; } ?>>
             <small id="passwordHelp" class="form-text text-muted">
               Passwords require at least one number, uppercase character, and lowercase character
             </small>
           </div>
           <div class="form-group m-2">
             <input name="password_confirm" type="password" class="form-control" placeholder="Confirm Password"
-                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                <?php if (isset($_POST['password_confirm'])) { echo "value=\"" . $_POST['password_confirm'] . "\""; } ?>>
           </div>
 
           <div class="gender-preference row ps-2 pe-2 mb-2">
             <div class="col">
               <select name="gender" class="form-control" required>
+                <option value=\"\" disabled
+                    <?php if (!isset($_POST['gender'])) { echo "selected"; } ?>
+                >Gender</option>
                 <option value="" disabled selected>Gender</option>
                   <?php foreach ($gender_arr as $gender) {
-                      echo "<option value=\"$gender\">$gender</option>";
+                    if (isset($_POST['gender']) && strcmp($_POST['gender'], $gender) == 0) {
+                        echo "<option value=\"$gender\" selected>$gender</option>";
+                    } else {
+                        echo "<option value=\"$gender\">$gender</option>";
+                    }
                   } ?>
               </select>
             </div>
             <div class="col">
               <select name="preference" class="form-control col" required>
-                <option value="" disabled selected>I am looking for...</option>
+                <option value="" disabled
+                    <?php if (!isset($_POST['preference'])) { echo "selected"; } ?>
+                >I am looking for...</option>
                   <?php foreach ($preference_arr as $pref) {
-                      echo "<option value=\"$pref\">$pref</option>";
+                      if (isset($_POST['preference']) && strcmp($_POST['preference'], $pref) == 0) {
+                          echo "<option value=\"$pref\" selected>$pref</option>";
+                      } else {
+                          echo "<option value=\"$pref\">$pref</option>";
+                      }
                   } ?>
               </select>
             </div>
@@ -112,15 +124,22 @@ function validate_password($pass1, $pass2): bool
           <div class="location-region row ps-2 pe-2 mb-2">
             <div class="form-group col">
               <select name="country" class="form-control col" required>
-                <option value="" disabled selected>Country</option>
+                <option value="" disabled
+                    <?php if (!isset($_POST['country'])) { echo "selected"; } ?>
+                >Country</option>
                   <?php foreach ($countries as $country) {
-                      echo "<option value=\"$country\">$country</option>";
+                      if (isset($_POST['country']) && strcmp($_POST['country'], $country) == 0) {
+                          echo "<option value=\"$country\" selected>$country</option>";
+                      } else {
+                          echo "<option value=\"$country\">$country</option>";
+                      }
                   } ?>
               </select>
             </div>
             <div class="form-group col">
               <input name="region" type="text" class="form-control" placeholder="State/County" required
-                     minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+">
+                     minlength="2" maxlength="32" pattern="[A-Za-z0-9,']+"
+                  <?php if (isset($_POST['region'])) { echo "value=\"" . $_POST['region'] . "\""; } ?>>
             </div>
           </div>
 
@@ -130,7 +149,11 @@ function validate_password($pass1, $pass2): bool
                     class="language-select form-control"
                     id="fluent-languages">
                 <?php foreach ($languages as $language) {
-                    echo "<option value=\"$language\">$language</option>";
+                  if (isset($_POST['fluent_languages']) && in_array($language, $_POST['fluent_languages'])) {
+                      echo "<option value=\"$language\" selected>$language</option>";
+                  } else {
+                      echo "<option value=\"$language\">$language</option>";
+                  }
                 } ?>
             </select>
           </div>
@@ -140,7 +163,11 @@ function validate_password($pass1, $pass2): bool
                     class="language-select form-control"
                     id="learning-languages">
                 <?php foreach ($languages as $language) {
-                    echo "<option value=\"$language\">$language</option>";
+                    if (isset($_POST['learning_languages']) && in_array($language, $_POST['learning_languages'])) {
+                        echo "<option value=\"$language\" selected>$language</option>";
+                    } else {
+                        echo "<option value=\"$language\">$language</option>";
+                    }
                 } ?>
             </select>
           </div>
