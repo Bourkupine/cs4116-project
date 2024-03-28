@@ -61,25 +61,20 @@
           <!-- LINKS -->
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-4 row-gap-3">
-            <?php
-              session_start();
-              if (isset($_SESSION['/logged_in'])) { //todo: need to properly implement this check
-              echo '
-                <li class="nav-item">
-                  <a class="link nav-link" href="#">
-                    <i class="fa-solid fa-magnifying-glass fa-2x"></i> <!--todo: investigate making this white when on that page -->
-                    <span class="navbar-toggler text-white border-0">Search</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="link nav-link" href="#">
-                    <i class="fa-solid fa-comment-dots fa-2x"></i>
-                    <span class="navbar-toggler text-white border-0">Connections</span>
-                  </a>
-                </li>
-              ';
-              }
-              ?>
+              <!-- todo: check if user is logged in to determine what to display -->
+              <li class="nav-item">
+                <a class="link nav-link" href="#">
+                  <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+                  <!--todo: investigate making this white when on that page -->
+                  <span class="navbar-toggler text-white border-0">Search</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="link nav-link" href="#">
+                  <i class="fa-solid fa-comment-dots fa-2x"></i>
+                  <span class="navbar-toggler text-white border-0">Connections</span>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="link nav-link" href="#">
                   <i class="fa-solid fa-circle-info fa-2x"></i>
