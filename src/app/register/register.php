@@ -1,7 +1,7 @@
 <?php
-require "../../resources/gender-preference.php";
-require "../../resources/countries.php";
-require "../../resources/languages.php";
+require "gender-preference.php";
+require "countries.php";
+require "languages.php";
 require "register-service.php";
 
 $error_message = '';
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
                 <?php if (isset($_POST['password'])) { echo "value=\"" . $_POST['password'] . "\""; } ?>>
             <small id="passwordHelp" class="form-text text-muted">
-              Passwords require at least one number, uppercase character, and lowercase character
+              Passwords need 8 or more characters with a number, uppercase, and lowercase character
             </small>
           </div>
           <div class="form-group m-2">
@@ -193,7 +193,7 @@ if (isset($_POST['submit'])) {
       <div class="logo-image pt-5 pb-5">
         <img src="../../assets/ll-logo-gradient.png" alt="logo">
       </div>
-      <div class="slogan pt-3">
+      <div class="slogan slogan-text pt-3">
         <span>LOVE SPEAKS EVERY LANGUAGE</span>
       </div>
     </div>
