@@ -2,6 +2,7 @@
 require "../../resources/gender-preference.php";
 require "../../resources/countries.php";
 require "../../resources/languages.php";
+require "register-service.php";
 
 $error_message = '';
 if (isset($_POST['submit'])) {
@@ -19,18 +20,14 @@ if (isset($_POST['submit'])) {
 
     if (!validate_password($password, $password_confirm)) {
       $error_message = "<small class=\"text-muted\">Passwords do not match</small>";
-    } else if (!isset($_POST['fluent_languages']) || sizeof($_POST['fluent_languages']) < 1) {
+    } else if (!validate_lang_arr('fluent_languages')) {
       $error_message = "<small class=\"text-muted\">Please select at least one fluent language</small>";
-    } else if (!isset($_POST['learning_languages']) || sizeof($_POST['learning_languages']) < 1) {
+    } else if (!validate_lang_arr('learning_languages')) {
       $error_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
     } else {
       $fluent_languages = $_POST['fluent_languages'];
       $learning_languages = $_POST['learning_languages'];
     }
-}
-
-function validate_password($pass1, $pass2): bool {
-    return strcasecmp($pass1, $pass2) == 0;
 }
 ?>
 
