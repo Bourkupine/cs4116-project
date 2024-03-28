@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="\cs4116-project\src\app\styles.css" /> <!-- todo: find better way to use absolute links -->
-    <link rel="stylesheet" href="\cs4116-project\src\app\navbar\navbar.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="navbar\navbar.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,7 +19,7 @@
         <a class="logo-link" href="#"> <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
           <div class="logo">
             <img
-              src="\cs4116-project\src\assets\ll-logo.png"
+              src="..\assets\ll-logo.png"
               height="594"
               width="703"
               alt="logo"
