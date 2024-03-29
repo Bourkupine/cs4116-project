@@ -1,24 +1,28 @@
-.title{
-    font-size: 10px;
+.title {
+    font-size: 20px;
     text-align: center;
-    max-width: 400px;
-}
-.image {
-    height: 150px;
-    width: 200px;
-    border: #99a1ff;
+    font-weight: bold;
 }
 
-.description{
+img {
+    height: 15%;
+    width: 20%;
+    object-position: center;
+}
+.image{
+    object-position: center;
+}
 
-    font-size: 5px;
-    color: pink;
-    text-align:  center;
-    max-width: 400px;
+h1 {
+    font-size: 15px !important;
+    font-family: sans-serif;
+    color: black;
+    text-align: center;
+
 }
 
 .slogan {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
 
