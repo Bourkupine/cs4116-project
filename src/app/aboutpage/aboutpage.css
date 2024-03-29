@@ -8,3 +8,15 @@
     color: black;
     text-align:  center;
 }
+
+.slogan {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    span {
+        font-size: 72px;
+        line-height: 53px;
+        text-align: center;
+    }
+}
