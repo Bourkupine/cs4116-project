@@ -1,0 +1,16 @@
+#welcome-text {
+    font-family: Bungee, sans-serif;
+    color: #7843e6;
+    display: block;
+}
+
+#sign-up-button {
+    font-weight: bold;
+    font-size: calc(1rem + 1vw);
+    padding: 10px 100px;
+}
+
+span.slogan-text {
+    line-height: 75%;
+    font-size: calc(2rem + 2vw);
+}

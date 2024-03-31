@@ -6,8 +6,8 @@
 .slogan-text {
     font-family: Bungee, sans-serif;
     color: #7843e6;
-    text-shadow: -1px 1px #ff00ff,
-    1px -1px #00ffff;
+    text-shadow: calc(-0.05rem + -0.05vw) calc(0.05rem + 0.05vw) #ff00ff,
+    calc(0.05rem + 0.05vw) calc(-0.05rem + -0.05vw) #00ffff;
 }
 
 body {
@@ -16,9 +16,9 @@ body {
 
 .ll-button {
     background-color: #8c52ff;
-    padding: 6px 12px;
     border: none;
     color: white;
+    border-radius: 5vw;
 }
 
 .ll-button:hover {
