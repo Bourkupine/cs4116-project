@@ -10,12 +10,7 @@
   button {
     width: 30%;
     font-size: 16px;
-    background-color: #8c52ff;
     border-radius: 15px;
-  }
-
-  button:hover {
-    background-color: #cb6ce6;
   }
 }
 

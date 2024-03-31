@@ -8,8 +8,6 @@ require "../navbar/navbar.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="register.css" />
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -18,6 +16,8 @@ require "../navbar/navbar.php";
   />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="register.css" />
 
   <title>Love Languages - Register</title>
 </head>
@@ -120,7 +120,7 @@ require "../navbar/navbar.php";
           </script>
 
           <div class="submit-button">
-            <button type="submit" class="btn text-white">Register</button>
+            <button type="submit" class="btn text-white ll-button">Register</button>
           </div>
 
         </div>
