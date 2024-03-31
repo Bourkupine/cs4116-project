@@ -2,6 +2,7 @@
 require "gender-preference.php";
 require "countries.php";
 require "languages.php";
+require "../navbar/navbar.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ require "languages.php";
 </head>
 
 <body>
-<div class="container mb-2">
+<div class="container">
   <div class="row">
     <div class="col">
       <form method="post">
@@ -127,7 +128,7 @@ require "languages.php";
     </div>
 
     <div class="col d-none d-lg-block">
-      <div class="logo-image pt-5 pb-5">
+      <div class="logo-image pt-4 pb-4">
         <img src="../../assets/ll-logo-gradient.png" alt="logo">
       </div>
       <div class="slogan slogan-text pt-3">
