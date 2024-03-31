@@ -5,8 +5,8 @@
 
 <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="home.css">
     <link rel="stylesheet" type="" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -24,8 +24,8 @@
     </div>
     <div class="row">
         <div class="buttons">
-            <button type="button" class="btn btn-primary">Sign Up</button>
-            <button type="button" class="btn btn-primary">Log In</button>
+            <button type="button" class="ll-button">Sign Up</button>
+            <button type="button" class="ll-button">Log In</button>
         </div>
     </div>
 
