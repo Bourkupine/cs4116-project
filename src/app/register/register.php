@@ -2,7 +2,7 @@
 require "gender-preference.php";
 require "countries.php";
 require "languages.php";
-require "register-service.php";
+require "register-functions.php";
 
 $error_message = '';
 if (isset($_POST['submit'])) {
