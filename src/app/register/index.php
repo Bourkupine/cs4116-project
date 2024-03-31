@@ -53,7 +53,7 @@ require "../navbar/navbar.php";
                    required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
           </div>
 
-          <div class="gender-preference row ps-2 pe-2 mb-2">
+          <div class="row ps-2 pe-2 mb-2">
             <div class="col">
               <select class="form-control" required>
                 <option value="" disabled selected>Gender</option>
@@ -72,7 +72,7 @@ require "../navbar/navbar.php";
             </div>
           </div>
 
-          <div class="location-region row ps-2 pe-2 mb-2">
+          <div class="row ps-2 pe-2 mb-2">
             <div class="form-group col">
               <select class="form-control col" required>
                 <option value="" disabled selected>Country</option>
