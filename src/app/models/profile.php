@@ -20,6 +20,7 @@ class profile
     private sex $sex;
     private preference $preference;
     private string $bio;
+    private string $profile_pic;
     private string $country;
     private string $region;
 
@@ -104,6 +105,16 @@ class profile
     public function setBio(string $bio): void
     {
         $this->bio = $bio;
+    }
+
+    public function getProfilePic(): string
+    {
+        return $this->profile_pic;
+    }
+
+    public function setProfilePic(string $profile_pic): void
+    {
+        $this->profile_pic = $profile_pic;
     }
 
     public function getCountry(): string
