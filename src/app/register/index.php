@@ -107,7 +107,7 @@ $languages = get_all_languages($connection);
           </div>
 
           <div class="form-group m-2">
-            <input type="number" class="form-control" placeholder="Age"
+            <input type="number" class="form-control w-25" placeholder="Age"
                    required min="18" max="120" pattern="[0-9]{2,5}">
           </div>
 
