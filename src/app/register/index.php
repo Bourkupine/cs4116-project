@@ -3,13 +3,25 @@
  * @var array $gender_arr
  * @var array $preference_arr
  * @var array $countries
- * @var array $languages
  */
 
 require 'gender-preference.php';
 require 'countries.php';
-require 'languages.php';
 require '../navbar/navbar.php';
+require '../database/database-connect.php';
+require '../database/languages.php';
+
+global $connection;
+try {
+    $connection = connect();
+} catch (Exception $e) {
+    $code = $e->getCode();
+    $message = $e->getMessage();
+    $file = $e->getFile();
+    $line = $e->getLine();
+    echo "Exception thrown in $file on line $line: [Code $code] $message\") </script>";
+}
+$languages = get_all_languages($connection);
 ?>
 
 <!DOCTYPE html>
