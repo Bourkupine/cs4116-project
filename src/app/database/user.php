@@ -27,7 +27,7 @@ function get_user_by_id(int $user_id): user {
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
-        return new \models\user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
+        return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
     } else {
         throw new mysqli_sql_exception();
     }
@@ -41,7 +41,7 @@ function get_user_by_email(string $email): user {
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
-        return new \models\user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
+        return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
     } else {
         throw new mysqli_sql_exception();
     }
@@ -59,4 +59,4 @@ function delete_user_by_user_id(int $user_id): bool {
         disconnect();
         return false;
     }
-};
+}
