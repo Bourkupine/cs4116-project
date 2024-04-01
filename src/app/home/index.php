@@ -22,12 +22,12 @@ include "../navbar/navbar.php"
 <body>
 
 <div class="container">
-    <div class="row">
+    <div class="pt-3 row">
         <div class="col-12">
             <h1 class="title slogan-text">The Dating Website for Language Lovers</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="pt-4 row">
         <div class="buttons">
             <a href="../index.php" class="ll-button" role="button">Sign Up</a>
             <a href="../index.php" class="ll-button" role="button">Log In</a>
