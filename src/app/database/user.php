@@ -3,7 +3,7 @@
 require 'database-connect.php';
 require '../models/user.php';
 
-function create_user_user(string $email, string $password): bool {
+function create_user(string $email, string $password): bool {
     connect();
     global $connection;
 
