@@ -1,6 +1,7 @@
 <?php
 
-enum account_type {
+enum account_type
+{
     case user;
     case admin;
 }
@@ -12,8 +13,12 @@ class user
     private string $password;
     private account_type $account_type;
 
-    public function __construct(int $user_id, string $email, string $password, account_type $account_type)
-    {
+    public function __construct(
+        int $user_id,
+        string $email,
+        string $password,
+        account_type $account_type
+    ) {
         $this->user_id = $user_id;
         $this->email = $email;
         $this->password = $password;

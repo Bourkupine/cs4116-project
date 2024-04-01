@@ -1,11 +1,13 @@
 <?php
 
-enum sex {
+enum sex
+{
     case male;
     case female;
 }
 
-enum preference {
+enum preference
+{
     case male;
     case female;
     case both;
@@ -24,8 +26,17 @@ class profile
     private string $country;
     private string $region;
 
-    public function __construct(int $user_id, string $first_name, string $surname, int $age, sex $sex, preference $preference, string $bio, string $country, string $region)
-    {
+    public function __construct(
+        int $user_id,
+        string $first_name,
+        string $surname,
+        int $age,
+        sex $sex,
+        preference $preference,
+        string $bio,
+        string $country,
+        string $region
+    ) {
         $this->user_id = $user_id;
         $this->first_name = $first_name;
         $this->surname = $surname;

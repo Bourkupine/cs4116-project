@@ -1,6 +1,6 @@
 <?php
-require '../database/user.php';
-require '../database/profile.php';
+require "../database/user.php";
+require "../database/profile.php";
 
 /**
  * Checks if the passwords are identical
@@ -25,20 +25,20 @@ function validate_lang_arr(string $arr_index): bool
 
 function create_account(): void
 {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
-    $gender = $_POST['gender'];
-    $preference = $_POST['preference'];
-    $country = $_POST['country'];
-    $region = $_POST['region'];
-    $age = $_POST['age'];
-    $fluent_languages = $_POST['fluent_languages'];
-    $learning_languages = $_POST['learning_languages'];
+    $firstname = $_POST["firstname"];
+    $lastname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $password_confirm = $_POST["password_confirm"];
+    $gender = $_POST["gender"];
+    $preference = $_POST["preference"];
+    $country = $_POST["country"];
+    $region = $_POST["region"];
+    $age = $_POST["age"];
+    $fluent_languages = $_POST["fluent_languages"];
+    $learning_languages = $_POST["learning_languages"];
 
-    $hashed_password = password_hash($password, 'PASSWORD_DEFAULT');
+    $hashed_password = password_hash($password, "PASSWORD_DEFAULT");
     $connection = new mysqli();
 
     try {
@@ -53,13 +53,23 @@ function create_account(): void
 
     if (create_user($connection, $email, $hashed_password)) {
         $user = get_user_by_email($connection, $email);
-        $profile = new profile($user->getUserId(), $firstname, $lastname, $age, $gender, $preference, '', $country, $region);
-         if (create_profile($connection, $profile)) {
+        $profile = new profile(
+            $user->getUserId(),
+            $firstname,
+            $lastname,
+            $age,
+            $gender,
+            $preference,
+            "",
+            $country,
+            $region
+        );
+        if (create_profile($connection, $profile)) {
             // have to add user_languages but not sure how to determine level - change UI or assume defaults?
-         } else {
-             delete_user_by_user_id($connection, $user->getUserId());
-             disconnect($connection);
-//             return 'Error in creating profile, please try again later';
-         }
+        } else {
+            delete_user_by_user_id($connection, $user->getUserId());
+            disconnect($connection);
+            //             return 'Error in creating profile, please try again later';
+        }
     }
 }

@@ -1,44 +1,58 @@
 <?php
 
-require 'database-connect.php';
-require '../models/user.php';
+require "database-connect.php";
+require "../models/user.php";
 
-function create_user(mysqli $connection, string $email, string $password): bool {
+function create_user(mysqli $connection, string $email, string $password): bool
+{
     $sql = "INSERT INTO users (email, password, account_type)
 VALUES ($email, $password, 'user')";
 
-    if ($connection->query($sql) === TRUE) {
+    if ($connection->query($sql) === true) {
         return true;
     } else {
         return false;
     }
 }
 
-function get_user_by_id(mysqli $connection, int $user_id): user {
+function get_user_by_id(mysqli $connection, int $user_id): user
+{
     $sql = "SELECT * FROM users WHERE user_id=$user_id";
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
-        return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
+        return new user(
+            $result["user_id"],
+            $result["email"],
+            $result["password"],
+            $result["account_type"]
+        );
     } else {
-        throw new Exception('No user exists by that user_id');
+        throw new Exception("No user exists by that user_id");
     }
 }
 
-function get_user_by_email(mysqli $connection, string $email): user {
+function get_user_by_email(mysqli $connection, string $email): user
+{
     $sql = "SELECT * FROM users WHERE email=$email";
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
-        return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
+        return new user(
+            $result["user_id"],
+            $result["email"],
+            $result["password"],
+            $result["account_type"]
+        );
     } else {
-        throw new Exception('No user exists by that email');
+        throw new Exception("No user exists by that email");
     }
 }
 
-function delete_user_by_user_id(mysqli $connection, int $user_id): bool {
+function delete_user_by_user_id(mysqli $connection, int $user_id): bool
+{
     $sql = "DELETE FROM users WHERE user_id=$user_id";
-    if ($connection->query($sql) === TRUE) {
+    if ($connection->query($sql) === true) {
         return true;
     } else {
         return false;
