@@ -1,7 +1,5 @@
 <?php
 
-namespace models;
-
 enum account_type {
     case user;
     case admin;

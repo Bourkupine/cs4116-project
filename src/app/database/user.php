@@ -19,7 +19,7 @@ VALUES ($email, $password, 'user')";
     }
 }
 
-function get_user_by_id(int $user_id): models\user {
+function get_user_by_id(int $user_id): user {
     connect();
     global $connection;
 
@@ -33,7 +33,7 @@ function get_user_by_id(int $user_id): models\user {
     }
 }
 
-function get_user_by_email(string $email): models\user {
+function get_user_by_email(string $email): user {
     connect();
     global $connection;
 
