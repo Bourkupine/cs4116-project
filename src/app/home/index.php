@@ -24,8 +24,8 @@
     </div>
     <div class="row">
         <div class="buttons">
-            <button type="button" class="ll-button">Sign Up</button>
-            <button type="button" class="ll-button">Log In</button>
+            <a href="../index.php" class="ll-button" role="button">Sign Up</a>
+            <a href="../index.php" class="ll-button" role="button">Log In</a>
         </div>
     </div>
 
