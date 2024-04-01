@@ -3,8 +3,8 @@
     text-align: center;
     color: #7843e6;
     text-shadow:
-        -1px 1px #ff00ff,
-        1px -1px #00ffff;
+            -1px 1px #ff00ff,
+            1px -1px #00ffff;
     font-size: 80px;
 }
 
@@ -14,8 +14,13 @@
     width: 100%;
     flex-direction: column;
     button {
-        width: 10%;
-        border-radius: 15px;
+        font-size: 20px;
+        min-width: 140px;
+        border-radius: 20px;
         margin-top: 30px;
     }
+}
+
+@media (max-width: 575px) {
+    min-width: 100px;
 }
