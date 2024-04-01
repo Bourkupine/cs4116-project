@@ -21,7 +21,7 @@ function get_user_by_id(mysqli $connection, int $user_id): user {
     if ($result->num_rows > 0) {
         return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
     } else {
-        throw new mysqli_sql_exception();
+        throw new Exception('No user exists by that user_id');
     }
 }
 
@@ -32,7 +32,7 @@ function get_user_by_email(mysqli $connection, string $email): user {
     if ($result->num_rows > 0) {
         return new user($result['user_id'], $result['email'], $result['password'], $result['account_type']);
     } else {
-        throw new mysqli_sql_exception();
+        throw new Exception('No user exists by that email');
     }
 }
 

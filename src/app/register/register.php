@@ -135,6 +135,11 @@ if (isset($_POST['submit'])) {
             </div>
           </div>
 
+          <div class="form-group m-2">
+            <input name="age" type="number" class="form-control" placeholder="Age"
+                   required min="18" max="120" pattern="[0-9]{2,5}">
+          </div>
+
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="fluent-languages">I am fluent in...</label>
             <select name="fluent_languages[]" multiple
