@@ -1,4 +1,6 @@
-
+<?php
+include "../navbar/navbar.php"
+?>
 
 <!DOCTYPE html>
 <html lang="en">
