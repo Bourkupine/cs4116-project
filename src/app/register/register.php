@@ -1,32 +1,27 @@
 <?php
+/**
+ * @var array $gender_arr
+ * @var array $preference_arr
+ * @var array $countries
+ * @var array $languages
+ */
+
 require "gender-preference.php";
 require "countries.php";
 require "languages.php";
 require "register-functions.php";
 
-$error_message = '';
+$submit_message = '';
 if (isset($_POST['submit'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
-    $gender = $_POST['gender'];
-    $preference = $_POST['preference'];
-    $country = $_POST['country'];
-    $region = $_POST['region'];
-    $fluent_languages = array();
-    $learning_languages = array();
 
-    if (!validate_password($password, $password_confirm)) {
-      $error_message = "<small class=\"text-muted\">Passwords do not match</small>";
+    if (!validate_password($_POST['password'], $_POST['password_confirm'])) {
+      $submit_message = "<small class=\"text-muted\">Passwords do not match</small>";
     } else if (!validate_lang_arr('fluent_languages')) {
-      $error_message = "<small class=\"text-muted\">Please select at least one fluent language</small>";
+      $submit_message = "<small class=\"text-muted\">Please select at least one fluent language</small>";
     } else if (!validate_lang_arr('learning_languages')) {
-      $error_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
+      $submit_message = "<small class=\"text-muted\">Please select at least one learning language</small>";
     } else {
-      $fluent_languages = $_POST['fluent_languages'];
-      $learning_languages = $_POST['learning_languages'];
+
     }
 }
 ?>
@@ -182,7 +177,7 @@ if (isset($_POST['submit'])) {
 
           <div class="submit-button">
             <button name="submit" type="submit" class="btn text-white">Register</button>
-            <?php echo $error_message; ?>
+            <?php echo $submit_message; ?>
           </div>
 
         </div>
