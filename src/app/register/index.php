@@ -1,8 +1,15 @@
 <?php
-require "gender-preference.php";
-require "countries.php";
-require "languages.php";
-require "../navbar/navbar.php";
+/**
+ * @var array $gender_arr
+ * @var array $preference_arr
+ * @var array $countries
+ * @var array $languages
+ */
+
+require 'gender-preference.php';
+require 'countries.php';
+require 'languages.php';
+require '../navbar/navbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -133,10 +140,10 @@ require "../navbar/navbar.php";
     </div>
 
     <div class="col d-none d-lg-block">
-      <div class="logo-image pt-4 pb-4">
+      <div class="logo-image pt-3 pb-4">
         <img src="../../assets/ll-logo-gradient.png" alt="logo">
       </div>
-      <div class="slogan slogan-text pt-3">
+      <div class="slogan slogan-text pt-2">
         <span>LOVE SPEAKS EVERY LANGUAGE</span>
       </div>
     </div>
