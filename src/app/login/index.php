@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
     <link rel="stylesheet" href="../styles.css"/>
     <link rel="stylesheet" href="login.css">
     <title>Love Languages - Login</title>
@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<?php include '../navbar/navbar.php' ?>
+
 <div class="container-fluid mt-2">
     <div class="row justify-content-md-between justify-content-center align-items-center">
         <div class="col-9 col-md-5 text-center">
@@ -53,7 +55,7 @@
                     </div>
                 </div>
                 <div class="col col-md-3 text-md-end text-center mt-md-0 mt-2">
-                    <button class="btn-lg ll-button px-md-3 px-5 fw-bold" type="submit">Login</button>
+                    <button id="login-button" class="btn ll-button px-md-3 px-5 fw-bold" type="submit">Login</button>
                 </div>
             </div>
         </div>
@@ -76,6 +78,9 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/3af37769b5.js" crossorigin="anonymous"></script>
 </body>
 </html>
