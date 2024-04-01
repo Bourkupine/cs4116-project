@@ -3,26 +3,18 @@
 require 'database-connect.php';
 require '../models/user.php';
 
-function create_user(string $email, string $password): bool {
-    connect();
-    global $connection;
-
+function create_user(mysqli $connection, string $email, string $password): bool {
     $sql = "INSERT INTO users (email, password, account_type)
 VALUES ($email, $password, 'user')";
 
     if ($connection->query($sql) === TRUE) {
-        disconnect();
         return true;
     } else {
-        disconnect();
         return false;
     }
 }
 
-function get_user_by_id(int $user_id): user {
-    connect();
-    global $connection;
-
+function get_user_by_id(mysqli $connection, int $user_id): user {
     $sql = "SELECT * FROM users WHERE user_id=$user_id";
     $result = $connection->query($sql);
 
@@ -33,10 +25,7 @@ function get_user_by_id(int $user_id): user {
     }
 }
 
-function get_user_by_email(string $email): user {
-    connect();
-    global $connection;
-
+function get_user_by_email(mysqli $connection, string $email): user {
     $sql = "SELECT * FROM users WHERE email=$email";
     $result = $connection->query($sql);
 
@@ -47,16 +36,11 @@ function get_user_by_email(string $email): user {
     }
 }
 
-function delete_user_by_user_id(int $user_id): bool {
-    connect();
-    global $connection;
-
+function delete_user_by_user_id(mysqli $connection, int $user_id): bool {
     $sql = "DELETE FROM users WHERE user_id=$user_id";
     if ($connection->query($sql) === TRUE) {
-        disconnect();
         return true;
     } else {
-        disconnect();
         return false;
     }
 }

@@ -2,15 +2,10 @@
 require '../config.php';
 
 /**
- * @var mysqli $connection
+ * Attempts to connect to the database and returns the connection
+ * @return mysqli the connection
  */
-$connection;
-
-/**
- * Attempts to connect to the database
- * @return string Returns if the connection was successful
- */
-function connect(): string {
+function connect(): mysqli {
     if (isset($_CONFIG)) {
         $servername = $_CONFIG['servername'];
         $username = $_CONFIG['username'];
@@ -24,13 +19,18 @@ function connect(): string {
             die("Connection failed: " . $connection->connect_error);
         }
 
-        return "<script> console.log(\"Connected to $database successfully\");</script>";
+        return $connection;
     }
-    return "<script> console.log(\"Connection failed: missing DB configurations\");</script>";
+    throw new Exception('Connection failed: Missing configurations');
 }
 
-function disconnect(): void {
-    global $connection;
+
+/**
+ * Disconnects the passed connection if it is connected to a database
+ * @param mysqli $connection the connection to be disconnected
+ * @return void
+ */
+function disconnect(mysqli $connection): void {
     if ($connection->ping()) {
         $connection->close();
     }
