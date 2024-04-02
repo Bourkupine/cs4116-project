@@ -10,7 +10,6 @@
   button {
     width: 30%;
     font-size: 16px;
-    border-radius: 15px;
   }
 }
 
@@ -24,7 +23,6 @@
       margin-top: -4%;
       height: 80px;
       font-size: 32px;
-      border-radius: 70px;
       z-index: 100;
     }
   }
