@@ -4,8 +4,8 @@
     font-weight: bold;
 }
 
-img {
-    max-height: 18vh;
+.img-fluid {
+    max-width: 10vw;
     object-position: center;
     object-fit: contain;
 }
