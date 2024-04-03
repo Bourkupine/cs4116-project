@@ -21,7 +21,7 @@ require_once("../navbar/navbar.php");
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6" style="text-align: center;">
+        <div class="col-xl-6" style="text-align: center;">
             <div class="howdoesthiswork">
                 <div class="image responsive center"><img src="../../../assets/download.png" alt="cog"></div>
                 <div class="title">
@@ -37,7 +37,7 @@ require_once("../navbar/navbar.php");
                 </h1></div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-xl-6">
             <div class="slogan slogan-text pt-3">
                 <span>LOVE SPEAKS EVERY LANGUAGE</span>
             </div>
@@ -45,7 +45,7 @@ require_once("../navbar/navbar.php");
     </div>
 
     <div class="row">
-        <div class="col-md-6" style="text-align: center;">
+        <div class="col-xl-6" style="text-align: center;">
                 <div class="ourjob" >
 
         <div class="image responsive"><img src="../../../assets/ourjob.png" alt="cog"></div>
@@ -64,7 +64,7 @@ require_once("../navbar/navbar.php");
     </div>
         </div>
 
-    <div class="col-md-6">
+    <div class="col-xl-6">
         <div class="yourjob" style="text-align: center;">
             <div class="image responsive"><img src="../../../assets/yourjob.png" alt="cog"></div>
             <div class="title">
