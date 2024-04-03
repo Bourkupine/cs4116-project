@@ -37,6 +37,7 @@ $languages = get_all_languages($connection);
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="register.css" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Love Languages - Register</title>
 </head>
 
