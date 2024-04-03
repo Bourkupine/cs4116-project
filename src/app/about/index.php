@@ -10,7 +10,7 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" type="text/css" href="aboutpage.css" />
+  <link rel="stylesheet" type="text/css" href="about.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 </head>
