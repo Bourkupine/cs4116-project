@@ -19,13 +19,14 @@ img {
 }
 
 .slogan {
-    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
 
     span {
-        font-size: 72px;
-        line-height: 53px;
+        line-height: calc(2rem + 2vw);
+        font-size: calc(1rem + 3.5vw);
         text-align: center;
     }
 }
