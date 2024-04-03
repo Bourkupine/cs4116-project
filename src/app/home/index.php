@@ -30,7 +30,7 @@ include "../navbar/navbar.php"
     <div class="pt-4 row">
         <div class="buttons">
             <a href="../index.php" class="ll-button" role="button">Sign Up</a>
-            <a href="../index.php" class="ll-button" role="button">Log In</a>
+            <a href="../login/index.php" class="ll-button" role="button">Log In</a>
         </div>
     </div>
 
