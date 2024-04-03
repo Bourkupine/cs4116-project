@@ -7,7 +7,6 @@
 
 require 'gender-preference.php';
 require 'countries.php';
-require '../navbar/navbar.php';
 require '../database/database-connect.php';
 require '../database/languages.php';
 
@@ -42,6 +41,7 @@ $languages = get_all_languages($connection);
 </head>
 
 <body>
+<?php include "../navbar/navbar.php"; ?>
 <div class="container">
   <div class="row">
     <div class="col">
