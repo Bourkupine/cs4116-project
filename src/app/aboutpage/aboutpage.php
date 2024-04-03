@@ -11,7 +11,7 @@
   />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" type="text/css" href="aboutpage.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 </head>
 <body>
@@ -22,7 +22,7 @@ require_once("../navbar/navbar.php");
 
 <div class="container">
   <div class="row first-row">
-    <div class="col-xl-6 mt-3 mb-3" style="text-align: center;">
+    <div class="col-xl-6 mt-3 mb-3 pe-4" style="text-align: center;">
       <div>
         <img class="img-fluid" src="../../../assets/download.png" alt="cog">
       </div>
@@ -36,11 +36,11 @@ require_once("../navbar/navbar.php");
           Want to practice a language with someone new? AND go on a date!
           We are aspiring to re focus the date to language.
           By doing this we hope to take the hostility out of dating and
-          foster a learning environment rather than a tense nervous one
+          foster a learning environment rather than a tense nervous one.
         </p>
       </div>
     </div>
-    <div class="col-xl-6 mt-3 mb-3">
+    <div class="col-xl-6 mt-3 mb-3 ps-4">
       <div class="slogan slogan-text pt-3">
         <span>LOVE SPEAKS EVERY LANGUAGE</span>
       </div>
@@ -48,7 +48,7 @@ require_once("../navbar/navbar.php");
   </div>
 
   <div class="row">
-    <div class="col-xl-6 mt-3 mb-3" style="text-align: center;">
+    <div class="col-xl-6 mt-3 mb-3 pe-4" style="text-align: center;">
       <div>
         <img class="img-fluid" src="../../../assets/ourjob.png" alt="cog">
       </div>
@@ -61,12 +61,12 @@ require_once("../navbar/navbar.php");
           We keep only the information you give us.
           Firstly we use our handcrafted algorithm to match you
           with people whom are capable of speaking the
-          languages you are looking to practice
+          languages you are looking to practice.
         </p>
       </div>
     </div>
 
-    <div class="col-xl-6 mt-3 mb-3" style="text-align: center;">
+    <div class="col-xl-6 mt-3 mb-3 ps-4" style="text-align: center;">
       <div>
         <img class="img-fluid" src="../../../assets/yourjob.png" alt="cog">
       </div>
@@ -98,7 +98,7 @@ require_once("../navbar/navbar.php");
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
   crossorigin="anonymous"
-></script> <!-- This is for Bootstrap JS code -->
+></script>
 
 </body>
 </html>

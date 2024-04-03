@@ -5,7 +5,7 @@
 }
 
 .img-fluid {
-    max-width: 10vw;
+    max-width: 9vw;
     object-position: center;
     object-fit: contain;
 }
