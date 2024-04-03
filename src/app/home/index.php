@@ -34,9 +34,6 @@ include "../navbar/navbar.php"
         </div>
     </div>
 
-    <div class="row">
-        <!-- img -->
-    </div>
 </div>
 <script
         src="https://kit.fontawesome.com/3af37769b5.js"
