@@ -11,6 +11,8 @@ require "register-functions.php";
 require '../database/database-connect.php';
 require '../database/languages.php';
 
+session_start();
+
 try {
     $connection = connect();
     $languages = get_all_languages($connection);
