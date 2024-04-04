@@ -24,6 +24,10 @@ function validate_lang_arr(string $arr_index): bool
     return isset($_POST[$arr_index]) && sizeof($_POST[$arr_index]) > 0;
 }
 
+/**
+ * Registers a user by inserting user, profile, and user_languages entries into the database
+ * @return bool true if all inserts are successful
+ */
 function create_account(): bool
 {
     $firstname = $_POST["firstname"];
@@ -68,7 +72,6 @@ function create_account(): bool
                 return true;
             } else {
                 delete_user_profile($db_con, $user_id);
-                delete_user_by_user_id($db_con, $user_id);
             }
         } else {
             delete_user_by_user_id($db_con, $user_id);
@@ -78,7 +81,13 @@ function create_account(): bool
     return false;
 }
 
-function delete_user_profile($db_con, $user_id): void {
+/**
+ * Deletes a user and profile entry associated with a specific user_id
+ * @param $db_con mysqli database connection
+ * @param $user_id int user's id
+ * @return void
+ */
+function delete_user_profile(mysqli $db_con, int $user_id): void {
     delete_user_by_user_id($db_con, $user_id);
     delete_profile_by_user_id($db_con, $user_id);
 }
