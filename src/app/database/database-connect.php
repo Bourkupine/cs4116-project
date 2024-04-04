@@ -1,19 +1,19 @@
 <?php
-require "../config.php";
 
 /**
  * Attempts to connect to the database and returns the connection
  * @return mysqli the connection
+ * @throws Exception if _CONFIG is not set
  */
 function connect(): mysqli
 {
+    require "../config.php";
     if (isset($_CONFIG)) {
         $servername = $_CONFIG["servername"];
         $username = $_CONFIG["username"];
         $password = $_CONFIG["password"];
         $database = $_CONFIG["database"];
 
-        global $connection;
         $connection = new mysqli($servername, $username, $password, $database);
 
         if ($connection->connect_error) {
