@@ -14,7 +14,6 @@ require '../database/languages.php';
 try {
     $connection = connect();
     $languages = get_all_languages($connection);
-    disconnect($connection);
 } catch (Exception $e) {
     $code = $e->getCode();
     $message = $e->getMessage();
@@ -29,24 +28,36 @@ if (isset($_POST["submit"])) {
     if (!validate_password($_POST["password"], $_POST["password_confirm"])) {
         $submit_message =
             "<small class=\"text-muted\">Passwords do not match</small>";
-    } elseif (!validate_lang_arr("fluent_languages")) {
+    } elseif (!isset($_POST['fluent_languages'])) {
         $submit_message =
             "<small class=\"text-muted\">Please select at least one fluent language</small>";
-    } elseif (!validate_lang_arr("learning_languages")) {
+    } elseif (!isset($_POST['learning_languages'])) {
         $submit_message =
             "<small class=\"text-muted\">Please select at least one learning language</small>";
     } else {
-      if (create_account()) {
+      if (create_account($connection,
+                         $_POST['firstname'],
+                         $_POST['lastname'],
+                         $_POST['email'],
+                         $_POST['password'],
+                         $_POST['gender'],
+                         $_POST['preference'],
+                         $_POST['country'],
+                         $_POST['region'],
+                         $_POST['age'],
+                         $_POST['fluent_languages'],
+                         $_POST['learning_languages'])) {
         $submit_message =
             "<small class=\"text-muted\">Account registered successfully!</small>";
-        $redirect_to_login =
-            "<meta http-equiv=\"refresh\" content=\"1; url=../login\" />";
+        header("refresh: 1; url=../login");
       } else {
         $submit_message =
             "<small class=\"text-muted\">Failed to register account, please try again</small>";
       }
     }
 }
+
+disconnect($connection);
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +75,6 @@ if (isset($_POST["submit"])) {
   <link rel="stylesheet" href="register.css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <?php echo $redirect_to_login ?>
   <title>Love Languages - Register</title>
 </head>
 

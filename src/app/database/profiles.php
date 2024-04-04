@@ -15,7 +15,9 @@
  */
 function create_profile(mysqli $db_con, int $user_id, string $first_name, string $surname, int $age, string $sex, string $preference, string $country, string $region): bool
 {
-    $stmt = $db_con->prepare("INSERT INTO profiles VALUES('$user_id', '$first_name', '$surname', '$age', '$sex', '$preference', '', '', '$country', '$region')");
+    $stmt = $db_con->prepare("INSERT INTO profiles(user_id, first_name, surname, age, sex, preference, country, region) 
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ississss", $user_id, $first_name, $surname, $age, $sex, $preference, $country, $region);
     return $stmt->execute();
 }
 

@@ -15,45 +15,32 @@ function validate_password(string $pass1, string $pass2): bool
 }
 
 /**
- * Checks if the array exists within the _POST array and has at least one element
- * @param $arr_index string key of the array of languages
- * @return bool
- */
-function validate_lang_arr(string $arr_index): bool
-{
-    return isset($_POST[$arr_index]) && sizeof($_POST[$arr_index]) > 0;
-}
-
-/**
  * Registers a user by inserting user, profile, and user_languages entries into the database
+ * @param string $firstname first name
+ * @param string $lastname surname
+ * @param string $email email address
+ * @param string $password password
+ * @param string $gender sex
+ * @param string $preference preference
+ * @param string $country country of residence
+ * @param string $region region/state/county
+ * @param int $age age
  * @return bool true if all inserts are successful
  */
-function create_account(): bool
+function create_account(mysqli $db_con,
+                        string $firstname,
+                        string $lastname,
+                        string $email,
+                        string $password,
+                        string $gender,
+                        string $preference,
+                        string $country,
+                        string $region,
+                        int $age,
+                        array $fluent_languages,
+                        array $learning_languages): bool
 {
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $gender = $_POST["gender"];
-    $preference = $_POST["preference"];
-    $country = $_POST["country"];
-    $region = $_POST["region"];
-    $age = $_POST["age"];
-    $fluent_languages = $_POST["fluent_languages"];
-    $learning_languages = $_POST["learning_languages"];
-
-    $db_con = new mysqli();
-
-    try {
-        $db_con = connect();
-    } catch (Exception $e) {
-        $code = $e->getCode();
-        $message = $e->getMessage();
-        $file = $e->getFile();
-        $line = $e->getLine();
-        echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\") </script>";
-    }
 
     if (create_user($db_con, $email, $hashed_password)) {
         $user_id = get_user_id($db_con, $email, $hashed_password);
@@ -68,7 +55,6 @@ function create_account(): bool
             $region)) {
             if (add_user_languages($db_con, $user_id, $fluent_languages, 'speaks', 'fluent') &&
                 add_user_languages($db_con, $user_id, $learning_languages, 'learning', 'none')) {
-                disconnect($db_con);
                 return true;
             } else {
                 delete_user_profile($db_con, $user_id);
@@ -77,7 +63,6 @@ function create_account(): bool
             delete_user_by_user_id($db_con, $user_id);
         }
     }
-    disconnect($db_con);
     return false;
 }
 

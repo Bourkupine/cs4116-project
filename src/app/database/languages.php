@@ -2,19 +2,18 @@
 
 /**
  * Gets all language names from the database
- * @param mysqli $connection connection to the database
+ * @param mysqli $db_con connection to the database
  * @return array language names
  */
-function get_all_languages(mysqli $connection): array
+function get_all_languages(mysqli $db_con): array
 {
     $languages_arr = array();
+    $stmt = $db_con->prepare("SELECT * FROM languages");
+    $stmt->bind_result($language_id, $language_name);
+    $stmt->execute();
 
-    $sql = "SELECT * FROM languages";
-    $result = $connection->query($sql);
-
-    while ($row = $result->fetch_assoc()) {
-        $languages_arr[$row["language_id"]] = $row["language_name"];
+    while ($stmt->fetch()) {
+        $languages_arr[$language_id] = $language_name;
     }
-
     return $languages_arr;
 }
