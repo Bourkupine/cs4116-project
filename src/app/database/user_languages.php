@@ -11,20 +11,27 @@
  */
 function add_user_languages(mysqli $db_con, int $user_id, array $language_ids, string $status, string $level): bool
 {
-    $data = array();
+    $success = true;
+    $stmt = $db_con->prepare("INSERT INTO user_languages VALUES(?, ?, ?, ?)");
+    $stmt->bind_param("iiss", $user_id, $language_id, $status, $level);
     foreach ($language_ids as $language_id) {
-        $data[] = $user_id;
-        $data[] = $language_id;
-        $data[] = $status;
-        $data[] = $level;
+        if (!$stmt->execute()) {
+            $success = false;
+            delete_all_user_languages($db_con, $user_id);
+            break;
+        }
     }
+    return $success;
+}
 
-    $values = str_repeat('(?, ?, ?, ?),', count($language_ids));
-    $values = trim($values, ",");
-    $values .= ";";
-    $stmt = $db_con->prepare("INSERT INTO user_languages (user_id, language_id, status, level) VALUES $values");
-    $types = str_repeat('iiss', count($language_ids));
-    $stmt->bind_param($types, ...$data);
-
-    return $stmt->execute();
+/**
+ * Deletes all entries in the table with the specified id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return void
+ */
+function delete_all_user_languages(mysqli $db_con, int $user_id): void {
+    $stmt = $db_con->prepare("DELETE FROM user_languages WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
 }
