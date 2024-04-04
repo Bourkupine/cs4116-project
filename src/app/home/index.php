@@ -27,7 +27,7 @@ include "../navbar/navbar.php"
         </div>
     </div>
     <div class="buttons pt-4 row">
-        <a href="../index.php" class="ll-button" role="button">Sign Up</a>
+        <a href="../register/index.php" class="ll-button" role="button">Sign Up</a>
         <a href="../login/index.php" class="ll-button" role="button">Log In</a>
     </div>
 
