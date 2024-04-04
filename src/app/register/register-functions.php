@@ -1,6 +1,6 @@
 <?php
-require "../database/user.php";
-require "../database/profile.php";
+require "../database/users.php";
+require "../database/profiles.php";
 
 /**
  * Checks if the passwords are identical
