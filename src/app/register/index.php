@@ -11,9 +11,10 @@ require "register-functions.php";
 require '../database/database-connect.php';
 require '../database/languages.php';
 
-global $connection;
 try {
     $connection = connect();
+    $languages = get_all_languages($connection);
+    disconnect($connection);
 } catch (Exception $e) {
     $code = $e->getCode();
     $message = $e->getMessage();
@@ -21,8 +22,6 @@ try {
     $line = $e->getLine();
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
-$languages = get_all_languages($connection);
-disconnect($connection);
 
 $submit_message = "";
 $redirect_to_login = "";

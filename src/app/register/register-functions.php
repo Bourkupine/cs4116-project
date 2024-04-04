@@ -78,7 +78,7 @@ function create_account(): bool
     return false;
 }
 
-function delete_user_profile($db_con, $user_id) {
+function delete_user_profile($db_con, $user_id): void {
     delete_user_by_user_id($db_con, $user_id);
     delete_profile_by_user_id($db_con, $user_id);
 }
