@@ -23,13 +23,13 @@ function validate_lang_arr(string $arr_index): bool
     return isset($_POST[$arr_index]) && sizeof($_POST[$arr_index]) > 0;
 }
 
-function create_account(): void
+function create_account(): bool
 {
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $password_confirm = $_POST["password_confirm"];
+    $hashed_password = password_hash($password, "PASSWORD_DEFAULT");
     $gender = $_POST["gender"];
     $preference = $_POST["preference"];
     $country = $_POST["country"];
@@ -38,11 +38,10 @@ function create_account(): void
     $fluent_languages = $_POST["fluent_languages"];
     $learning_languages = $_POST["learning_languages"];
 
-    $hashed_password = password_hash($password, "PASSWORD_DEFAULT");
-    $connection = new mysqli();
+    $db_con = new mysqli();
 
     try {
-        $connection = connect();
+        $db_con = connect();
     } catch (Exception $e) {
         $code = $e->getCode();
         $message = $e->getMessage();
@@ -51,25 +50,32 @@ function create_account(): void
         echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\") </script>";
     }
 
-    if (create_user($connection, $email, $hashed_password)) {
-        $user = get_user_by_email($connection, $email);
-        $profile = new profile(
-            $user->getUserId(),
+    if (create_user($db_con, $email, $hashed_password)) {
+        $user_id = get_user_id($db_con, $email, $hashed_password);
+        if (create_profile($db_con,
+            $user_id,
             $firstname,
             $lastname,
             $age,
             $gender,
             $preference,
-            "",
             $country,
-            $region
-        );
-        if (create_profile($connection, $profile)) {
-            // have to add user_languages but not sure how to determine level - change UI or assume defaults?
+            $region)) {
+            if (add_user_languages($db_con, $user_id, $fluent_languages, 'speaks', 'fluent') &&
+                add_user_languages($db_con, $user_id, $learning_languages, 'learning', 'none')) {
+                return true;
+            } else {
+                delete_user_profile($db_con, $user_id);
+            }
         } else {
-            delete_user_by_user_id($connection, $user->getUserId());
-            disconnect($connection);
-            //             return 'Error in creating profile, please try again later';
+            delete_user_profile($db_con, $user_id);
         }
     }
+    disconnect($db_con);
+    return false;
+}
+
+function delete_user_profile($db_con, $user_id) {
+    delete_user_by_user_id($db_con, $user_id);
+    delete_profile_by_user_id($db_con, $user_id);
 }
