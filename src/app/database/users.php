@@ -33,6 +33,19 @@ function get_user_id(mysqli $db_con, string $email, string $password): ?int {
 }
 
 /**
+ * Gets an array of user details from the profiles table using a given user_id
+ * @param mysqli $db_con Database connection
+ * @param int $user_id The users id
+ * @return array An associative array of all the users details
+ */
+function get_profile_details(mysqli $db_con, int $user_id): array {
+    $stmt = $db_con->prepare("SELECT * FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    return ($stmt->get_result()->fetch_assoc());
+}
+
+/**
  * Deletes the user associated with the id in the database
  * @param mysqli $db_con database connection
  * @param int $user_id user's id
