@@ -1,0 +1,60 @@
+#passwordHelp {
+  font-size: 12px;
+}
+
+.submit-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  button {
+    width: 30%;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .submit-button {
+    display: flex;
+    margin-left: 104%;
+
+    button {
+      width: 35%;
+      margin-top: -4%;
+      height: 80px;
+      font-size: 32px;
+      z-index: 100;
+    }
+  }
+}
+
+.logo-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    max-width: 362px;
+  }
+}
+
+.slogan {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  span {
+    font-size: 72px;
+    line-height: 53px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slogan {
+    span {
+      font-size: 60px;
+      line-height: 45px;
+    }
+  }
+}
