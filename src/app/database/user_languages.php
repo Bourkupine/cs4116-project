@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Inserts an array of languages into the database associated with a user_id, status, and level
+ * Inserts an entry into the user_languages table for each language in language_ids
  * @param mysqli $db_con database connection
  * @param int $user_id associated user's user_id
  * @param array $language_ids ids of the user's languages
