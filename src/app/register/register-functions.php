@@ -1,6 +1,7 @@
 <?php
 require "../database/users.php";
 require "../database/profiles.php";
+require "../database/user_languages.php";
 
 /**
  * Checks if the passwords are identical
@@ -29,7 +30,7 @@ function create_account(): bool
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $hashed_password = password_hash($password, "PASSWORD_DEFAULT");
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $gender = $_POST["gender"];
     $preference = $_POST["preference"];
     $country = $_POST["country"];
@@ -63,12 +64,14 @@ function create_account(): bool
             $region)) {
             if (add_user_languages($db_con, $user_id, $fluent_languages, 'speaks', 'fluent') &&
                 add_user_languages($db_con, $user_id, $learning_languages, 'learning', 'none')) {
+                disconnect($db_con);
                 return true;
             } else {
                 delete_user_profile($db_con, $user_id);
+                delete_user_by_user_id($db_con, $user_id);
             }
         } else {
-            delete_user_profile($db_con, $user_id);
+            delete_user_by_user_id($db_con, $user_id);
         }
     }
     disconnect($db_con);

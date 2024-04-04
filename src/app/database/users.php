@@ -10,7 +10,8 @@
 function create_user(mysqli $db_con, string $email, string $password): bool
 {
     $stmt = $db_con->prepare("INSERT INTO users (email, password, account_type)
-VALUES ($email, $password, 'user')");
+VALUES (?, ?, 'user')");
+    $stmt->bind_param("ss", $email, $password);
     return $stmt->execute();
 }
 
@@ -39,6 +40,7 @@ function get_user_id(mysqli $db_con, string $email, string $password): ?int {
  */
 function delete_user_by_user_id(mysqli $db_con, int $user_id): bool
 {
-    $stmt = $db_con->prepare("DELETE FROM users WHERE user_id=$user_id");
+    $stmt = $db_con->prepare("DELETE FROM users WHERE user_id = ?");
+    $stmt->bind_param("s", $user_id);
     return $stmt->execute();
 }

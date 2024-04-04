@@ -15,7 +15,7 @@
  */
 function create_profile(mysqli $db_con, int $user_id, string $first_name, string $surname, int $age, string $sex, string $preference, string $country, string $region): bool
 {
-    $stmt = $db_con->prepare("INSERT INTO profiles VALUES($user_id, $first_name, $surname, $age, $sex, $preference, '', '', $country, $region)");
+    $stmt = $db_con->prepare("INSERT INTO profiles VALUES('$user_id', '$first_name', '$surname', '$age', '$sex', '$preference', '', '', '$country', '$region')");
     return $stmt->execute();
 }
 
@@ -27,6 +27,7 @@ function create_profile(mysqli $db_con, int $user_id, string $first_name, string
  */
 function delete_profile_by_user_id(mysqli $db_con, int $user_id): bool
 {
-    $stmt = $db_con->prepare("DELETE FROM profiles WHERE user_id=$user_id");
+    $stmt = $db_con->prepare("DELETE FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("s", $user_id);
     return $stmt->execute();
 }

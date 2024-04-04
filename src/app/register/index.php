@@ -19,12 +19,13 @@ try {
     $message = $e->getMessage();
     $file = $e->getFile();
     $line = $e->getLine();
-    echo "Exception thrown in $file on line $line: [Code $code] $message\") </script>";
+    echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
 $languages = get_all_languages($connection);
 disconnect($connection);
 
 $submit_message = "";
+$redirect_to_login = "";
 if (isset($_POST["submit"])) {
     if (!validate_password($_POST["password"], $_POST["password_confirm"])) {
         $submit_message =
@@ -36,13 +37,15 @@ if (isset($_POST["submit"])) {
         $submit_message =
             "<small class=\"text-muted\">Please select at least one learning language</small>";
     } else {
-//      if (create_account()) {
-//          $submit_message =
-//              "<small class=\"text-muted\">Account registered successfully!</small>";
-//      } else {
-//          $submit_message =
-//              "<small class=\"text-muted\">Failed to register account, please try again later</small>";
-//      }
+      if (create_account()) {
+        $submit_message =
+            "<small class=\"text-muted\">Account registered successfully!</small>";
+        $redirect_to_login =
+            "<meta http-equiv=\"refresh\" content=\"1; url=../login\" />";
+      } else {
+        $submit_message =
+            "<small class=\"text-muted\">Failed to register account, please try again</small>";
+      }
     }
 }
 ?>
@@ -62,6 +65,7 @@ if (isset($_POST["submit"])) {
   <link rel="stylesheet" href="register.css" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <?php echo $redirect_to_login ?>
   <title>Love Languages - Register</title>
 </head>
 
@@ -92,7 +96,7 @@ if (isset($_POST["submit"])) {
                    required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$"
                 <?php if (isset($_POST["email"])) {
                     echo "value=\"" . $_POST["email"] . "\"";
-                } ?>>>
+                } ?>>
           </div>
           <div class="form-group m-2">
             <input name="password" type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
@@ -133,7 +137,7 @@ if (isset($_POST["submit"])) {
               </select>
             </div>
             <div class="col">
-              <select class="form-control col" required>
+              <select name="preference" class="form-control col" required>
                 <option value="" disabled
                     <?php if (!isset($_POST["preference"])) {
                         echo "selected";
@@ -155,7 +159,7 @@ if (isset($_POST["submit"])) {
 
           <div class="row ps-2 pe-2 mb-2">
             <div class="form-group col">
-              <select class="form-control col" required>
+              <select name="country" class="form-control col" required>
                 <option value="" disabled
                     <?php if (!isset($_POST["country"])) {
                         echo "selected";
@@ -198,7 +202,7 @@ if (isset($_POST["submit"])) {
                 <?php foreach ($languages as $language_id => $language) {
                     if (
                         isset($_POST["fluent_languages"]) &&
-                        in_array($language, $_POST["fluent_languages"])
+                        in_array($language_id, $_POST["fluent_languages"])
                     ) {
                         echo "<option value=\"$language_id\" selected>$language</option>";
                     } else {
@@ -215,7 +219,7 @@ if (isset($_POST["submit"])) {
                 <?php foreach ($languages as $language_id => $language) {
                     if (
                         isset($_POST["learning_languages"]) &&
-                        in_array($language, $_POST["learning_languages"])
+                        in_array($language_id, $_POST["learning_languages"])
                     ) {
                         echo "<option value=\"$language_id\" selected>$language</option>";
                     } else {
@@ -237,7 +241,7 @@ if (isset($_POST["submit"])) {
           </script>
 
           <div class="submit-button">
-            <button type="submit" class="btn text-white ll-button">Register</button>
+            <button name="submit" type="submit" class="btn text-white ll-button">Register</button>
               <?php echo $submit_message; ?>
           </div>
 
