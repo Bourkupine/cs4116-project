@@ -1,10 +1,5 @@
 .title {
-    font-family: Bungee, sans-serif;
     text-align: center;
-    color: #7843e6;
-    text-shadow:
-            -1px 1px #ff00ff,
-            1px -1px #00ffff;
     font-size: calc(2.5rem + 2.5vw);
 }
 
