@@ -75,7 +75,7 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
   <div class="container-fluid">
     <!-- LOGO -->
-    <a class="nav-logo-link" href="">
+    <a class="nav-logo-link" href="../home/index.php">
       <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
       <div class="nav-logo">
         <img
