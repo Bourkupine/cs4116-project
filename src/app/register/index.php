@@ -7,6 +7,7 @@
 
 require 'gender-preference.php';
 require 'countries.php';
+require "register-functions.php";
 require '../database/database-connect.php';
 require '../database/languages.php';
 
@@ -21,6 +22,29 @@ try {
     echo "Exception thrown in $file on line $line: [Code $code] $message\") </script>";
 }
 $languages = get_all_languages($connection);
+disconnect($connection);
+
+$submit_message = "";
+if (isset($_POST["submit"])) {
+    if (!validate_password($_POST["password"], $_POST["password_confirm"])) {
+        $submit_message =
+            "<small class=\"text-muted\">Passwords do not match</small>";
+    } elseif (!validate_lang_arr("fluent_languages")) {
+        $submit_message =
+            "<small class=\"text-muted\">Please select at least one fluent language</small>";
+    } elseif (!validate_lang_arr("learning_languages")) {
+        $submit_message =
+            "<small class=\"text-muted\">Please select at least one learning language</small>";
+    } else {
+//      if (create_account()) {
+//          $submit_message =
+//              "<small class=\"text-muted\">Account registered successfully!</small>";
+//      } else {
+//          $submit_message =
+//              "<small class=\"text-muted\">Failed to register account, please try again later</small>";
+//      }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,43 +74,80 @@ $languages = get_all_languages($connection);
 
         <div class="basic-info">
           <div class="form-group m-2 mt-4">
-            <input type="text" class="form-control" aria-describedby="" placeholder="First Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$">
+            <input name="firstname" type="text" class="form-control" placeholder="First Name"
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z]+$"
+                <?php if (isset($_POST["firstname"])) {
+                    echo "value=\"" . $_POST["firstname"] . "\"";
+                } ?>>
           </div>
           <div class="form-group m-2">
-            <input type="text" class="form-control" placeholder="Last Name"
-                   required minlength="2" maxlength="32" pattern="^[A-Za-z ']+$">
+            <input name="lastname" type="text" class="form-control" placeholder="Last Name"
+                   required minlength="2" maxlength="32" pattern="^[A-Za-z ']+$"
+                <?php if (isset($_POST["lastname"])) {
+                    echo "value=\"" . $_POST["lastname"] . "\"";
+                } ?>>
           </div>
           <div class="form-group m-2">
-            <input type="email" class="form-control" placeholder="Email"
-                   required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$">
+            <input name="email" type="email" class="form-control" placeholder="Email"
+                   required maxlength="64" pattern="^[\w\.-]+@([\w-]+\.)+[\w-]{2,5}$"
+                <?php if (isset($_POST["email"])) {
+                    echo "value=\"" . $_POST["email"] . "\"";
+                } ?>>>
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
-                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <input name="password" type="password" class="form-control" placeholder="Password" aria-describedby="passwordHelp"
+                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                <?php if (isset($_POST["password"])) {
+                    echo "value=\"" . $_POST["password"] . "\"";
+                } ?>>
             <small id="passwordHelp" class="form-text text-muted">
               Passwords need 8 or more characters with a number, uppercase, and lowercase character
             </small>
           </div>
           <div class="form-group m-2">
-            <input type="password" class="form-control" placeholder="Confirm Password"
-                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}">
+            <input name="password_confirm" type="password" class="form-control" placeholder="Confirm Password"
+                   required minlength="8" maxlength="32" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                <?php if (isset($_POST["password_confirm"])) {
+                    echo "value=\"" . $_POST["password_confirm"] . "\"";
+                } ?>>
           </div>
 
           <div class="row ps-2 pe-2 mb-2">
             <div class="col">
-              <select class="form-control" required>
-                <option value="" disabled selected>Gender</option>
+              <select name="gender" class="form-control" required>
+                <option value="" disabled
+                    <?php if (!isset($_POST["gender"])) {
+                        echo "selected";
+                    } ?>
+                >Gender</option>
                   <?php foreach ($gender_arr as $gender) {
-                      echo "<option value=\"$gender\">$gender</option>";
+                      if (
+                          isset($_POST["gender"]) &&
+                          strcmp($_POST["gender"], $gender) == 0
+                      ) {
+                          echo "<option value=\"$gender\" selected>$gender</option>";
+                      } else {
+                          echo "<option value=\"$gender\">$gender</option>";
+                      }
                   } ?>
               </select>
             </div>
             <div class="col">
               <select class="form-control col" required>
-                <option value="" disabled selected>I am looking for...</option>
+                <option value="" disabled
+                    <?php if (!isset($_POST["preference"])) {
+                        echo "selected";
+                    } ?>
+                >I am looking for...</option>
                   <?php foreach ($preference_arr as $pref) {
-                      echo "<option value=\"$pref\">$pref</option>";
+                      if (
+                          isset($_POST["preference"]) &&
+                          strcmp($_POST["preference"], $pref) == 0
+                      ) {
+                          echo "<option value=\"$pref\" selected>$pref</option>";
+                      } else {
+                          echo "<option value=\"$pref\">$pref</option>";
+                      }
                   } ?>
               </select>
             </div>
@@ -95,40 +156,71 @@ $languages = get_all_languages($connection);
           <div class="row ps-2 pe-2 mb-2">
             <div class="form-group col">
               <select class="form-control col" required>
-                <option value="" disabled selected>Country</option>
+                <option value="" disabled
+                    <?php if (!isset($_POST["country"])) {
+                        echo "selected";
+                    } ?>
+                >Country</option>
                   <?php foreach ($countries as $country) {
-                      echo "<option value=\"$country\">$country</option>";
+                      if (
+                          isset($_POST["country"]) &&
+                          strcmp($_POST["country"], $country) == 0
+                      ) {
+                          echo "<option value=\"$country\" selected>$country</option>";
+                      } else {
+                          echo "<option value=\"$country\">$country</option>";
+                      }
                   } ?>
               </select>
             </div>
             <div class="form-group col">
-              <input type="text" class="form-control" placeholder="State/County" required
-                     minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+">
+              <input name="region" type="text" class="form-control" placeholder="State/County" required
+                     minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+"
+                  <?php if (isset($_POST["region"])) {
+                      echo "value=\"" . $_POST["region"] . "\"";
+                  } ?>>
             </div>
           </div>
 
           <div class="form-group m-2">
-            <input type="number" class="form-control w-25" placeholder="Age"
-                   required min="18" max="120" pattern="[0-9]{2,5}">
+            <input name="age" type="number" class="form-control w-25" placeholder="Age"
+                   required min="18" max="120" pattern="[0-9]{2,5}"
+                <?php if (isset($_POST["age"])) {
+                    echo "value=\"" . $_POST["age"] . "\"";
+                } ?>>
           </div>
 
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="fluent-languages">I am fluent in...</label>
-            <select multiple
+            <select name="fluent_languages[]" multiple
                     class="language-select form-control"
                     id="fluent-languages">
-                <?php foreach ($languages as $language) {
-                    echo "<option value=\"$language\">$language</option>";
+                <?php foreach ($languages as $language_id => $language) {
+                    if (
+                        isset($_POST["fluent_languages"]) &&
+                        in_array($language, $_POST["fluent_languages"])
+                    ) {
+                        echo "<option value=\"$language_id\" selected>$language</option>";
+                    } else {
+                        echo "<option value=\"$language_id\">$language</option>";
+                    }
                 } ?>
             </select>
           </div>
           <div class="form-group ps-2 pe-2 mb-2">
             <label for="learning-languages">I am learning...</label>
-            <select multiple
+            <select name="learning_languages[]" multiple
                     class="language-select form-control"
                     id="learning-languages">
-                <?php foreach ($languages as $language) {
-                    echo "<option value=\"$language\">$language</option>";
+                <?php foreach ($languages as $language_id => $language) {
+                    if (
+                        isset($_POST["learning_languages"]) &&
+                        in_array($language, $_POST["learning_languages"])
+                    ) {
+                        echo "<option value=\"$language_id\" selected>$language</option>";
+                    } else {
+                        echo "<option value=\"$language_id\">$language</option>";
+                    }
                 } ?>
             </select>
           </div>
@@ -146,6 +238,7 @@ $languages = get_all_languages($connection);
 
           <div class="submit-button">
             <button type="submit" class="btn text-white ll-button">Register</button>
+              <?php echo $submit_message; ?>
           </div>
 
         </div>
