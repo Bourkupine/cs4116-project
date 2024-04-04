@@ -11,15 +11,20 @@
  */
 function add_user_languages(mysqli $db_con, int $user_id, array $language_ids, string $status, string $level): bool
 {
-    $query = "INSERT INTO user_languages (user_id, language_id, status, level) VALUES ";
-
+    $data = array();
     foreach ($language_ids as $language_id) {
-        $query .= "('$user_id', '$language_id', '$status', '$level'),";
+        $data[] = $user_id;
+        $data[] = $language_id;
+        $data[] = $status;
+        $data[] = $level;
     }
 
-    $query = trim($query, ",");
-    $query .= ";";
+    $values = str_repeat('(?, ?, ?, ?),', count($language_ids));
+    $values = trim($values, ",");
+    $values .= ";";
+    $stmt = $db_con->prepare("INSERT INTO user_languages (user_id, language_id, status, level) VALUES $values");
+    $types = str_repeat('iiss', count($language_ids));
+    $stmt->bind_param($types, ...$data);
 
-    $stmt = $db_con->prepare($query);
     return $stmt->execute();
 }
