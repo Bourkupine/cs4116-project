@@ -17,7 +17,8 @@ if ($user_id) {
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["password"] = $_POST["password"];
     $_SESSION += get_profile_details($db_con, $user_id);
-    header("Location: ../index.php");
+    $_SESSION["logged-in"] = true;
+    header("Location: ../dashboard");
 } else {
     $_SESSION["login-failure"] = true;
     header("Location: index.php");
