@@ -8,7 +8,7 @@
 require 'gender-preference.php';
 require 'countries.php';
 require "register-functions.php";
-require '../database/database-connect.php';
+require '../database/database_connect.php';
 require '../database/languages.php';
 
 
