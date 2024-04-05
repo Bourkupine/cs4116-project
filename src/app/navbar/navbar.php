@@ -75,8 +75,14 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
   <div class="container-fluid">
     <!-- LOGO -->
-    <a class="nav-logo-link" href="../home/">
-      <!-- todo: replace this href with link to homepage/dashboard based on if logged in (and all other links) -->
+    <a class="nav-logo-link" href="
+    <?php
+    if (isset($_SESSION["logged-in"])) {
+      echo "../dashboard";
+    } else {
+      echo "../home";
+    }
+    ?>">
       <div class="nav-logo">
         <img
           src="../../assets/ll-logo.png"
@@ -121,20 +127,23 @@
       <!-- LINKS -->
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-4 row-gap-3">
-          <!-- todo: check if user is logged in to determine what to display -->
-          <li class="nav-item">
-            <a class="nav-link nav-link" href="">
-              <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-              <!--todo: investigate making this white when on that page -->
-              <span class="navbar-toggler text-white border-0">Search</span>
+            <?php
+            if (isset($_SESSION["logged-in"])) {
+              echo "
+          <li class=\"nav-item\">
+            <a class=\"nav-link nav-link\" href=\"../search\">
+              <i class=\"fa-solid fa-magnifying-glass fa-2x\"></i>
+              <span class=\"navbar-toggler text-white border-0\">Search</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link" href="">
-              <i class="fa-solid fa-comment-dots fa-2x"></i>
-              <span class="navbar-toggler text-white border-0">Connections</span>
+          <li class=\"nav-item\">
+            <a class=\"nav-link nav-link\" href=\"../connections\">
+              <i class=\"fa-solid fa-comment-dots fa-2x\"></i>
+              <span class=\"navbar-toggler text-white border-0\">Connections</span>
             </a>
-          </li>
+          </li>";
+            }
+            ?>
           <li class="nav-item">
             <a class="nav-link nav-link" href="../about">
               <i class="fa-solid fa-circle-info fa-2x"></i>
@@ -142,7 +151,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link" href="../login">
+            <a class="nav-link nav-link" href="
+            <?php
+            if (isset($_SESSION["logged-in"])) {
+                echo "../profile";
+            } else {
+                echo "../login";
+            }
+            ?>">
               <i class="fa-solid fa-user fa-2x"></i>
               <span class="navbar-toggler text-white border-0">Profile</span>
             </a>
