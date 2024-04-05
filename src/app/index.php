@@ -1,6 +1,2 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="refresh" content="0; url=./home/"/>
-    </head>
-</html>
+<?php
+header("Location: home/index.php");
