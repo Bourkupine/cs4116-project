@@ -4,6 +4,10 @@
     <?php
     require_once("../templates/header.php");
     ?>
+    <?php
+    if (isset($_SESSION["logged-in"])) {
+        header("Location: ../dashboard");
+    } ?>
     <title>Love Languages - Login</title>
     <link rel="stylesheet" href="login.css">
 </head>
