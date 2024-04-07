@@ -26,7 +26,10 @@ try {
 $submit_message = "";
 $redirect_to_login = "";
 if (isset($_POST["submit"])) {
-    if (!validate_password($_POST["password"], $_POST["password_confirm"])) {
+    if (check_user_exists_by_email($connection, $_POST["email"])) {
+        $submit_message =
+            "<small class=\"text-muted\">User already exists with the given email</small>";
+    } elseif (!validate_password($_POST["password"], $_POST["password_confirm"])) {
         $submit_message =
             "<small class=\"text-muted\">Passwords do not match</small>";
     } elseif (!isset($_POST['fluent_languages'])) {
@@ -50,7 +53,7 @@ if (isset($_POST["submit"])) {
             $_POST['learning_languages'])) {
             $submit_message =
                 "<small class=\"text-muted\">Account registered successfully!</small>";
-            header("refresh: 1; url=../login");
+            header("refresh: 1; url=../login/");
         } else {
             $submit_message =
                 "<small class=\"text-muted\">Failed to register account, please try again</small>";
