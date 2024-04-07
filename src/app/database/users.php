@@ -72,3 +72,18 @@ function get_password_by_email(mysqli $db_con, string $email): string {
     $stmt->fetch();
     return $password;
 }
+
+/**
+ * Checks if a user exists by the given email
+ * @param mysqli $db_con database connection
+ * @param string $email user's email
+ * @return bool true if the account exists
+ */
+function check_user_exists_by_email(mysqli $db_con, string $email): bool {
+    $stmt = $db_con->prepare("SELECT email FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->bind_result($result);
+    $stmt->execute();
+    $stmt->fetch();
+    return boolval($result);
+}
