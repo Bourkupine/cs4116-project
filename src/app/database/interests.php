@@ -1,16 +1,15 @@
 <?php
 
-function get_all_interests(mysqli $connection): array
+function get_all_interests(mysqli $db_con): array
 {
     $interests_arr = array();
+    $stmt = $db_con->prepare("SELECT * FROM interests");
+    $stmt->bind_result($interest_id, $interest_name);
+    $stmt->execute();
 
-    $sql = "SELECT * FROM interests";
-    $result = $connection->query($sql);
-
-    while ($row = $result->fetch_assoc()) {
-        $interests_arr[$row["interest_id"]] = $row["interest_name"];
+    while ($stmt->fetch()) {
+        $interests_arr[$interest_id] = $interest_name;
     }
-
     return $interests_arr;
 }
 
