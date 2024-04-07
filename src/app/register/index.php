@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
             $_POST['learning_languages'])) {
             $submit_message =
                 "<small class=\"text-muted\">Account registered successfully!</small>";
-            header("refresh: 1; url=../login");
+            header("refresh: 1; url=../login/");
         } else {
             $submit_message =
                 "<small class=\"text-muted\">Failed to register account, please try again</small>";
