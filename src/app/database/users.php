@@ -62,7 +62,7 @@ function delete_user_by_user_id(mysqli $db_con, int $user_id): bool
  * Gets a user's password hash from the users table using a given email
  * @param mysqli $db_con database connection
  * @param string $email user's email
- * @return ?string the user's password hash
+ * @return string | null the user's password hash or null if no user exists by that email
  */
 function get_password_by_email(mysqli $db_con, string $email): ?string {
     $stmt = $db_con->prepare("SELECT password FROM users WHERE email = ?");
