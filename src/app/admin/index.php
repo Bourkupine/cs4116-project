@@ -27,15 +27,16 @@ require_once("../navbar/navbar.php");
                 </div>
                 <div class="col-6 card-body">
                     <p class="card-text my-0"><b>User ID</b>: 12345</p>
-                    <p class="card-text my-0"><b>Reason</b>: Sent me nudes piahsgdjkhasd asdhibgasd jhibasdh hbasdhbasdhb jhbasdhb hkbasdkh baskhdbaskhdb khasbd khasbd khasbd khabsd khbaskdh band i am going to the polic</p>
+                    <p class="card-text my-0"><b>Reason</b>: Sent me nudes, pls ban immedientlylel
                     <p class="card-text m-0"><b>Reported by</b>: 127683</p>
                 </div>
-                <div class="col-2 d-inline-flex flex-column">
-                    <a href="#" class="btn bg-danger ll-button my-2 me-4" role="button">Ban</a>
-                    <a href="#" class="btn bg-success ll-button my-2 me-4" role="button">Ignore</a>
-                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-5"><a href="#" class="btn buttons bg-danger ll-button my-2 me-4" role="button">Ban</a></div>
+                <div class="col-5"><a href="#" class="btn buttons bg-success ll-button my-2 me-4" role="button">Ignore</a></div>
             </div>
         </div>
+
     </div>
 </div>
 
