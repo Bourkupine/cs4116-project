@@ -15,29 +15,28 @@
 require_once("../navbar/navbar.php");
 ?>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row heading">
         <h2>Admin Dashboard</h2>
     </div>
     <div class="list-group">
-        <div class="card mb-3">
-            <div class="row">
-                <div class="col-1 offset-1 pics">
+        <div class="card mb-3 bg-danger-subtle">
+            <div class="row align-items-center">
+                <div class="col-2 pics">
                     <img class="img-fluid" src="../../assets/ll-logo.png" alt="...">
                 </div>
-                <div class="col-4">
-                    <h5 class="card-title">Name: </h5>
-                    <p class="card-body">Reason: </p>
-                    <p class="card-body"><small class="text-body-secondary">Reported by: </small></p>
+                <div class="col-6 card-body">
+                    <p class="card-text my-0"><b>User ID</b>: 12345</p>
+                    <p class="card-text my-0"><b>Reason</b>: Sent me nudes piahsgdjkhasd asdhibgasd jhibasdh hbasdhbasdhb jhbasdhb hkbasdkh baskhdbaskhdb khasbd khasbd khasbd khabsd khbaskdh band i am going to the polic</p>
+                    <p class="card-text m-0"><b>Reported by</b>: 127683</p>
                 </div>
-                <div class="col-2 buttons">
-                    <a href="../register/" class="btn ll-button" role="button">Ban</a>
-                    <a href="../login/" class="btn ll-button" role="button">Ignore</a>
+                <div class="col-2 d-inline-flex flex-column">
+                    <a href="#" class="btn bg-danger ll-button my-2 me-4" role="button">Ban</a>
+                    <a href="#" class="btn bg-success ll-button my-2 me-4" role="button">Ignore</a>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <?php
