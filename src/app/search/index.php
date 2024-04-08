@@ -11,7 +11,6 @@ try {
     $connection = connect();
     $languages = get_all_languages($connection);
     $interests = get_all_interests($connection);
-    disconnect($connection);
 } catch (Exception $e) {
     $code = $e->getCode();
     $message = $e->getMessage();
@@ -64,7 +63,7 @@ if (isset($_POST['submit'])) {
                             } ?>
                         >Gender
                         </option>
-                        <?php foreach ($gender_arr as $gender) {
+                        <?php foreach ($preference_arr as $gender) {
                             if (
                                 isset($_POST["gender"]) &&
                                 strcmp($_POST["gender"], $gender) == 0

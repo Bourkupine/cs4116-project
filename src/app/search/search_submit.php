@@ -11,10 +11,10 @@ function search(mysqli $db_con): array {
     $languages = $_POST['learning-languages'];
 
     $sql = "SELECT p.user_id FROM profiles p 
-    JOIN user_interests i ON p.user_id = i.user_id 
-    JOIN user_languages l ON p.user_id = l.user_id
-    WHERE p.sex = $gender
-    AND p.country = $country
+    NATURAL JOIN user_interests i 
+    NATURAL JOIN user_languages l
+    WHERE p.sex = '$gender'
+    AND p.country = '$country'
     AND i.interest_id IN (" . implode(",", $interests) .
         ") AND l.language_id IN (" . implode(",", $languages) . ")";
 
