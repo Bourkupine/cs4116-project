@@ -1,7 +1,14 @@
-.filters {
-    background-color: #99a1ff;
+.scroll {
+    @media (min-width: 990px) {
+        max-height: 91vh;
+        overflow-y: scroll;
+    }
 }
 
-.users {
-    background-color: #C6C7FF;
+.search-button {
+    font-size: calc(1rem + 0.5vw);
+}
+
+.filters {
+    max-height: 100vh;
 }

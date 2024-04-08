@@ -24,7 +24,7 @@ $submit_message = "";
 if (isset($_POST['submit'])) {
     $users = search($connection);
     foreach ($users as $user) {
-        echo $user;
+//        echo $user;
     }
 }
 
@@ -36,11 +36,10 @@ if (isset($_POST['submit'])) {
 <head>
     <?php
     require_once "../templates/header.php";
+    if (!isset($_SESSION["logged-in"])) {
+        header("Location: ../home");
+    }
     ?>
-
-    <!--    if (!isset($_SESSION["logged-in"])) {-->
-    <!--        header("Location: ../home");-->
-    <!--    }-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
     <title>Love Languages - Search</title>
@@ -49,13 +48,12 @@ if (isset($_POST['submit'])) {
 
 <body>
 <?php require_once "../navbar/navbar.php"; ?>
-<h1 class="slogan-text">COMING SOON!</h1>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-4 filters">
-            <form method="post">
-                <div class="row">
+        <div class="col-12 col-lg-4 filters justify-content-center">
+            <form method="post" class="mx-5 my-5">
+                <div class="row my-3">
                     <select name="gender" class="form-control">
                         <option value="" disabled
                             <?php if (!isset($_POST["gender"])) {
@@ -75,8 +73,8 @@ if (isset($_POST['submit'])) {
                         } ?>
                     </select>
                 </div>
-                <div class="row">
-                    <select name="country" class="form-control col">
+                <div class="row my-3">
+                    <select name="country" class="form-control">
                         <option value="" disabled
                             <?php if (!isset($_POST["country"])) {
                                 echo "selected";
@@ -141,27 +139,60 @@ if (isset($_POST['submit'])) {
                     });
                 </script>
 
-                <div class="submit-button">
-                    <button name="submit" type="submit" class="btn text-white ll-button">Register</button>
+                <div class="submit-button text-center my-4">
+                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">Search</button>
                 </div>
-
             </form>
+        </div>
+
+        <div class="col-12 col-lg-8 users scroll">
+            <div class="list-group my-2">
+                <div class="card mb-2" style="background-color: #C6C7FF">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-md-2">
+                            <img class="pic img-fluid rounded ms-2 my-2" src="../../assets/bart.png">
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <h5 class="d-flex d-md-none card-title">Blake Rhombus</h5>
+                                        <h3 class="d-none d-md-flex card-title">Blake Rhombus</h3>
+                                        <p class="card-text">23 - @Tipperary</p>
+                                        <p class="d-none d-md-block card-text">Mewing, Weightlifting, Classical Literature</p>
+                                    </div>
+                                    <div class="col d-none d-md-inline-block">
+                                        <h5 class="card-title mt-2"><u>Language Info</u></h5>
+                                        <p class="card-text"><b>Speaks</b>: English, Greek, Latin</p>
+                                        <p class="card-text"><b>Learning</b>: Arabic, Russian, Assembly</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
-        <div class="col-8 users">
-            <?php
-            if (isset($_POST['submit'])) {
-                $users = search($connection);
+
+        <?php
+        if (isset($_POST['submit'])) {
+            $users = search($connection);
 //                print_r($users);
-                foreach ($users as $user) {
-                    //create card
-                }
-            }
-            ?>
-        </div>
+            foreach ($users as $user) {
+                //create card
+                echo "
+                    
+                    ";
 
+            }
+
+        }
+        ?>
     </div>
+
+</div>
 </div>
 <script
         src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"
