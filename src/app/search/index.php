@@ -24,7 +24,7 @@ $submit_message = "";
 if (isset($_POST['submit'])) {
     $users = search($connection);
     foreach ($users as $user) {
-        echo "<li>$user[0]</li>";
+        echo $user;
     }
 }
 
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
         <div class="col-4 filters">
             <form method="post">
                 <div class="row">
-                    <select name="gender" class="form-control" required>
+                    <select name="gender" class="form-control">
                         <option value="" disabled
                             <?php if (!isset($_POST["gender"])) {
                                 echo "selected";
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                     </select>
                 </div>
                 <div class="row">
-                    <select name="country" class="form-control col" required>
+                    <select name="country" class="form-control col">
                         <option value="" disabled
                             <?php if (!isset($_POST["country"])) {
                                 echo "selected";
@@ -153,10 +153,9 @@ if (isset($_POST['submit'])) {
             <?php
             if (isset($_POST['submit'])) {
                 $users = search($connection);
+//                print_r($users);
                 foreach ($users as $user) {
-                    $id = $user[0];
-                    $name = $user[1];
-                    echo "<li>$id: $name</li>";
+                    //create card
                 }
             }
             ?>
