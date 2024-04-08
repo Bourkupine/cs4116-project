@@ -1,0 +1,44 @@
+body {
+    background-color: #c6c7ff !important;
+}
+
+.pfp {
+    max-height: 40vh;
+}
+
+.name {
+    font-size: calc(0.7rem + 1.3vw);
+    font-family: Aleo, serif;
+}
+
+.info {
+    font-size: calc(0.5rem + 1vw);
+    font-family: Montserrat-Light, serif;
+}
+
+.text {
+    font-size: calc(0.7rem + 0.5vw);
+    font-family: Montserrat-Light, serif;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+}
+
+.text-box {
+    background-color: #99a1ff;
+    border-radius: 1vw;
+}
+
+.footer-btn {
+    border-radius: 5vw;
+    width: 15vw;
+}
+
+@media (max-width: 768px) {
+    .footer-btn {
+        width: 40vw;
+    }
+}
