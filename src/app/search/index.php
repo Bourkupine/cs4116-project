@@ -21,14 +21,6 @@ try {
 
 $submit_message = "";
 
-if (isset($_POST['submit'])) {
-    $users = search($connection);
-    foreach ($users as $user) {
-//        echo $user;
-    }
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +53,7 @@ if (isset($_POST['submit'])) {
                             } ?>
                         >Gender
                         </option>
-                        <?php foreach ($preference_arr as $gender) {
+                        <?php foreach ($gender_arr as $gender) {
                             if (
                                 isset($_POST["gender"]) &&
                                 strcmp($_POST["gender"], $gender) == 0
@@ -140,37 +132,49 @@ if (isset($_POST['submit'])) {
                 </script>
 
                 <div class="submit-button text-center my-4">
-                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">Search</button>
+                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">Search
+                    </button>
                 </div>
             </form>
         </div>
 
         <div class="col-12 col-lg-8 users scroll">
             <div class="list-group my-2">
-                <div class="card mb-2" style="background-color: #C6C7FF">
-                    <div class="row align-items-center">
-                        <div class="col-4 col-md-2">
-                            <img class="pic img-fluid rounded ms-2 my-2" src="../../assets/bart.png">
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <h5 class="d-flex d-md-none card-title">Blake Rhombus</h5>
-                                        <h3 class="d-none d-md-flex card-title">Blake Rhombus</h3>
-                                        <p class="card-text">23 - @Tipperary</p>
-                                        <p class="d-none d-md-block card-text">Mewing, Weightlifting, Classical Literature</p>
+                <?php
+                if (isset($_POST['submit'])) {
+                    $users = search($connection);
+                    foreach ($users as $user) {
+                        echo "
+                            <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
+                                <div class=\"row align-items-center\">
+                                    <div class=\"col-4 col-md-2\">
+                                        <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"../../assets/bart.png\">
                                     </div>
-                                    <div class="col d-none d-md-inline-block">
-                                        <h5 class="card-title mt-2"><u>Language Info</u></h5>
-                                        <p class="card-text"><b>Speaks</b>: English, Greek, Latin</p>
-                                        <p class="card-text"><b>Learning</b>: Arabic, Russian, Assembly</p>
+                                    <div class=\"col\">
+                                        <div class=\"card-body\">
+                                            <div class=\"row\">
+                                                <div class=\"col-12 col-md-6\">
+                                                    <h5 class=\"d-flex d-md-none card-title\">$user[1] $user[2]</h5>
+                                                    <h3 class=\"d-none d-md-flex card-title\">$user[1] $user[2]</h3>
+                                                    <p class=\"card-text\">$user[3] - @$user[4]</p>
+                                                    <p class=\"d-none d-md-block card-text\">Mewing, Weightlifting, 
+                                                    Classical Literature</p>
+                                                </div>
+                                                <div class=\"col d-none d-md-inline-block\">
+                                                    <h5 class=\"card-title mt-2\"><u>Language Info</u></h5>
+                                                    <p class=\"card-text\"><b>Speaks</b>: English, Greek, Latin</p>
+                                                    <p class=\"card-text\"><b>Learning</b>: Arabic, Russian, Assembly</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        ";
+                    }
+                }
+                ?>
+
             </div>
 
         </div>
