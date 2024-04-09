@@ -18,7 +18,7 @@ require_once("../navbar/navbar.php");
 
 <div class="container-fluid mt-2">
     <div class="row justify-content-md-between justify-content-center align-items-center">
-        <div class="offset-1 col-9 col-md-5 text-center">
+        <div class="offset-md-1 col-9 col-md-5 text-center">
             <span class="slogan-text d-flex">Love speaks every language</span>
         </div>
         <div class="col-md-4 d-none d-md-block">

@@ -26,15 +26,21 @@ try {
 $submit_message = "";
 $redirect_to_login = "";
 if (isset($_POST["submit"])) {
-    if (!validate_password($_POST["password"], $_POST["password_confirm"])) {
+    if (check_user_exists_by_email($connection, $_POST["email"])) {
         $submit_message =
-            "<small class=\"text-muted\">Passwords do not match</small>";
+            "<small class=\"text-warning\">User already exists with the given email</small>";
+    } elseif (!validate_password($_POST["password"], $_POST["password_confirm"])) {
+        $submit_message =
+            "<small class=\"text-warning\">Passwords do not match</small>";
     } elseif (!isset($_POST['fluent_languages'])) {
         $submit_message =
-            "<small class=\"text-muted\">Please select at least one fluent language</small>";
+            "<small class=\"text-warning\">Please select at least one fluent language</small>";
     } elseif (!isset($_POST['learning_languages'])) {
         $submit_message =
-            "<small class=\"text-muted\">Please select at least one learning language</small>";
+            "<small class=\"text-warning\">Please select at least one learning language</small>";
+    } elseif (!empty(array_intersect($_POST["fluent_languages"], $_POST["learning_languages"]))) {
+        $submit_message =
+            "<small class=\"text-warning\">You cannot be fluent in and learning the same language</small>";
     } else {
         if (create_account($connection,
             $_POST['firstname'],
@@ -49,11 +55,11 @@ if (isset($_POST["submit"])) {
             $_POST['fluent_languages'],
             $_POST['learning_languages'])) {
             $submit_message =
-                "<small class=\"text-muted\">Account registered successfully!</small>";
-            header("refresh: 1; url=../login");
+                "<small class=\"text-success\">Account registered successfully!</small>";
+            header("refresh: 1; url=../login/");
         } else {
             $submit_message =
-                "<small class=\"text-muted\">Failed to register account, please try again</small>";
+                "<small class=\"text-warning\">Failed to register account, please try again</small>";
         }
     }
 }
