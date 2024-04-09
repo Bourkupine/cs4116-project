@@ -54,3 +54,16 @@ function get_user_languages_by_user_id(mysqli $db_con, int $user_id): array {
     }
     return $languages_arr;
 }
+
+/**
+ * Deletes all entries in the table with the specified id and status
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $status language status
+ * @return void
+ */
+function delete_all_user_languages_by_status(mysqli $db_con, int $user_id, string $status): void {
+    $stmt = $db_con->prepare("DELETE FROM user_languages WHERE user_id = ? AND status = ?");
+    $stmt->bind_param("is", $user_id, $status);
+    $stmt->execute();
+}

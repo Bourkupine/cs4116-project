@@ -209,10 +209,6 @@ if (isset($_POST["save"])) {
               });
             });
           </script>
-          <script
-            src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"
-            crossorigin="anonymous"
-          ></script>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
