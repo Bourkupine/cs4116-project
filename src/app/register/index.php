@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
     } elseif (!isset($_POST['learning_languages'])) {
         $submit_message =
             "<small class=\"text-warning\">Please select at least one learning language</small>";
-    } elseif (!validate_languages($_POST["fluent_languages"], $_POST["learning_languages"])) {
+    } elseif (!empty(array_intersect($_POST["fluent_languages"], $_POST["learning_languages"]))) {
         $submit_message =
             "<small class=\"text-warning\">You cannot be fluent in and learning the same language</small>";
     } else {

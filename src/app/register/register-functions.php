@@ -15,21 +15,6 @@ function validate_password(string $pass1, string $pass2): bool
 }
 
 /**
- * Checks if the two given arrays do not share any common values
- * @param array $arr_1 first array
- * @param array $arr_2 second array
- * @return bool true if the arrays' values are all unique
- */
-function validate_languages(array $arr_1, array $arr_2): bool {
-    foreach ($arr_1 as $lang) {
-        if (in_array($lang, $arr_2)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-/**
  * Registers a user by inserting user, profile, and user_languages entries into the database
  * @param string $firstname first name
  * @param string $lastname surname
