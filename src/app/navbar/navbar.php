@@ -132,7 +132,7 @@
               echo "
           <li class=\"nav-item\">
             <a class=\"nav-link nav-link\" href=\"../search\">
-              <i class=\"fa-solid fa-magnifying-    glass fa-2x\"></i>
+              <i class=\"fa-solid fa-magnifying-glass fa-2x\"></i>
               <span class=\"navbar-toggler text-white border-0\">Search</span>
             </a>
           </li>
