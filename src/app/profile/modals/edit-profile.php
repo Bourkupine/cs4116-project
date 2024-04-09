@@ -25,9 +25,45 @@ try {
 $user_interests = get_user_interests_by_user_id($connection, $_SESSION["user_id"]);
 
 if (isset($_POST["save"])) {
-    if(isset($_POST["firstname"])) {
+    if(isset($_POST["firstname"])&& $_POST["firstname"]) {
         if (update_first_name_by_user_id($connection, $_SESSION["user_id"], $_POST["firstname"])) {
             $_SESSION["first_name"] = $_POST["firstname"];
+        }
+    }
+
+    if(isset($_POST["lastname"])&& $_POST["lastname"]) {
+        if (update_surname_by_user_id($connection, $_SESSION["user_id"], $_POST["lastname"])) {
+            $_SESSION["surname"] = $_POST["lastname"];
+        }
+    }
+
+    if(isset($_POST["age"] )&& $_POST["age"]) {
+        if (update_age_by_user_id($connection, $_SESSION["user_id"], $_POST["age"])) {
+            $_SESSION["age"] = $_POST["age"];
+        }
+    }
+
+    if(isset($_POST["gender"])&& $_POST["gender"]) {
+        if (update_gender_by_user_id($connection, $_SESSION["user_id"], $_POST["gender"])) {
+            $_SESSION["sex"] = $_POST["gender"];
+        }
+    }
+
+    if(isset($_POST["preference"])&& $_POST["preference"]) {
+        if (update_preference_by_user_id($connection, $_SESSION["user_id"], $_POST["preference"])) {
+            $_SESSION["preference"] = $_POST["preference"];
+        }
+    }
+
+    if(isset($_POST["country"])&& $_POST["country"]) {
+        if (update_country_by_user_id($connection, $_SESSION["user_id"], $_POST["country"])) {
+            $_SESSION["country"] = $_POST["country"];
+        }
+    }
+
+    if(isset($_POST["region"])&& $_POST["region"]) {
+        if (update_region_by_user_id($connection, $_SESSION["user_id"], $_POST["region"])) {
+            $_SESSION["region"] = $_POST["region"];
         }
     }
 }

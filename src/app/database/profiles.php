@@ -111,19 +111,19 @@ function update_gender_by_user_id(mysqli $db_con, int $user_id, string $gender):
 {
 
     $stmt = $db_con->prepare("UPDATE profiles
-                                    SET gender=?
+                                    SET sex=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $age,$user_id);
+    $stmt->bind_param("si", $gender,$user_id);
     return $stmt->execute();
 }
 
-function update_preference_by_user_id(mysqli $db_con, int $user_id, int $preference): bool
+function update_preference_by_user_id(mysqli $db_con, int $user_id, string $preference): bool
 {
 
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET preference=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("ii", $age,$user_id);
+    $stmt->bind_param("si", $preference,$user_id);
     return $stmt->execute();
 }
 
