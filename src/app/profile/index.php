@@ -25,6 +25,7 @@ if (isset($_POST["sign-out"])) {
 if (isset($_POST["delete"])) {
     session_start();
     delete_user_by_user_id($db_con, $_SESSION["user_id"]);
+    if (isset($_SESSION["profile_pic"])) { unlink($_SESSION["profile_pic"]); }
     session_unset();
 }
 ?>
@@ -90,7 +91,7 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
     <div class="col-md-8 pt-3">
       <div class="text-box text text-white p-3 mb-3">
         <span><b>Bio:</b></span>
-        <p>
+        <p class="text-wrap">
             <?php echo $_SESSION["bio"] ?>
         </p>
         <div class="d-flex justify-content-center">
