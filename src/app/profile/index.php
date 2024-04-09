@@ -43,6 +43,7 @@ if (isset($_POST["delete"])) {
 
 <?php
 require_once "./modals/edit-profile.php";
+require_once "./modals/edit-bio.php";
 require_once "./modals/delete-account.php";
 
 $profile_picture_path = get_profile_picture_by_user_id($db_con, $_SESSION["user_id"]);
@@ -92,6 +93,13 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
         <p>
             <?php echo $_SESSION["bio"] ?>
         </p>
+        <div class="d-flex justify-content-center">
+          <button class="edit-button text-white text"
+                  data-bs-toggle="modal" data-bs-target="#edit-bio">
+            <i class="fa-regular fa-pen-to-square"></i>
+            Edit
+          </button>
+        </div>
       </div>
       <div class="text-box text text-white p-3 mb-3">
         <span><b>Known Languages:</b></span>

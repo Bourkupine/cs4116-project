@@ -141,6 +141,16 @@ function update_preference_by_user_id(mysqli $db_con, int $user_id, string $pref
     return $stmt->execute();
 }
 
-
-
-
+/**
+ * Updates bio associated with a given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $bio new bio
+ * @return bool true if successful
+ */
+function update_bio_by_user_id(mysqli $db_con, int $user_id, string $bio): bool
+{
+    $stmt = $db_con->prepare("UPDATE profiles SET bio = ? WHERE user_id = ?");
+    $stmt->bind_param("si", $bio,$user_id);
+    return $stmt->execute();
+}
