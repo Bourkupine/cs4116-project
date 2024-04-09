@@ -1,4 +1,5 @@
 <?php
+require_once "./modals/delete-account.php";
 if (isset($_POST["sign-out"])) {
     session_start();
     session_unset();
@@ -16,11 +17,11 @@ if (isset($_POST["sign-out"])) {
 </head>
 
 <?php
-require "../database/database_connect.php";
-require "../database/user_interests.php";
-require "../database/user_languages.php";
-require "../database/interests.php";
-require "../database/languages.php";
+require_once "../database/database_connect.php";
+require_once "../database/user_interests.php";
+require_once "../database/user_languages.php";
+require_once "../database/interests.php";
+require_once "../database/languages.php";
 
 try {
     $db_con = connect();
@@ -130,9 +131,6 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
           Delete Account
       </button>
       </span>
-        <?php
-        require_once "./modals/delete-account.php";
-        ?>
     </div>
   </div>
 </div>
