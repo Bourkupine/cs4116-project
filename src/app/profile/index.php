@@ -124,11 +124,15 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
           Sign out
         </button>
       </form>
-      <form method="post">
-        <button class="footer-btn text btn btn-outline-danger me-3">
+      <span>
+        <button class="footer-btn text btn btn-outline-danger me-3" type="button"
+                data-bs-toggle="modal" data-bs-target="#delete-account">
           Delete Account
-        </button>
-      </form>
+      </button>
+      </span>
+        <?php
+        require_once "./modals/delete-account.php";
+        ?>
     </div>
   </div>
 </div>
