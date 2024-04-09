@@ -1,5 +1,8 @@
 <?php
 
+require_once "../database/user_interests.php";
+require_once "../database/user_languages.php";
+
 function search(mysqli $db_con): array {
 
     $gender = 1;
@@ -7,13 +10,14 @@ function search(mysqli $db_con): array {
     $interests = array(1);
     $languages = array(1);
 
+    $language_list = get_all_languages($db_con);
+    $interest_list = get_all_interests($db_con);
+
     $gender_str = "?";
     $country_str = "?";
     $interests_str = "?";
     $languages_str = "?";
-
     $param_str = "";
-
 
     if (isset($_POST['gender'])) {
         $gender = $_POST['gender'];
@@ -76,25 +80,31 @@ function search(mysqli $db_con): array {
 
     while($id = $result->fetch_assoc()) {
         if (in_array($id['user_id'], $id_list)) continue;
-        $filtered_array[] = array($id['user_id'], $id['first_name'], $id['surname'], $id['age'], $id['region']);
+        $users_interests = get_user_interests_by_user_id($db_con, $id['user_id']);
+        $users_languages = get_user_languages_by_user_id($db_con, $id['user_id']);
+
+        $speaks_arr = array();
+        $learning_arr = array();
+        $interests_arr = array();
+
+        foreach ($users_languages as $language_id => $status) {
+            if ($status == "speaks") {
+                $speaks_arr[] = $language_list[$language_id];
+            } else {
+                $learning_arr[] = $language_list[$language_id];
+            }
+        }
+        foreach ($users_interests as $i) {
+            $interests_arr[] = $interest_list[$i];
+        }
+
+        $filtered_array[] = array($id['user_id'], $id['first_name'], $id['surname'], $id['age'], $id['region'],
+            $interests_arr, $speaks_arr, $learning_arr);
         $id_list[] = $id['user_id'];
     }
 
-//    echo($id);
-//    echo($filtered_array);
     $result->free();
-
-//    print_r($filtered_array);
-    //problem here
-
-
-
-
     return $filtered_array;
-}
-
-function get_users_info(mysqli $db_con, int $user_id): array {
-
 }
 
 ?>

@@ -144,11 +144,16 @@ $submit_message = "";
                 if (isset($_POST['submit'])) {
                     $users = search($connection);
                     foreach ($users as $user) {
+
+                        $interest_str = rtrim(implode(", ", $user[5]), ",");
+                        $speaks_str = rtrim(implode(", ", $user[6]), ",");
+                        $learning_str = rtrim(implode(", ", $user[7]), ",");
+
                         echo "
                             <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
                                 <div class=\"row align-items-center\">
                                     <div class=\"col-4 col-md-2\">
-                                        <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"../../assets/bart.png\">
+                                        <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"../../assets/bart.png\" alt=\"\">
                                     </div>
                                     <div class=\"col\">
                                         <div class=\"card-body\">
@@ -157,13 +162,12 @@ $submit_message = "";
                                                     <h5 class=\"d-flex d-md-none card-title\">$user[1] $user[2]</h5>
                                                     <h3 class=\"d-none d-md-flex card-title\">$user[1] $user[2]</h3>
                                                     <p class=\"card-text\">$user[3] - @$user[4]</p>
-                                                    <p class=\"d-none d-md-block card-text\">Mewing, Weightlifting, 
-                                                    Classical Literature</p>
+                                                    <p class=\"d-none d-md-block card-text\">$interest_str</p>
                                                 </div>
                                                 <div class=\"col d-none d-md-inline-block\">
                                                     <h5 class=\"card-title mt-2\"><u>Language Info</u></h5>
-                                                    <p class=\"card-text\"><b>Speaks</b>: English, Greek, Latin</p>
-                                                    <p class=\"card-text\"><b>Learning</b>: Arabic, Russian, Assembly</p>
+                                                    <p class=\"card-text\"><b>Speaks</b>: $speaks_str</p>
+                                                    <p class=\"card-text\"><b>Learning</b>: $learning_str</p>
                                                 </div>
                                             </div>
                                         </div>
