@@ -18,3 +18,8 @@ function get_user_interests_by_user_id(mysqli $db_con, int $user_id): ?array {
     }
     return $user_interest_ids;
 }
+
+function update_user_interests_by_id(mysqli $dbcon, int $user_id): ?array
+{
+ return 0;
+}

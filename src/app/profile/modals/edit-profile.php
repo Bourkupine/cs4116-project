@@ -23,6 +23,12 @@ try {
 }
 
 $user_interests = get_user_interests_by_user_id($connection, $_SESSION["user_id"]);
+
+if(isset($_POST["save"])){
+    if(isset($_POST["first_name"])){
+
+    }
+}
 ?>
 
 <div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
@@ -155,7 +161,7 @@ $user_interests = get_user_interests_by_user_id($connection, $_SESSION["user_id"
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn ll-button">Save Changes</button>
+          <button type="submit" name="save" value="save" class="btn ll-button">Save Changes</button>
         </div>
       </form>
     </div>
