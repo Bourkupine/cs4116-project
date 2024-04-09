@@ -4,7 +4,7 @@
     if (!isset($_SESSION["logged-in"])) {
         header("Location: ../home");
     } ?>
-    <title>Love Languages - Search</title>
+   <title>Love Languages - Search</title>
 </head>
 
 <body>
