@@ -21,12 +21,12 @@ if (isset($_POST["sign-out"])) {
 </head>
 
 <?php
-require_once "./modals/edit-profile.php";
 require_once "../database/database_connect.php";
 require_once "../database/user_interests.php";
 require_once "../database/user_languages.php";
 require_once "../database/interests.php";
 require_once "../database/languages.php";
+require_once "./modals/edit-profile.php";
 
 try {
     $db_con = connect();
