@@ -81,6 +81,13 @@ function update_first_name_by_user_id(mysqli $db_con, int $user_id, string $firs
     return $stmt->execute();
 }
 
+/**
+ * Updates surname associated with a given user_id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $surname new surname
+ * @return bool true if successful
+ */
 function update_surname_by_user_id(mysqli $db_con, int $user_id, string $surname): bool
 {
 
@@ -91,6 +98,13 @@ function update_surname_by_user_id(mysqli $db_con, int $user_id, string $surname
     return $stmt->execute();
 }
 
+/**
+ * Updates country associated with a given user_id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $country new country
+ * @return bool true if successful
+ */
 function update_country_by_user_id(mysqli $db_con, int $user_id, string $country): bool
 {
 
@@ -101,6 +115,13 @@ function update_country_by_user_id(mysqli $db_con, int $user_id, string $country
     return $stmt->execute();
 }
 
+/**
+ * Updates region associated with a given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $region new region
+ * @return bool true if successful
+ */
 function update_region_by_user_id(mysqli $db_con, int $user_id, string $region): bool
 {
 
@@ -111,6 +132,13 @@ function update_region_by_user_id(mysqli $db_con, int $user_id, string $region):
     return $stmt->execute();
 }
 
+/**
+ * Updates age associated with a given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param int $age new age
+ * @return bool true if successful
+ */
 function update_age_by_user_id(mysqli $db_con, int $user_id, int $age): bool
 {
 
@@ -121,6 +149,13 @@ function update_age_by_user_id(mysqli $db_con, int $user_id, int $age): bool
     return $stmt->execute();
 }
 
+/**
+ * Updates sex associated with a given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $gender new sex
+ * @return bool true if successful
+ */
 function update_gender_by_user_id(mysqli $db_con, int $user_id, string $gender): bool
 {
 
@@ -131,6 +166,13 @@ function update_gender_by_user_id(mysqli $db_con, int $user_id, string $gender):
     return $stmt->execute();
 }
 
+/**
+ * Updates preference associated with a given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @param string $preference new preference
+ * @return bool true if successful
+ */
 function update_preference_by_user_id(mysqli $db_con, int $user_id, string $preference): bool
 {
 
