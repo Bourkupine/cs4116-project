@@ -55,6 +55,7 @@ if (!$profile_picture_path) {
 }
 $user_interest_ids = get_user_interests_by_user_id($db_con, $_SESSION["user_id"]);
 $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
+$language_ids = get_all_languages($db_con);
 ?>
 
 <body>
@@ -111,7 +112,7 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
             if ($user_language_ids) {
                 foreach ($user_language_ids as $language_id => $status) {
                     if (strcmp("speaks", $status) == 0) {
-                        echo "<li>" . get_language_name_by_language_id($db_con, $language_id) . "</li>";
+                        echo "<li>" . $language_ids[$language_id] . "</li>";
                     }
                 }
             }
@@ -132,7 +133,7 @@ $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]
             if ($user_language_ids) {
                 foreach ($user_language_ids as $language_id => $status) {
                     if (strcmp("learning", $status) == 0) {
-                        echo "<li>" . get_language_name_by_language_id($db_con, $language_id) . "</li>";
+                        echo "<li>" . $language_ids[$language_id] . "</li>";
                     }
                 }
             }
