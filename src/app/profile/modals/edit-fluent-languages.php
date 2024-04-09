@@ -27,7 +27,7 @@ if (isset($_POST["save_fluent"])) {
             }
         }
         if ($unique) {
-            delete_all_user_languages_by_status($connection, $_SESSION["user_id"], "fluent");
+            delete_all_user_languages_by_status($connection, $_SESSION["user_id"], "speaks");
             add_user_languages($connection, $_SESSION["user_id"], $_POST["fluent_languages"], 'speaks', 'fluent');
             $user_languages = get_user_languages_by_user_id($connection, $_SESSION["user_id"]);
         } else {
