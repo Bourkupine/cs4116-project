@@ -1,22 +1,7 @@
 <?php
 
 require_once "../database/database_connect.php";
-require_once "../database/users.php";
 
-if (isset($_POST["delete"])) {
-    session_start();
-    try {
-        $db_con = connect();
-    } catch (Exception $e) {
-        $code = $e->getCode();
-        $message = $e->getMessage();
-        $file = $e->getFile();
-        $line = $e->getLine();
-        echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
-    }
-    delete_user_by_user_id($db_con, $_SESSION["user_id"]);
-    session_unset();
-}
 ?>
 
 <div class="modal fade" id="delete-account" tabindex="-1" role="dialog" aria-labelledby="modal-label"

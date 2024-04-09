@@ -30,6 +30,22 @@ function create_profile(mysqli $db_con, int $user_id, string $first_name, string
 function delete_profile_by_user_id(mysqli $db_con, int $user_id): bool
 {
     $stmt = $db_con->prepare("DELETE FROM profiles WHERE user_id = ?");
-    $stmt->bind_param("s", $user_id);
+    $stmt->bind_param("i", $user_id);
     return $stmt->execute();
+}
+
+/**
+ * Gets the path to the profile picture associated with the given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return string | null filepath of the profile picture if one exists
+ */
+function get_profile_picture_by_user_id(mysqli $db_con, int $user_id): ?string
+{
+    $stmt = $db_con->prepare("SELECT profile_pic FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($profile_pic_path);
+    $stmt->execute();
+    $stmt->fetch();
+    return $profile_pic_path;
 }
