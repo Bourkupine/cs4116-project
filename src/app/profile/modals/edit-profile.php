@@ -76,7 +76,7 @@ if (isset($_POST["save"])) {
         }
     }
 
-    if (!empty($_POST["user_interests"])) {
+    if (isset($_POST["user_interests"])) {
         delete_all_user_interests($connection, $_SESSION["user_id"]);
         add_user_interests($connection, $_SESSION["user_id"], $_POST["user_interests"]);
         $user_interests = get_user_interests_by_user_id($connection, $_SESSION["user_id"]);
