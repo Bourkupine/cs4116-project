@@ -94,7 +94,7 @@ $language_ids = get_all_languages($db_con);
     <div class="col-md-8 pt-3">
       <div class="text-box text text-white p-3 mb-3">
         <span><b>Bio:</b></span>
-        <p class="text-wrap">
+        <p class="bio">
             <?php echo $_SESSION["bio"] ?>
         </p>
         <div class="d-flex justify-content-center">
