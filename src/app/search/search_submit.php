@@ -45,9 +45,9 @@ function search(mysqli $db_con): array {
     } else {
         $param_str .= "i";
     }
-    if (isset($_POST['learning-languages'])) {
+    if (isset($_POST['fluent_languages'])) {
         $languages = array();
-        foreach ($_POST['learning-languages'] as $l){
+        foreach ($_POST['fluent_languages'] as $l){
             $languages[] = $l;
         }
         $languages_str = "l.language_id IN (" . rtrim(str_repeat("?,", count($languages)), ",") . ")"
@@ -109,5 +109,3 @@ function search(mysqli $db_con): array {
     $result->free();
     return $filtered_array;
 }
-
-?>

@@ -88,7 +88,7 @@ $submit_message = "";
                 <div class="form-group ps-2 pe-2 mb-2">
                     <label for="interests">Interests</label>
                     <select name="interests[]" multiple
-                            class="interest-select form-control"
+                            class="form-control"
                             id="interests">
                         <?php foreach ($interests as $interest_id => $interest) {
                             if (
@@ -103,14 +103,14 @@ $submit_message = "";
                     </select>
                 </div>
                 <div class="form-group ps-2 pe-2 mb-2">
-                    <label for="learning-languages">Known Languages</label>
-                    <select name="learning-languages[]" multiple
-                            class="language-select form-control"
-                            id="learning-languages">
+                    <label for="fluent-languages">Speaks</label>
+                    <select name="fluent_languages[]" multiple
+                            class="form-control"
+                            id="fluent-languages">
                         <?php foreach ($languages as $language_id => $language) {
                             if (
-                                isset($_POST["learning-languages"]) &&
-                                in_array($language_id, $_POST["learning-languages"])
+                                isset($_POST["fluent_languages"]) &&
+                                in_array($language_id, $_POST["fluent_languages"])
                             ) {
                                 echo "<option value=\"$language_id\" selected>$language</option>";
                             } else {
@@ -125,7 +125,7 @@ $submit_message = "";
                         const interestsDropdown = new Choices("#interests", {
                             removeItemButton: true
                         });
-                        const learningLanguagesDropdown = new Choices("#learning-languages", {
+                        const fluentLanguagesDropdown = new Choices("#fluent-languages", {
                             removeItemButton: true
                         });
                     });
@@ -179,29 +179,10 @@ $submit_message = "";
                     }
                 }
                 ?>
-
             </div>
-
         </div>
-
-
-        <?php
-        if (isset($_POST['submit'])) {
-            $users = search($connection);
-//                print_r($users);
-            foreach ($users as $user) {
-                //create card
-                echo "
-                    
-                    ";
-
-            }
-
-        }
-        ?>
     </div>
 
-</div>
 </div>
 <script
         src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"
