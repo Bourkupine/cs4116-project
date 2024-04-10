@@ -119,6 +119,23 @@ $submit_message = "";
                         } ?>
                     </select>
                 </div>
+                <div class="form-group ps-2 pe-2 mb-2">
+                    <label for="learning-languages">Learning</label>
+                    <select name="learning_languages[]" multiple
+                            class="form-control"
+                            id="learning-languages">
+                        <?php foreach ($languages as $language_id => $language) {
+                            if (
+                                isset($_POST["learning_languages"]) &&
+                                in_array($language_id, $_POST["learning_languages"])
+                            ) {
+                                echo "<option value=\"$language_id\" selected>$language</option>";
+                            } else {
+                                echo "<option value=\"$language_id\">$language</option>";
+                            }
+                        } ?>
+                    </select>
+                </div>
 
                 <script>
                     $(document).ready(function () {
@@ -126,6 +143,9 @@ $submit_message = "";
                             removeItemButton: true
                         });
                         const fluentLanguagesDropdown = new Choices("#fluent-languages", {
+                            removeItemButton: true
+                        });
+                        const learningLanguagesDropdown = new Choices("#learning-languages", {
                             removeItemButton: true
                         });
                     });

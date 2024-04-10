@@ -88,15 +88,28 @@ function search(mysqli $db_con): array {
 
         $speaks_arr = array();
         $learning_arr = array();
+        $learning_ids = array();
         $interests_arr = array();
 
         foreach ($users_languages as $language_id => $status) {
             if ($status == "speaks") {
                 $speaks_arr[] = $language_list[$language_id];
             } else {
+                $learning_ids[] = $language_id;
                 $learning_arr[] = $language_list[$language_id];
             }
         }
+        if (isset($_POST['learning_languages'])) {
+            $contains = false;
+            foreach ($_POST['learning_languages'] as $l){
+                if (in_array($l, $learning_ids)) {
+                    $contains = true;
+                    break;
+                }
+            }
+            if (!$contains) continue;
+        }
+
         foreach ($users_interests as $i) {
             $interests_arr[] = $interest_list[$i];
         }
