@@ -58,7 +58,7 @@ function search(mysqli $db_con): array {
     $sql =
         "
         SELECT 
-        p.user_id, p.first_name, p.surname, p.age, p.region
+        p.user_id, p.first_name, p.surname, p.age, p.region, p.profile_pic
         FROM profiles p
         LEFT JOIN user_interests i ON p.user_id = i.user_id
         LEFT JOIN user_languages l ON p.user_id = l.user_id
@@ -70,7 +70,7 @@ function search(mysqli $db_con): array {
 
     $stmt = $db_con->prepare($sql);
     $stmt->bind_param($param_str, $gender, $country, ...$interests, ...$languages);
-    $stmt->bind_result($user_id, $first_name, $surname, $age, $region);
+    $stmt->bind_result($user_id, $first_name, $surname, $age, $region, $profile_pic);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -98,7 +98,7 @@ function search(mysqli $db_con): array {
             $interests_arr[] = $interest_list[$i];
         }
 
-        $filtered_array[] = array($id['user_id'], $id['first_name'], $id['surname'], $id['age'], $id['region'],
+        $filtered_array[] = array($id['user_id'], $id['first_name'], $id['surname'], $id['age'], $id['region'], $id['profile_pic'],
             $interests_arr, $speaks_arr, $learning_arr);
         $id_list[] = $id['user_id'];
     }

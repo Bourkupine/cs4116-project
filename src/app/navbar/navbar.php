@@ -50,6 +50,7 @@
         font-family: Bungee, sans-serif;
         font-size: 24px;
         line-height: 24px;
+        max-width: 50vw;
     }
 
     .nav-link:hover {

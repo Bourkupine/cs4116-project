@@ -145,15 +145,16 @@ $submit_message = "";
                     $users = search($connection);
                     foreach ($users as $user) {
 
-                        $interest_str = rtrim(implode(", ", $user[5]), ",");
-                        $speaks_str = rtrim(implode(", ", $user[6]), ",");
-                        $learning_str = rtrim(implode(", ", $user[7]), ",");
+                        $interest_str = rtrim(implode(", ", $user[6]), ",");
+                        $speaks_str = rtrim(implode(", ", $user[7]), ",");
+                        $learning_str = rtrim(implode(", ", $user[8]), ",");
+                        $user[5] ? $profile_pic_path = $user[5] : $profile_pic_path = "../../assets/pfp-placeholder.png";
 
                         echo "
                             <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
                                 <div class=\"row align-items-center\">
                                     <div class=\"col-4 col-md-2\">
-                                        <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"../../assets/bart.png\" alt=\"\">
+                                        <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"$profile_pic_path\" alt=\"\">
                                     </div>
                                     <div class=\"col\">
                                         <div class=\"card-body\">
