@@ -79,7 +79,7 @@ function search(mysqli $db_con): array {
     $id_list = array();
 
     while($id = $result->fetch_assoc()) {
-        if (in_array($id['user_id'], $id_list)) continue;
+        if (in_array($id['user_id'], $id_list) || $id['user_id'] == $_SESSION['user_id']) continue;
         $users_interests = get_user_interests_by_user_id($db_con, $id['user_id']);
         $users_languages = get_user_languages_by_user_id($db_con, $id['user_id']);
 
