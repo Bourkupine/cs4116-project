@@ -3,6 +3,16 @@
     src: url("../assets/fonts/Bungee-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Aleo";
+    src: url("../assets/fonts/Aleo-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat-Light";
+    src: url("../assets/fonts/Montserrat-Light.ttf") format("truetype");
+}
+
 .slogan-text {
     font-family: Bungee, sans-serif;
     color: #7843e6;
