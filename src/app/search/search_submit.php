@@ -10,6 +10,8 @@ function search(mysqli $db_con): array {
     $interests = array(1);
     $languages = array(1);
 
+    $current_user = $_SESSION['user_id'];
+
     $language_list = get_all_languages($db_con);
     $interest_list = get_all_interests($db_con);
 
@@ -63,6 +65,7 @@ function search(mysqli $db_con): array {
         LEFT JOIN user_interests i ON p.user_id = i.user_id
         LEFT JOIN user_languages l ON p.user_id = l.user_id
         WHERE $gender_str
+        AND p.user_id <> $current_user
         AND $country_str
         AND $interests_str
         AND $languages_str
@@ -79,7 +82,7 @@ function search(mysqli $db_con): array {
     $id_list = array();
 
     while($id = $result->fetch_assoc()) {
-        if (in_array($id['user_id'], $id_list) || $id['user_id'] == $_SESSION['user_id']) continue;
+        if (in_array($id['user_id'], $id_list)) continue;
         $users_interests = get_user_interests_by_user_id($db_con, $id['user_id']);
         $users_languages = get_user_languages_by_user_id($db_con, $id['user_id']);
 
