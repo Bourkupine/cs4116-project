@@ -35,7 +35,7 @@ if (isset($_POST["save_bio"])) {
                 <div class="modal-body">
                     <div class="form-group m-2">
                         <label for="bio">Enter your new bio:</label>
-                        <input name="bio" id="bio" type="text" class="form-control"
+                        <input name="bio" id="bio" type="text" class="form-control" maxlength="1000"
                             <?php if (isset($_SESSION["bio"])) {
                                 echo "value=\"" . $_SESSION["bio"] . "\"";
                             } ?>>
