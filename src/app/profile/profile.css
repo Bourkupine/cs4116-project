@@ -32,6 +32,10 @@ body {
     border-radius: 1vw;
 }
 
+.bio {
+    word-wrap: break-word;
+}
+
 .footer-btn {
     border-radius: 5vw;
     width: 15vw;
