@@ -27,3 +27,5 @@ function get_all_interests(mysqli $db_con): array
     }
     return $interests_arr;
 }
+
+?>
