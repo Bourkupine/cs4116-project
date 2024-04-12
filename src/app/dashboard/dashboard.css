@@ -1,0 +1,19 @@
+.edit-button-yes {
+    background: none;
+    border: none;
+    text-decoration: underline;
+}
+.edit-button-no {
+    background: none;
+    border: none;
+    text-decoration: underline;
+}
+
+
+.edit-button-yes:hover{
+    transform: rotate(10deg);
+}
+
+.edit-button-no:hover{
+    transform: rotate(-10deg);
+}
