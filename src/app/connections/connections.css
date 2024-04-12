@@ -1,0 +1,9 @@
+.profile-picture {
+    height: calc(3rem + 3vh);
+    width: calc(3rem + 3vw);
+}
+
+.connection-name {
+    font-family: Bungee, sans-serif;
+    color: #7843e6;
+}
