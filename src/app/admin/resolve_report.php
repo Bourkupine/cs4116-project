@@ -32,5 +32,13 @@ function get_users_report_info(mysqli $db_con, int $user_id): array {
     $user_info = array($result['first_name'], $result['surname'], $result['profile_pic']);
 
     return $user_info;
+}
 
+function ban_user(mysqli $db_con, int $user_id): void {
+    //replace resolved
+    //create ban
+}
+
+function ignore_user(mysqli $db_con, int $user_id): void {
+    //replace resolved
 }

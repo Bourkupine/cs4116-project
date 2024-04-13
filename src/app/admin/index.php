@@ -35,7 +35,14 @@ print_r($report_list);
 <?php
 require_once("../navbar/navbar.php");
 
+if (isset($_POST['submit'])) {
+    if ($_POST['action'] == 'ban') {
 
+
+    } else if ($_POST['action'] == 'ignore'){
+
+    }
+}
 
 
 ?>
