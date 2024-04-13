@@ -1,0 +1,14 @@
+.scroll {
+    @media (min-width: 990px) {
+        max-height: 91vh;
+        overflow-y: scroll;
+    }
+}
+
+.search-button {
+    font-size: calc(1rem + 0.5vw);
+}
+
+.filters {
+    max-height: 100vh;
+}
