@@ -1,5 +1,7 @@
 <?php
 
+include_once "../database/users.php";
+
 function get_reports(mysqli $db_con): array
 {
     $sql = "SELECT report_id, reporter_id, reportee_id, reason FROM reports WHERE resolved = 0";
@@ -18,7 +20,8 @@ function get_reports(mysqli $db_con): array
     return $reports_arr;
 }
 
-function get_users_report_info(mysqli $db_con, int $user_id): array {
+function get_users_report_info(mysqli $db_con, int $user_id): array
+{
 
     $sql = "SELECT first_name, surname, profile_pic FROM profiles where user_id = ?";
 
@@ -34,11 +37,26 @@ function get_users_report_info(mysqli $db_con, int $user_id): array {
     return $user_info;
 }
 
-function ban_user(mysqli $db_con, int $user_id): void {
-    //replace resolved
-    //create ban
+function resolve_report(mysqli $db_con, int $id, bool $ban): void
+{
+
+    $sql = $ban ?
+        "UPDATE reports SET resolved = 1 WHERE reportee_id = ?" :
+        "UPDATE reports SET resolved = 1 WHERE report_id = ?";
+
+    $stmt = $db_con->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 }
 
-function ignore_user(mysqli $db_con, int $user_id): void {
-    //replace resolved
+function ban_user(mysqli $db_con, int $user_id, int $time, string $reason): void
+{
+    resolve_report($db_con, $user_id, true);
+
+    $sql = "INSERT INTO bans VALUES (?, ?, ?)";
+    $stmt = $db_con->prepare($sql);
+    $stmt->bind_param("iis", $user_id, $time, $reason);
+    $stmt->execute();
+
+    delete_user_by_user_id($db_con, $user_id);
 }
