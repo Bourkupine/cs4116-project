@@ -7,3 +7,8 @@
     font-family: Bungee, sans-serif;
     color: #7843e6;
 }
+
+.text-box {
+    background-image: linear-gradient(to right, #FFF6AE, #FFABF8);
+    font-size: calc(0.5rem + 0.5vw);
+}
