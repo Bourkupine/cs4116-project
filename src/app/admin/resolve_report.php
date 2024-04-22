@@ -49,14 +49,13 @@ function resolve_report(mysqli $db_con, int $id, bool $ban): void
     $stmt->execute();
 }
 
-function ban_user(mysqli $db_con, int $user_id, int $time, string $reason): void
+function ban_user(mysqli $db_con, int $user_id, string $time, string $reason): void
 {
     resolve_report($db_con, $user_id, true);
 
     $sql = "INSERT INTO bans VALUES (?, ?, ?)";
     $stmt = $db_con->prepare($sql);
-    $stmt->bind_param("iis", $user_id, $time, $reason);
+    $stmt->bind_param("iss", $user_id, $time, $reason);
     $stmt->execute();
 
-    delete_user_by_user_id($db_con, $user_id);
 }

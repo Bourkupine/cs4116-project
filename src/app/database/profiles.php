@@ -77,7 +77,7 @@ function update_first_name_by_user_id(mysqli $db_con, int $user_id, string $firs
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET first_name=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $firstname,$user_id);
+    $stmt->bind_param("si", $firstname, $user_id);
     return $stmt->execute();
 }
 
@@ -94,7 +94,7 @@ function update_surname_by_user_id(mysqli $db_con, int $user_id, string $surname
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET surname=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $surname,$user_id);
+    $stmt->bind_param("si", $surname, $user_id);
     return $stmt->execute();
 }
 
@@ -111,7 +111,7 @@ function update_country_by_user_id(mysqli $db_con, int $user_id, string $country
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET country=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $country,$user_id);
+    $stmt->bind_param("si", $country, $user_id);
     return $stmt->execute();
 }
 
@@ -128,7 +128,7 @@ function update_region_by_user_id(mysqli $db_con, int $user_id, string $region):
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET region=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $region,$user_id);
+    $stmt->bind_param("si", $region, $user_id);
     return $stmt->execute();
 }
 
@@ -145,7 +145,7 @@ function update_age_by_user_id(mysqli $db_con, int $user_id, int $age): bool
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET age=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("ii", $age,$user_id);
+    $stmt->bind_param("ii", $age, $user_id);
     return $stmt->execute();
 }
 
@@ -162,7 +162,7 @@ function update_gender_by_user_id(mysqli $db_con, int $user_id, string $gender):
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET sex=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $gender,$user_id);
+    $stmt->bind_param("si", $gender, $user_id);
     return $stmt->execute();
 }
 
@@ -179,7 +179,7 @@ function update_preference_by_user_id(mysqli $db_con, int $user_id, string $pref
     $stmt = $db_con->prepare("UPDATE profiles
                                     SET preference=?
                                     WHERE user_id = ?");
-    $stmt->bind_param("si", $preference,$user_id);
+    $stmt->bind_param("si", $preference, $user_id);
     return $stmt->execute();
 }
 
@@ -193,6 +193,17 @@ function update_preference_by_user_id(mysqli $db_con, int $user_id, string $pref
 function update_bio_by_user_id(mysqli $db_con, int $user_id, string $bio): bool
 {
     $stmt = $db_con->prepare("UPDATE profiles SET bio = ? WHERE user_id = ?");
-    $stmt->bind_param("si", $bio,$user_id);
+    $stmt->bind_param("si", $bio, $user_id);
     return $stmt->execute();
+}
+
+function get_name_by_user_id(mysqli $db_con, int $user_id): array
+{
+    $stmt = $db_con->prepare("SELECT first_name, surname FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($first_name, $surname);
+    $stmt->execute();
+    $stmt->fetch();
+    return [$first_name, $surname];
+
 }
