@@ -196,3 +196,13 @@ function update_bio_by_user_id(mysqli $db_con, int $user_id, string $bio): bool
     $stmt->bind_param("si", $bio,$user_id);
     return $stmt->execute();
 }
+
+function get_relevant_user(mysqli $db_con)
+{
+    $language_list = get_all_languages($db_con);
+    $user_languages = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
+    print_r($user_languages);
+    $stmt = $db_con->prepare("SELECT user_id FROM profiles INNER JOIN user_languages ON profiles.user_id=user_languages.user_id WHERE sex = ? AND (preference = ? OR preference = 'both')");
+    $stmt->bind_param("ssss", $preference, $sex, $language_id,$status);
+    return $stmt->get_result()->fetch_all();
+}

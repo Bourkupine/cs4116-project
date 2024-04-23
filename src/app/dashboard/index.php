@@ -17,6 +17,7 @@ try {
     $line = $e->getLine();
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
+$relevant_user_id = get_relevant_user($db_con);
 $profile_picture_path = get_profile_picture_by_user_id($db_con, $_SESSION["user_id"]);
 if (!$profile_picture_path) {
     $profile_picture_path = "../../assets/pfp-placeholder.png";
