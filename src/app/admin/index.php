@@ -5,6 +5,10 @@ require_once "../database/database_connect.php";
 require_once "resolve_report.php";
 require_once "../database/profiles.php";
 
+if (!isset($_SESSION["logged-in"]) || $_SESSION['account_type'] != "admin") {
+    header("Location: ../home");
+}
+
 try {
     $connection = connect();
 } catch (Exception $e) {
@@ -14,8 +18,6 @@ try {
     $line = $e->getLine();
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
-
-//print_r($report_list);
 
 ?>
 <!DOCTYPE html>

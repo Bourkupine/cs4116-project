@@ -21,6 +21,7 @@ if ($user_id && $match) {
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["password"] = $_POST["password"];
     $_SESSION += get_profile_details($db_con, $user_id);
+    $_SESSION['account_type'] = get_account_type_by_user_id($db_con, $user_id);
     $_SESSION["logged-in"] = true;
     header("Location: ../dashboard");
 } else {
