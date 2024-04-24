@@ -1,6 +1,7 @@
 <?php
 require "../database/database_connect.php";
 require "../database/users.php";
+require "../database/bans.php";
 
 session_start();
 
@@ -18,6 +19,14 @@ if ($hash) {
 }
 
 if ($user_id && $match) {
+
+    if (check_user_banned($db_con, $user_id)) {
+        $_SESSION['banned'] = true;
+        header("Location: index.php");
+        $db_con->close();
+        die;
+    }
+
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["password"] = $_POST["password"];
     $_SESSION += get_profile_details($db_con, $user_id);

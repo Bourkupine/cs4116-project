@@ -41,7 +41,20 @@ require_once("../navbar/navbar.php");
         </div>
 
     <?php endif;
+
     unset($_SESSION["login-failure"]); ?>
+
+    <?php if (isset($_SESSION["banned"])): ?>
+
+        <div class="row justify-content-center">
+            <div class="col-5 text-nowrap">
+                <span class="fs-6 text-danger">User is banned</span>
+            </div>
+        </div>
+
+    <?php endif;
+
+    unset($_SESSION["banned"]); ?>
 
     <form method="post" action="login_submit.php">
         <div class="row justify-content-center my-2">

@@ -4,10 +4,8 @@ require_once "../database/database_connect.php";
 
 require_once "resolve_report.php";
 require_once "../database/profiles.php";
+require_once "../database/bans.php";
 
-if (!isset($_SESSION["logged-in"]) || $_SESSION['account_type'] != "admin") {
-    header("Location: ../home");
-}
 
 try {
     $connection = connect();
@@ -19,6 +17,8 @@ try {
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,14 @@ try {
 <head>
     <?php
     require_once("../templates/header.php");
+
+    print($_SESSION['user_type']);
+
+    if (!isset($_SESSION["logged-in"]) || $_SESSION['account_type'] != 'admin') {
+    header("Location: ../home");
+    }
     ?>
+
     <title>Love Languages - Admin</title>
     <link rel="stylesheet" type="text/css" href="admin.css">
 </head>
