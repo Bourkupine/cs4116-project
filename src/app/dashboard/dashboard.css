@@ -1,3 +1,8 @@
+.no-matches {
+    font-size: calc(1rem + 3vw);
+    text-align: center;
+}
+
 .name {
     font-family: Aleo, serif;
     font-size: calc(1rem + 1vw);
