@@ -197,12 +197,34 @@ function update_bio_by_user_id(mysqli $db_con, int $user_id, string $bio): bool
     return $stmt->execute();
 }
 
-function get_relevant_user(mysqli $db_con)
+/**
+ * Gets the country associated with the given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return string country
+ */
+function get_country_by_user_id(mysqli $db_con, int $user_id): string
 {
-    $language_list = get_all_languages($db_con);
-    $user_languages = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
-    print_r($user_languages);
-    $stmt = $db_con->prepare("SELECT user_id FROM profiles INNER JOIN user_languages ON profiles.user_id=user_languages.user_id WHERE sex = ? AND (preference = ? OR preference = 'both')");
-    $stmt->bind_param("ssss", $preference, $sex, $language_id,$status);
-    return $stmt->get_result()->fetch_all();
+    $stmt = $db_con->prepare("SELECT country FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($country);
+    $stmt->execute();
+    $stmt->fetch();
+    return $country;
+}
+
+/**
+ * Gets the preference associated with the given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return string preference
+ */
+function get_preference_by_user_id(mysqli $db_con, int $user_id): string
+{
+    $stmt = $db_con->prepare("SELECT preference FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($preference);
+    $stmt->execute();
+    $stmt->fetch();
+    return $preference;
 }

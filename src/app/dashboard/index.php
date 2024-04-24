@@ -1,32 +1,3 @@
-<?php
-require_once "../database/database_connect.php";
-require_once "../database/user_interests.php";
-require_once "../database/user_languages.php";
-require_once "../database/users.php";
-require_once "../database/profiles.php";
-require_once "../database/interests.php";
-require_once "../database/languages.php";
-require_once "../templates/header.php";
-
-try {
-    $db_con = connect();
-} catch (Exception $e) {
-    $code = $e->getCode();
-    $message = $e->getMessage();
-    $file = $e->getFile();
-    $line = $e->getLine();
-    echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
-}
-//$relevant_user_id = get_relevant_user($db_con);
-$profile_picture_path = get_profile_picture_by_user_id($db_con, $_SESSION["user_id"]);
-if (!$profile_picture_path) {
-    $profile_picture_path = "../../assets/pfp-placeholder.png";
-}
-$user_interest_ids = get_user_interests_by_user_id($db_con, $_SESSION["user_id"]);
-$user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
-$language_ids = get_all_languages($db_con);
-?>
-
 <head>
     <?php require_once "../templates/header.php"; ?>
 
@@ -41,16 +12,51 @@ $language_ids = get_all_languages($db_con);
 
 </head>
 
+<?php
+require_once "../database/database_connect.php";
+require_once "../database/user_interests.php";
+require_once "../database/user_languages.php";
+require_once "../database/users.php";
+require_once "../database/profiles.php";
+require_once "../database/interests.php";
+require_once "../database/languages.php";
+require_once "dashboard-functions.php";
+
+try {
+    $db_con = connect();
+} catch (Exception $e) {
+    $code = $e->getCode();
+    $message = $e->getMessage();
+    $file = $e->getFile();
+    $line = $e->getLine();
+    echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
+}
+
+$user_interest_ids = get_user_interests_by_user_id($db_con, $_SESSION["user_id"]);
+$user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
+$language_ids = get_all_languages($db_con);
+
+$eligible_users = get_eligible_user_ids($db_con, $_SESSION["preference"]);
+$eligible_users = trim_eligible_users($db_con, $_SESSION["user_id"], $eligible_users, $_SESSION["sex"]);
+$best_user_id = get_best_user_id($db_con, $_SESSION["user_id"], $user_interest_ids, $user_language_ids, $_SESSION["country"], $eligible_users);
+$best_user_info = get_user_info($db_con, $best_user_id);
+
+$profile_picture_path = $best_user_info["profile_pic"];
+if (!$profile_picture_path) {
+    $profile_picture_path = "../../assets/pfp-placeholder.png";
+}
+?>
+
 <body>
 <?php require_once "../navbar/navbar.php"; ?>
 <div class="container-fluid ps-sm-5 pe-sm-5">
   <div class="row pt-1 pt-sm-5 pb-2">
     <div class="col-8 col-sm-4 p-3 p-sm-0 d-flex flex-column justify-content-between order-1">
       <div class="d-flex flex-column">
-        <span class="name"><i><?php echo $_SESSION["first_name"] . " " . $_SESSION["surname"]; ?></i></span>
-        <span class="info"><?php echo "@" . $_SESSION["country"] . ", " . $_SESSION["region"]; ?></span>
-        <span class="info"><?php echo $_SESSION["age"] . ", " . $_SESSION["sex"]; ?></span>
-        <span class="bio"><?php echo $_SESSION["bio"]; ?></span>
+        <span class="name"><i><?php echo $best_user_info["first_name"] . " " . $best_user_info["surname"]; ?></i></span>
+        <span class="info"><?php echo "@" . $best_user_info["country"] . ", " . $best_user_info["region"]; ?></span>
+        <span class="info"><?php echo $best_user_info["age"] . ", " . $best_user_info["sex"]; ?></span>
+        <span class="bio"><?php echo $best_user_info["bio"]; ?></span>
       </div>
     </div>
 
@@ -63,8 +69,8 @@ $language_ids = get_all_languages($db_con);
           <span><b>Speaks</b></span>
           <ul>
               <?php
-              if ($user_language_ids) {
-                  foreach ($user_language_ids as $language_id => $status) {
+              if ($best_user_info["user_languages"]) {
+                  foreach ($best_user_info["user_languages"] as $language_id => $status) {
                       if (strcmp("speaks", $status) == 0) {
                           echo "<li>" . $language_ids[$language_id] . "</li>";
                       }
@@ -77,8 +83,8 @@ $language_ids = get_all_languages($db_con);
           <span><b>Practising</b></span>
           <ul>
               <?php
-              if ($user_language_ids) {
-                  foreach ($user_language_ids as $language_id => $status) {
+              if ($best_user_info["user_languages"]) {
+                  foreach ($best_user_info["user_languages"] as $language_id => $status) {
                       if (strcmp("learning", $status) == 0) {
                           echo "<li>" . $language_ids[$language_id] . "</li>";
                       }
@@ -92,8 +98,8 @@ $language_ids = get_all_languages($db_con);
 
     <div class="col-4 col-sm-4 p-3 p-sm-0 d-flex flex-column align-items-center order-2 order-sm-3">
         <?php
-        if ($user_interest_ids) {
-            foreach ($user_interest_ids as $interest_id) {
+        if ($best_user_info["user_interests"]) {
+            foreach ($best_user_info["user_interests"] as $interest_id) {
                 echo "<div class=\"interest w-50 p-1 mt-1\">" . get_interest_name_by_interest_id($db_con, $interest_id) . "</div>";
             }
         }
