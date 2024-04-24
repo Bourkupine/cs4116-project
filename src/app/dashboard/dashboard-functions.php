@@ -9,12 +9,14 @@ require_once "../database/users.php";
 function get_eligible_user_ids(mysqli $db_con, string $user_preference): array
 {
     $eligible_users = array();
+    $param_type = "s";
     if (strcasecmp($user_preference, "both") == 0) {
         $user_preference = 1;
+        $param_type = "i";
     }
 
     $stmt = $db_con->prepare("SELECT user_id FROM profiles WHERE sex = ?");
-    $stmt->bind_param("s", $user_preference);
+    $stmt->bind_param($param_type, $user_preference);
     $stmt->bind_result($eligible_user_id);
     $stmt->execute();
 
