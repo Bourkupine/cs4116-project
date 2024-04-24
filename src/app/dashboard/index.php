@@ -43,13 +43,14 @@ $language_ids = get_all_languages($db_con);
 
 <body>
 <?php require_once "../navbar/navbar.php"; ?>
-<div class="container">
+<div class="container-fluid ps-sm-5 pe-sm-5">
   <div class="row pt-1 pt-sm-5 pb-2">
-    <div class="col-6 col-sm-4 p-3 d-flex flex-column justify-content-between order-1">
+    <div class="col-8 col-sm-4 p-3 p-sm-0 d-flex flex-column justify-content-between order-1">
       <div class="d-flex flex-column">
         <span class="name"><i><?php echo $_SESSION["first_name"] . " " . $_SESSION["surname"]; ?></i></span>
         <span class="info"><?php echo "@" . $_SESSION["country"] . ", " . $_SESSION["region"]; ?></span>
         <span class="info"><?php echo $_SESSION["age"] . ", " . $_SESSION["sex"]; ?></span>
+        <span class="bio"><?php echo $_SESSION["bio"]; ?></span>
       </div>
     </div>
 
@@ -89,7 +90,7 @@ $language_ids = get_all_languages($db_con);
       </div>
     </div>
 
-    <div class="col-6 col-sm-4 p-3 d-flex flex-column align-items-center order-2 order-sm-3">
+    <div class="col-4 col-sm-4 p-3 p-sm-0 d-flex flex-column align-items-center order-2 order-sm-3">
         <?php
         if ($user_interest_ids) {
             foreach ($user_interest_ids as $interest_id) {

@@ -8,6 +8,13 @@
     font-size: calc(0.5rem + 1vw);
 }
 
+.bio {
+    width: 100%;
+    font-family: Montserrat-Light, serif;
+    font-size: calc(0.5rem + 0.75vw);
+    word-wrap: break-word;
+}
+
 .heart-button {
     background: none;
     border: none;
@@ -43,6 +50,10 @@
         img {
             max-width: 40vw;
         }
+    }
+
+    .interest {
+        width: 100% !important;
     }
 }
 
