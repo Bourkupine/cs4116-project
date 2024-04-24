@@ -35,25 +35,25 @@ try {
 $user_interest_ids = get_user_interests_by_user_id($db_con, $_SESSION["user_id"]);
 $user_language_ids = get_user_languages_by_user_id($db_con, $_SESSION["user_id"]);
 $language_ids = get_all_languages($db_con);
+$profile_picture_path = "../../assets/pfp-placeholder.png";
 
 $eligible_users = get_eligible_user_ids($db_con, $_SESSION["preference"]);
 $eligible_users = trim_eligible_users($db_con, $_SESSION["user_id"], $eligible_users, $_SESSION["sex"]);
 $best_user_id = get_best_user_id($db_con, $_SESSION["user_id"], $user_interest_ids, $user_language_ids, $_SESSION["country"], $eligible_users);
 if ($best_user_id) {
-  $best_user_info = get_user_info($db_con, $best_user_id);
+    $best_user_info = get_user_info($db_con, $best_user_id);
+    if (isset($best_user_info["profile_pic"])) {
+        $profile_picture_path = $best_user_info["profile_pic"];
+    }
 }
 
-$profile_picture_path = $best_user_info["profile_pic"];
-if (!$profile_picture_path) {
-    $profile_picture_path = "../../assets/pfp-placeholder.png";
-}
 ?>
 
 <body>
 <?php require_once "../navbar/navbar.php"; ?>
 
 <?php if (!$best_user_id) {
-  echo "<p class='slogan-text no-matches'>No matches available at the moment, please try again later!</p> ";
+    echo "<p class='slogan-text no-matches'>No matches available at the moment, please try again later!</p> ";
 } else {
 ?>
 
@@ -125,9 +125,9 @@ if (!$profile_picture_path) {
     </button>
   </div>
 
-  <?php
-  }
-  ?>
+    <?php
+    }
+    ?>
 
   <script
     src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"

@@ -41,8 +41,12 @@ function trim_eligible_users(mysqli $db_con, int $user_id, array $eligible_users
     return $eligible_users;
 }
 
-function get_best_user_id(mysqli $db_con, int $user_id, array $user_interest_ids, array $user_language_ids, string $user_country, array $eligible_users): int
+function get_best_user_id(mysqli $db_con, int $user_id, array $user_interest_ids, array $user_language_ids, string $user_country, array $eligible_users): int | null
 {
+    if (!$eligible_users) {
+        return null;
+    }
+
     $scored_users = array();
     foreach ($eligible_users as $e_user_id) {
         $score = 0;
