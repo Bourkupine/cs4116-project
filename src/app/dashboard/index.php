@@ -116,13 +116,22 @@ if ($best_user_id) {
   </div>
 
   <div class="d-flex justify-content-between">
-    <button type="submit" class="heart-button">
-      <img class="img-fluid" src="../../assets/no.png" alt="No">
-    </button>
-
-    <button type="submit" class="heart-button">
-      <img class="img-fluid" src="../../assets/yes.png" alt="Yes">
-    </button>
+    <form method="post" action="dislike.php">
+      <input type="hidden" name="rating_user_id" value="<?php echo $_SESSION["user_id"]; ?>">
+      <input type="hidden" name="rated_user_id" value="<?php echo $best_user_id; ?>">
+      <input type="hidden" name="rating" value="dislike">
+      <button type="submit" class="heart-button">
+        <img class="img-fluid" src="../../assets/no.png" alt="No">
+      </button>
+    </form>
+    <form method="post" action="like.php">
+      <input type="hidden" name="rating_user_id" value="<?php echo $_SESSION["user_id"]; ?>">
+      <input type="hidden" name="rated_user_id" value="<?php echo $best_user_id; ?>">
+      <input type="hidden" name="rating" value="like">
+      <button type="submit" class="heart-button">
+        <img class="img-fluid" src="../../assets/yes.png" alt="Yes">
+      </button>
+    </form>
   </div>
 
     <?php
