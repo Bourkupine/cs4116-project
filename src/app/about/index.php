@@ -20,15 +20,15 @@ require_once("../navbar/navbar.php");
                 <img class="img-fluid" src="../../assets/cog.png" alt="cog">
             </div>
             <div class="title">
-                <header>How does this work</header>
+                <header>How This Works</header>
             </div>
 
             <div class="description">
                 <p>
-                    Love Languages is for the enthusiastic and single.
-                    Want to practice a language with someone new? AND go on a date!
-                    We are aspiring to re-focus the date to language.
-                    By doing this we hope to take the hostility out of dating and
+                    Love Languages is for single, enthusiastic languages lovers.
+                    Want to practice a language with someone new <b>and</b> go on a date?
+                    Then look no further!
+                    Here we are aspiring to take the hostility out of dating and
                     foster a learning environment rather than a tense nervous one.
                 </p>
             </div>
@@ -51,11 +51,11 @@ require_once("../navbar/navbar.php");
 
             <div class="description">
                 <p>
+                    We use our handcrafted algorithm we emphasise matching
+                    you with people who can <b>speak</b> the
+                    languages you are <b>learning</b>.
                     We only retain information needed, and
                     we never share your information with any third party.
-                    We use our handcrafted algorithm to match you
-                    with people whom are capable of speaking the
-                    languages you are looking to practice.
                 </p>
             </div>
         </div>
@@ -65,7 +65,7 @@ require_once("../navbar/navbar.php");
                 <img class="img-fluid" src="../../assets/mindset.png" alt="cog">
             </div>
             <div class="title">
-                <header>Your job</header>
+                <header>Your Job</header>
             </div>
 
             <div class="description">
