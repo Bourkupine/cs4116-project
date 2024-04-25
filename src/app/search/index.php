@@ -199,7 +199,7 @@ if (isset($_POST["selected_user"])) {
                         $user[5] ? $profile_pic_path = $user[5] : $profile_pic_path = "../../assets/pfp-placeholder.png";
 
                         echo "
-                            <div class=\"card mb-2\" style=\"background-color: #C6C7FF\" data-bs-toggle=\"modal\" data-bs-target=\"#rate-user\" data-bs-whatever=\"$user[0]\">
+                            <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
                                 <div class=\"row align-items-center\">
                                     <div class=\"col-4 col-md-2\">
                                         <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"$profile_pic_path\" alt=\"\">
