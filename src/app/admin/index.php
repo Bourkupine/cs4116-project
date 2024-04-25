@@ -1,11 +1,9 @@
 <?php
 
 require_once "../database/database_connect.php";
-
 require_once "resolve_report.php";
 require_once "../database/profiles.php";
 require_once "../database/bans.php";
-
 
 try {
     $connection = connect();
@@ -17,8 +15,6 @@ try {
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,10 +23,8 @@ try {
     <?php
     require_once("../templates/header.php");
 
-    print($_SESSION['user_type']);
-
     if (!isset($_SESSION["logged-in"]) || $_SESSION['account_type'] != 'admin') {
-    header("Location: ../home");
+        header("Location: ../home");
     }
     ?>
 
@@ -45,8 +39,7 @@ require_once("../navbar/navbar.php");
 
 if (isset($_POST['ignore'])) {
     resolve_report($connection, $_POST['report_id'], false);
-}
-else if (isset($_POST['ban'])) {
+} else if (isset($_POST['ban'])) {
 
     resolve_report($connection, $_POST['reportee_id'], true);
 
