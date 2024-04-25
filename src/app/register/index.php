@@ -200,7 +200,7 @@ require_once("../navbar/navbar.php");
                         </div>
                         <div class="form-group col">
                             <input name="region" type="text" class="form-control" placeholder="State/County" required
-                                   minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+"
+                                   minlength="2" maxlength="32" pattern="[A-Za-z ']+"
                                 <?php if (isset($_POST["region"])) {
                                     echo "value=\"" . $_POST["region"] . "\"";
                                 } ?>>
