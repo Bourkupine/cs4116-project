@@ -169,8 +169,8 @@
                         </li>
                         <li class=\"nav-item\">
                             <a class=\"nav-link nav-link\" href=\"$profile_link\">
-                              <i class=\"fa-solid fa-circle-info fa-2x\"></i>
-                              <span class=\"navbar-toggler text-white border-0\">About Us</span>
+                              <i class=\"fa-solid fa-user fa-2x\"></i>
+                              <span class=\"navbar-toggler text-white border-0\">Profile</span>
                             </a>
                         </li>
                         ";
