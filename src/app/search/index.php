@@ -207,22 +207,22 @@ if (isset($_POST["selected_user"])) {
                                     <div class=\"col\">
                                         <div class=\"card-body\">
                                             <div class=\"row\">
-                                                <div class=\"col-12 col-md-6\">
+                                                <div class=\"col-12 col-md-4\">
                                                     <h5 class=\"d-flex d-md-none card-title\">$user[1] $user[2]</h5>
                                                     <h3 class=\"d-none d-md-flex card-title\">$user[1] $user[2]</h3>
                                                     <p class=\"card-text\">$user[3], $user[9] - @$user[4]</p>
                                                     <p class=\"d-none d-md-block card-text\">$interest_str</p>
                                                 </div>
-                                                <div class=\"col d-none d-md-inline-block\">
-                                                    <h5 class=\"card-title mt-2\"><u>Language Info</u></h5>
+                                                <div class=\"col-5 d-none d-md-inline-block\">
+                                                    <h5 class=\"card-title mt-2\"><u>Languages</u></h5>
                                                     <p class=\"card-text\"><b>Speaks</b>: $speaks_str</p>
                                                     <p class=\"card-text\"><b>Learning</b>: $learning_str</p>
                                                 </div>
-                                                <div class=\"col d-none d-md-inline-block align-content-center\">
+                                                <div class=\"col d-inline-block align-content-center\">
                                                     <form method='post'>
                                                         <input type='hidden' name='selected_user_id' value='$user[0]'>
                                                         <input type='hidden' name='selected_user_name' value='$user[1] $user[2]'>
-                                                        <input class='w-75 p-3 match-button' type='submit' name='selected_user' value='Match'>
+                                                        <input class='w-75 p-1 p-lg-2 p-xl-3 match-button' type='submit' name='selected_user' value='Match'>
                                                     </form>
                                                 </div>
                                             </div>
