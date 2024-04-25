@@ -9,8 +9,6 @@ function check_user_banned(mysqli $db_con, int $user_id): bool
     $stmt->fetch();
 
     if (!is_null($result)) {
-        echo "result found";
-        print($result);
         if ($result > date('Y-m-d H:i:s')) {
             return true;
         }

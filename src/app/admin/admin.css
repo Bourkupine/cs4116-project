@@ -1,5 +1,5 @@
 .heading {
-    height: 5vh;
+    height: 6vh;
     background-color: lightcoral;
 }
 
@@ -8,6 +8,12 @@
 }
 
 .buttons {
-    min-width: 20vw;
+    min-width: 10vw;
     margin-left: 5vw;
+}
+
+.signout-btn {
+    border-radius: 5vw;
+    width: 10vw;
+    max-width: 100px;
 }

@@ -15,6 +15,11 @@ try {
     echo "<script> console.log(\"Exception thrown in $file on line $line: [Code $code] $message\"); </script>";
 }
 
+if (isset($_POST["sign-out"])) {
+    session_start();
+    session_unset();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +60,16 @@ $report_list = get_reports($connection);
 
 <div class="container-fluid">
     <div class="row heading">
-        <h2>Admin Dashboard</h2>
+        <div class="col-8 align-content-center">
+            <h2>Admin Tools</h2>
+        </div>
+        <div class="col-4 align-content-center">
+            <form method="post">
+                <button class="signout-btn btn btn-danger float-end w-100" name="sign-out" type="submit">
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
     <div class="list-group">
         <?php
