@@ -20,6 +20,8 @@ if ($hash) {
 
 if ($user_id && $match) {
 
+    $_SESSION['account_type'] = get_account_type_by_user_id($db_con, $user_id);
+
     if (check_user_banned($db_con, $user_id)) {
         $_SESSION['banned'] = true;
         header("Location: index.php");
@@ -29,10 +31,14 @@ if ($user_id && $match) {
 
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["password"] = $_POST["password"];
-    $_SESSION += get_profile_details($db_con, $user_id);
-    $_SESSION['account_type'] = get_account_type_by_user_id($db_con, $user_id);
     $_SESSION["logged-in"] = true;
-    header("Location: ../dashboard");
+
+    if ($_SESSION['account_type'] == 'admin') {
+        header("Location: ../admin");
+    } else {
+        $_SESSION += get_profile_details($db_con, $user_id);
+        header("Location: ../dashboard");
+    }
 } else {
     $_SESSION["login-failure"] = true;
     header("Location: index.php");
