@@ -63,10 +63,7 @@ if (isset($_POST["selected_user"])) {
 ?>
 
 <body>
-<?php
-require_once "../navbar/navbar.php";
-require_once "modals/rate-user.php";
-?>
+<?php require_once "../navbar/navbar.php"; ?>
 
 <div class="container-fluid">
     <div class="row">
