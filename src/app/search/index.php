@@ -4,6 +4,8 @@ require_once "../register/countries.php";
 require_once "../database/database_connect.php";
 require_once "../database/interests.php";
 require_once "../database/languages.php";
+require_once "../database/user_ratings.php";
+require_once "../database/connections.php";
 require_once "search_submit.php";
 
 
@@ -38,8 +40,33 @@ $submit_message = "";
     <link rel="stylesheet" type="text/css" href="search.css"
 </head>
 
+<?php
+function can_create_connection(mysqli $connection, int $rating_user_id, int $rated_user_id): bool
+{
+    $ratings_rating = get_rating_of_user($connection, $rating_user_id, $rated_user_id);
+    $rateds_rating = get_rating_of_user($connection, $rated_user_id, $rating_user_id);
+    if ($ratings_rating && $rateds_rating) {
+        return (strcasecmp($ratings_rating, "like") == 0) && (strcasecmp($rateds_rating, "like") == 0);
+    }
+    return false;
+}
+
+if (isset($_POST["selected_user"])) {
+    if (create_rating($connection, $_SESSION["user_id"], $_POST["selected_user_id"], "like")) {
+        $submit_message = "Liked " . $_POST["selected_user_name"] . "!";
+        if (can_create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"])) {
+            create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"]);
+            $submit_message = "Connected with " . $_POST["selected_user_name"] . "!";
+        }
+    }
+}
+?>
+
 <body>
-<?php require_once "../navbar/navbar.php"; ?>
+<?php
+require_once "../navbar/navbar.php";
+require_once "modals/rate-user.php";
+?>
 
 <div class="container-fluid">
     <div class="row">
@@ -156,6 +183,9 @@ $submit_message = "";
                       <i class="fa-solid fa-magnifying-glass pe-3"></i>Search
                     </button>
                 </div>
+                <div class="d-flex justify-content-center">
+                  <small class="text-success text-center"><?php echo $submit_message ?></small>
+                </div>
             </form>
         </div>
 
@@ -172,7 +202,7 @@ $submit_message = "";
                         $user[5] ? $profile_pic_path = $user[5] : $profile_pic_path = "../../assets/pfp-placeholder.png";
 
                         echo "
-                            <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
+                            <div class=\"card mb-2\" style=\"background-color: #C6C7FF\" data-bs-toggle=\"modal\" data-bs-target=\"#rate-user\" data-bs-whatever=\"$user[0]\">
                                 <div class=\"row align-items-center\">
                                     <div class=\"col-4 col-md-2\">
                                         <img class=\"pic img-fluid rounded ms-2 my-2\" src=\"$profile_pic_path\" alt=\"\">
@@ -190,6 +220,13 @@ $submit_message = "";
                                                     <h5 class=\"card-title mt-2\"><u>Language Info</u></h5>
                                                     <p class=\"card-text\"><b>Speaks</b>: $speaks_str</p>
                                                     <p class=\"card-text\"><b>Learning</b>: $learning_str</p>
+                                                </div>
+                                                <div class=\"col d-none d-md-inline-block align-content-center\">
+                                                    <form method='post'>
+                                                        <input type='hidden' name='selected_user_id' value='$user[0]'>
+                                                        <input type='hidden' name='selected_user_name' value='$user[1] $user[2]'>
+                                                        <input class='w-75 p-3 match-button' type='submit' name='selected_user' value='Match'>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

@@ -2,6 +2,7 @@
 
 require_once "../database/user_interests.php";
 require_once "../database/user_languages.php";
+require_once "../database/user_ratings.php";
 
 function search(mysqli $db_con): array {
 
@@ -79,7 +80,7 @@ function search(mysqli $db_con): array {
 
     $filtered_array = array();
 
-    $id_list = array();
+    $id_list = get_rated_users_by_user_id($db_con, $current_user);
 
     while($id = $result->fetch_assoc()) {
         if (in_array($id['user_id'], $id_list)) continue;

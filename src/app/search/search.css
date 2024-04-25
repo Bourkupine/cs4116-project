@@ -12,3 +12,21 @@
 .filters {
     max-height: 100vh;
 }
+
+.card:hover {
+    cursor: pointer;
+}
+
+.match-button {
+    border-radius: 5vw;
+    border: none;
+    color: white;
+    background: #99a1ff;
+    font-family: Bungee, serif;
+    font-size: calc(0.75rem + 1vw);
+    transition: background 0.3s ease-in-out;
+}
+
+.match-button:hover {
+    background: rgba(203, 108, 230, 1);
+}
