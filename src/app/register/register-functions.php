@@ -55,6 +55,7 @@ function create_account(mysqli $db_con,
             $region)) {
             if (add_user_languages($db_con, $user_id, $fluent_languages, 'speaks', 'fluent') &&
                 add_user_languages($db_con, $user_id, $learning_languages, 'learning', 'none')) {
+                setcookie("first_timer_" . $user_id, 1, strtotime("+1 year"), "/", false);
                 return true;
             } else {
                 delete_user_profile($db_con, $user_id);
