@@ -43,7 +43,7 @@ $submit_message = "";
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-lg-4 filters justify-content-center">
+        <div class="col-12 col-lg-4 filters align-content-lg-center">
             <form method="post" class="mx-5 my-5">
                 <div class="row my-3">
                     <select name="gender" class="form-control">
@@ -152,7 +152,8 @@ $submit_message = "";
                 </script>
 
                 <div class="submit-button text-center my-4">
-                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">Search
+                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">
+                      <i class="fa-solid fa-magnifying-glass pe-3"></i>Search
                     </button>
                 </div>
             </form>
@@ -182,7 +183,7 @@ $submit_message = "";
                                                 <div class=\"col-12 col-md-6\">
                                                     <h5 class=\"d-flex d-md-none card-title\">$user[1] $user[2]</h5>
                                                     <h3 class=\"d-none d-md-flex card-title\">$user[1] $user[2]</h3>
-                                                    <p class=\"card-text\">$user[3] - @$user[4]</p>
+                                                    <p class=\"card-text\">$user[3], $user[9] - @$user[4]</p>
                                                     <p class=\"d-none d-md-block card-text\">$interest_str</p>
                                                 </div>
                                                 <div class=\"col d-none d-md-inline-block\">
