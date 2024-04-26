@@ -4,9 +4,6 @@ require_once "../database/database_connect.php";
 require_once "../database/users.php";
 require_once "list_users.php";
 
-require "modals/delete-user.php";
-
-
 try {
     $connection = connect();
 } catch (Exception $e) {
@@ -38,6 +35,13 @@ if (isset($_POST["sign-out"])) {
     <link rel="stylesheet" type="text/css" href="admin.css">
 </head>
 
+<?php
+require_once "modals/delete-user.php";
+require_once "modals/edit-user.php";
+require_once "modals/ban-user.php";
+require_once "modals/unban-user.php";
+?>
+
 <body>
 
 <?php
@@ -52,7 +56,6 @@ if (isset($_POST['delete-btn'])) {
 
 <script>
     function getDeleteUserInfo(user_id) {
-        console.log(user_id);
         $.ajax({
             type: "POST",
             url: 'modal_backend.php',
@@ -65,6 +68,48 @@ if (isset($_POST['delete-btn'])) {
             }
         });
     }
+
+    function getBanUserInfo(user_id) {
+        $.ajax({
+            type: "POST",
+            url: 'modal_backend.php',
+            data: {
+                'id': user_id,
+                'action': 'ban-user',
+            },
+            success: function (response) {
+                $('.ban-modal').html(response);
+            }
+        });
+    }
+    function getUnbanUserInfo(user_id) {
+        console.log(user_id);
+        $.ajax({
+            type: "POST",
+            url: 'modal_backend.php',
+            data: {
+                'id': user_id,
+                'action': 'unban-user',
+            },
+            success: function (response) {
+                $('.unban-modal').html(response);
+            }
+        });
+    }
+    function getEditUserInfo(user_id) {
+        $.ajax({
+            type: "POST",
+            url: 'modal_backend.php',
+            data: {
+                'id': user_id,
+                'action': 'edit-user',
+            },
+            success: function (response) {
+                $('.edit-modal').html(response);
+            }
+        });
+    }
+
 </script>
 
 <div class="container-fluid">
@@ -118,7 +163,8 @@ if (isset($_POST['delete-btn'])) {
                 $name_filter = array();
                 foreach ($users as $user) {
                     $full_name = $user[1] . $user[2];
-                    if (str_contains(strtolower($full_name), strtolower(trim($_POST['search-box'])))) {
+                    if (str_contains(str_replace(' ', '', strtolower($full_name)),
+                            strtolower(str_replace(' ', '', $_POST['search-box'])))) {
                         $name_filter[] = $user;
                     }
                 }
@@ -140,8 +186,10 @@ if (isset($_POST['delete-btn'])) {
                 foreach ($users as $user_info) {
                     $tr = in_array($user_info[0], $banned_users) ? "tr class='table-danger'" : "tr";
                     $ban_button = in_array($user_info[0], $banned_users) ?
-                        "<button class='dropdown-item' name='unban-btn' data-bs-toggle='modal' data-bs-target='#unban-user'>Unban User</button>" :
-                        "<button class='dropdown-item' name='ban-btn'>Ban User</button>";
+                        "<button type='button' class=\"dropdown-item\" data-bs-toggle=\"modal\"
+                            data-bs-target=\"#unban-user\" onclick=\"getUnbanUserInfo('$user_info[0]')\">Unban User</button>" :
+                        "<button type='button' class=\"dropdown-item\" data-bs-toggle=\"modal\"
+                            data-bs-target=\"#ban-user\" onclick=\"getBanUserInfo('$user_info[0]')\">Ban User</button>";
                     echo
                     "
                         <$tr>
@@ -156,7 +204,8 @@ if (isset($_POST['delete-btn'])) {
                                     </button>
                                     <ul class='dropdown-menu'>
                                         <input type='hidden' value='$user_info[0]'>
-                                        <li><button class='dropdown-item' name='edit-btn' data-bs-toggle='modal' data-bs-target='#edit-user'>Edit Profile</button></li>
+                                        <li><button type='button' class='dropdown-item' data-bs-toggle='modal' 
+                                        data-bs-target='#edit-user' onclick=\"getEditUserInfo('$user_info[0]')\">Edit User</button></li>
                                         <li>$ban_button</li>
                                         <li><button type='button' class='dropdown-item' data-bs-toggle='modal' 
                                         data-bs-target='#delete-user' onclick=\"getDeleteUserInfo('$user_info[0]')\">Delete Account</button></li>

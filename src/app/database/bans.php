@@ -33,3 +33,13 @@ function unban_user(mysqli $db_con, int $user_id): void
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
 }
+
+function get_users_ban_info(mysqli $db_con, $user_id): array
+{
+    $stmt = $db_con->prepare("SELECT expiry_date, reason FROM bans WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($expiry_date, $reason);
+    $stmt->execute();
+    $stmt->fetch();
+    return [$expiry_date, $reason];
+}

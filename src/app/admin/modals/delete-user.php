@@ -1,9 +1,3 @@
-<?php
-
-require_once "../database/database_connect.php";
-
-?>
-
 <div class="modal fade" id="delete-user" tabindex="-1" role="dialog" aria-labelledby="modal-label"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -15,14 +9,13 @@ require_once "../database/database_connect.php";
                 </button>
             </div>
             <form method="post">
-            <div class="modal-body delete-modal">
+                <div class="modal-body delete-modal">
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button name="delete-btn" value="delete" type="submit" class="btn btn-danger">Delete Account</button>
-
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button name="delete-btn" value="delete" type="submit" class="btn btn-danger">Delete User</button>
+                </div>
             </form>
         </div>
     </div>
