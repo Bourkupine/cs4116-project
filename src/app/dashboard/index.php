@@ -21,6 +21,8 @@ require_once "../database/profiles.php";
 require_once "../database/interests.php";
 require_once "../database/languages.php";
 require_once "dashboard-functions.php";
+require_once "modals/report-user.php";
+require_once "../database/reports.php";
 
 try {
     $db_con = connect();
@@ -47,6 +49,10 @@ if ($best_user_id) {
     }
 }
 
+if (isset($_POST["report"])) {
+  create_report($db_con, $_SESSION["user_id"], $best_user_id, $_POST["reason"]);
+}
+
 ?>
 
 <body>
@@ -58,7 +64,12 @@ if ($best_user_id) {
 ?>
 
 <div class="container-fluid ps-sm-5 pe-sm-5">
-  <div class="row pt-1 pt-sm-5 pb-2">
+  <div class="row pt-1 d-flex justify-content-end">
+    <button class="btn btn-outline-danger me-3 me-sm-1 report-button" data-bs-toggle="modal" data-bs-target="#report-user">
+      Report User
+    </button>
+  </div>
+  <div class="row pt-sm-2 pb-2">
     <div class="col-8 col-sm-4 p-3 p-sm-0 d-flex flex-column justify-content-between order-1">
       <div class="d-flex flex-column">
         <span class="name"><i><?php echo $best_user_info["first_name"] . " " . $best_user_info["surname"]; ?></i></span>

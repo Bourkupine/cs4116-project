@@ -61,6 +61,10 @@
     .interest {
         width: 100% !important;
     }
+
+    .report-button {
+        max-width: 30vw !important;
+    }
 }
 
 .language-box {
@@ -82,4 +86,9 @@
     background-color: #c6c7ff;
     border-radius: 2vw;
     font-size: calc(0.5rem + 0.75vw);
+}
+
+.report-button {
+    max-width: 15vw;
+    font-size: calc(0.5rem + 0.5vw);
 }
