@@ -32,7 +32,11 @@ function create_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id, 
     $stmt = $db_con->prepare("INSERT INTO user_ratings(rating_user_id, rated_user_id, rating) 
         VALUES(?, ?, ?)");
     $stmt->bind_param("iis", $rating_user_id, $rated_user_id, $rating);
-    return $stmt->execute();
+    try {
+        return $stmt->execute();
+    } catch (Exception $e) {
+        return false;
+    }
 }
 
 /**

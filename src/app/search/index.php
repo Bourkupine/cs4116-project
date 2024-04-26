@@ -4,6 +4,8 @@ require_once "../register/countries.php";
 require_once "../database/database_connect.php";
 require_once "../database/interests.php";
 require_once "../database/languages.php";
+require_once "../database/user_ratings.php";
+require_once "../database/connections.php";
 require_once "search_submit.php";
 
 
@@ -38,12 +40,34 @@ $submit_message = "";
     <link rel="stylesheet" type="text/css" href="search.css"
 </head>
 
+<?php
+function can_create_connection(mysqli $connection, int $rating_user_id, int $rated_user_id): bool
+{
+    $ratings_rating = get_rating_of_user($connection, $rating_user_id, $rated_user_id);
+    $rateds_rating = get_rating_of_user($connection, $rated_user_id, $rating_user_id);
+    if ($ratings_rating && $rateds_rating) {
+        return (strcasecmp($ratings_rating, "like") == 0) && (strcasecmp($rateds_rating, "like") == 0);
+    }
+    return false;
+}
+
+if (isset($_POST["selected_user"])) {
+    if (create_rating($connection, $_SESSION["user_id"], $_POST["selected_user_id"], "like")) {
+        $submit_message = "Liked " . $_POST["selected_user_name"] . "!";
+        if (can_create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"])) {
+            create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"]);
+            $submit_message = "Connected with " . $_POST["selected_user_name"] . "!";
+        }
+    }
+}
+?>
+
 <body>
 <?php require_once "../navbar/navbar.php"; ?>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-lg-4 filters justify-content-center">
+        <div class="col-12 col-lg-4 filters align-content-lg-center">
             <form method="post" class="mx-5 my-5">
                 <div class="row my-3">
                     <select name="gender" class="form-control">
@@ -152,8 +176,12 @@ $submit_message = "";
                 </script>
 
                 <div class="submit-button text-center my-4">
-                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">Search
+                    <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">
+                      <i class="fa-solid fa-magnifying-glass pe-3"></i>Search
                     </button>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <small class="text-success text-center"><?php echo $submit_message ?></small>
                 </div>
             </form>
         </div>
@@ -179,16 +207,23 @@ $submit_message = "";
                                     <div class=\"col\">
                                         <div class=\"card-body\">
                                             <div class=\"row\">
-                                                <div class=\"col-12 col-md-6\">
+                                                <div class=\"col-12 col-md-4\">
                                                     <h5 class=\"d-flex d-md-none card-title\">$user[1] $user[2]</h5>
                                                     <h3 class=\"d-none d-md-flex card-title\">$user[1] $user[2]</h3>
-                                                    <p class=\"card-text\">$user[3] - @$user[4]</p>
+                                                    <p class=\"card-text\">$user[3], $user[9] - @$user[4]</p>
                                                     <p class=\"d-none d-md-block card-text\">$interest_str</p>
                                                 </div>
-                                                <div class=\"col d-none d-md-inline-block\">
-                                                    <h5 class=\"card-title mt-2\"><u>Language Info</u></h5>
+                                                <div class=\"col-5 d-none d-md-inline-block\">
+                                                    <h5 class=\"card-title mt-2\"><u>Languages</u></h5>
                                                     <p class=\"card-text\"><b>Speaks</b>: $speaks_str</p>
                                                     <p class=\"card-text\"><b>Learning</b>: $learning_str</p>
+                                                </div>
+                                                <div class=\"col d-inline-block align-content-center\">
+                                                    <form method='post'>
+                                                        <input type='hidden' name='selected_user_id' value='$user[0]'>
+                                                        <input type='hidden' name='selected_user_name' value='$user[1] $user[2]'>
+                                                        <input class='w-75 p-1 p-lg-2 p-xl-3 match-button' type='submit' name='selected_user' value='Match'>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
