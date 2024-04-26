@@ -136,6 +136,12 @@
                 if (isset($_SESSION['logged-in']) && $_SESSION['account_type'] == 'admin') {
                     echo "
                     <li class=\"nav-item\">
+                        <a class=\"nav-link nav-link\" href=\"../admin/users.php\">
+                            <i class=\"fa-solid fa-users fa-2x\"></i>
+                            <span class=\"navbar-toggler text-white border-0\">Users</span>
+                        </a>
+                    </li>
+                    <li class=\"nav-item\">
                         <a class=\"nav-link nav-link\" href=\"../admin\">
                             <i class=\"fa-solid fa-hammer fa-2x\"></i>
                             <span class=\"navbar-toggler text-white border-0\">Admin</span>
