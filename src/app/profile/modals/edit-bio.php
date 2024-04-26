@@ -13,6 +13,8 @@ try {
 
 if (isset($_POST["save_bio"])) {
     if (isset($_POST["bio"])) {
+        $_POST["bio"] = str_replace("<", "&lt;", $_POST["bio"]);
+        $_POST["bio"] = str_replace(">", "&gt;", $_POST["bio"]);
         if (update_bio_by_user_id($connection, $_SESSION["user_id"], $_POST["bio"])) {
             $_SESSION["bio"] = $_POST["bio"];
         }

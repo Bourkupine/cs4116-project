@@ -2,6 +2,7 @@
     font-size: calc(1rem + 1vw);
     text-align: center;
     font-weight: bold;
+    font-family: Aleo, serif;
 }
 
 .img-fluid {
@@ -41,4 +42,10 @@
         display: flex;
         flex-direction: column-reverse;
     }
+}
+
+.about-card {
+    background-color: #c6c7ff;
+    border-radius: 2vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
