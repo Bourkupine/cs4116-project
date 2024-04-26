@@ -51,8 +51,8 @@ require_once("../navbar/navbar.php");
 
             <div class="description">
                 <p>
-                    We use our handcrafted algorithm we emphasise matching
-                    you with people who can <b>speak</b> the
+                    Using our handcrafted algorithm, we emphasise
+                    matching you with people who can <b>speak</b> the
                     languages you are <b>learning</b>.
                     We only retain information needed, and
                     we never share your information with any third party.
