@@ -37,7 +37,14 @@ if ($user_id && $match) {
         header("Location: ../admin");
     } else {
         $_SESSION += get_profile_details($db_con, $user_id);
-        header("Location: ../dashboard");
+
+        if (isset($_COOKIE["first_timer_" . $user_id])) {
+            unset($_COOKIE["first_timer_" . $user_id]);
+            setcookie("first_timer_" . $user_id, '', -1, '/', false);
+            header("Location: ../profile");
+        } else {
+            header("Location: ../dashboard");
+        }
     }
 } else {
     $_SESSION["login-failure"] = true;
