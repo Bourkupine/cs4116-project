@@ -2,6 +2,7 @@
 
 require_once "../database/database_connect.php";
 require_once "../database/users.php";
+require_once "../database/bans.php";
 require_once "list_users.php";
 
 try {
@@ -49,11 +50,18 @@ require_once("../navbar/navbar.php");
 
 if (isset($_POST['delete-btn'])) {
     delete_user_by_user_id($connection, intval($_POST['user-id']));
+} else if (isset($_POST['ban-btn'])) {
+    $date = new DateTime();
+    $date->modify($_POST['ban-time']);
+
+    ban_user($connection, $_POST['user-id'], $date->format('Y-m-d H:i:s'), $_POST['ban-reason']);
+} else if (isset($_POST['unban-btn'])) {
+    unban_user($connection, $_POST['user-id']);
+} else if (isset($_POST['edit-btn'])) {
+    print_r($_POST);
 }
 
-
 ?>
-
 <script>
     function getDeleteUserInfo(user_id) {
         $.ajax({
@@ -82,6 +90,7 @@ if (isset($_POST['delete-btn'])) {
             }
         });
     }
+
     function getUnbanUserInfo(user_id) {
         console.log(user_id);
         $.ajax({
@@ -96,6 +105,7 @@ if (isset($_POST['delete-btn'])) {
             }
         });
     }
+
     function getEditUserInfo(user_id) {
         $.ajax({
             type: "POST",
@@ -146,30 +156,30 @@ if (isset($_POST['delete-btn'])) {
         <table class="table table-striped">
             <?php
             if (isset($_POST['search-button'])) {
-            $users = get_user_list($connection);
-            $banned_users = get_banned_users($connection);
+                $users = get_user_list($connection);
+                $banned_users = get_banned_users($connection);
 
-            if (isset($_POST['search-banned'])) {
-                $overlap = array();
-                foreach ($users as $subarray) {
-                    if (in_array($subarray[0], $banned_users)) {
-                        $overlap[] = $subarray;
+                if (isset($_POST['search-banned'])) {
+                    $overlap = array();
+                    foreach ($users as $subarray) {
+                        if (in_array($subarray[0], $banned_users)) {
+                            $overlap[] = $subarray;
+                        }
                     }
+                    $users = $overlap;
                 }
-                $users = $overlap;
-            }
 
-            if ($_POST['search-box'] != "") {
-                $name_filter = array();
-                foreach ($users as $user) {
-                    $full_name = $user[1] . $user[2];
-                    if (str_contains(str_replace(' ', '', strtolower($full_name)),
+                if ($_POST['search-box'] != "") {
+                    $name_filter = array();
+                    foreach ($users as $user) {
+                        $full_name = $user[1] . $user[2];
+                        if (str_contains(str_replace(' ', '', strtolower($full_name)),
                             strtolower(str_replace(' ', '', $_POST['search-box'])))) {
-                        $name_filter[] = $user;
+                            $name_filter[] = $user;
+                        }
                     }
+                    $users = $name_filter;
                 }
-                $users = $name_filter;
-            }
 
                 echo "
                     <thead>

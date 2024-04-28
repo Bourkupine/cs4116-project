@@ -14,7 +14,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button name="delete-btn" value="delete" type="submit" class="btn btn-danger">Ban User</button>
+                    <button name="ban-btn" value="delete" type="submit" class="btn btn-danger">Ban User</button>
                 </div>
             </form>
         </div>
