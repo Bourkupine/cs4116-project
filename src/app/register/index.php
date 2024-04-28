@@ -95,7 +95,7 @@ require_once("../navbar/navbar.php");
                 <div class="basic-info">
                     <div class="form-group m-2 mt-4">
                         <input name="firstname" type="text" class="form-control" placeholder="First Name"
-                               required minlength="2" maxlength="32" pattern="^[A-Za-z]+$"
+                               required minlength="2" maxlength="32" pattern="^[A-Za-z ]+$"
                             <?php if (isset($_POST["firstname"])) {
                                 echo "value=\"" . $_POST["firstname"] . "\"";
                             } ?>>
@@ -200,7 +200,7 @@ require_once("../navbar/navbar.php");
                         </div>
                         <div class="form-group col">
                             <input name="region" type="text" class="form-control" placeholder="State/County" required
-                                   minlength="2" maxlength="32" pattern="[A-Za-z0-9,'-]+"
+                                   minlength="2" maxlength="32" pattern="[A-Za-z ']+"
                                 <?php if (isset($_POST["region"])) {
                                     echo "value=\"" . $_POST["region"] . "\"";
                                 } ?>>

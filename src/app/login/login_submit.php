@@ -45,7 +45,6 @@ if ($user_id && $match) {
         } else {
             header("Location: ../dashboard");
         }
-    }
 } else {
     $_SESSION["login-failure"] = true;
     header("Location: index.php");
