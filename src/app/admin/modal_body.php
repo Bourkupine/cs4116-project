@@ -54,6 +54,16 @@ function edit_account_body(array $user_info): void
             <li>Name: $user_info[1] $user_info[2]</li>
         </ul>
         
+        <input type='checkbox' class='btn-check btn-danger' id='btn1' autocomplete='off' name='remove-pfp'>
+        <label class='btn btn-outline-danger' for='btn1'>Remove Profile Pic</label>
+        
+        <input type='checkbox' class='btn-check btn-danger' id='btn2' autocomplete='off' name='remove-bio'>
+        <label class='btn btn-outline-danger' for='btn2'>Remove Bio</label>
+        
+        <input type='checkbox' class='btn-check btn-danger' id='btn3' autocomplete='off' name='remove-interests'>
+        <label class='btn btn-outline-danger' for='btn3'>Remove Interests</label>
+        
+        <input type='hidden' name='user-id' value='$user_info[0]'>
     ";
 }
 

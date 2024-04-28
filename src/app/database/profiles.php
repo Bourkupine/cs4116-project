@@ -54,10 +54,10 @@ function get_profile_picture_by_user_id(mysqli $db_con, int $user_id): ?string
  * Updates the profile picture path associated with the given user id
  * @param mysqli $db_con database connection
  * @param int $user_id user's id
- * @param string $pfp_path path to the profile picture
+ * @param ?string $pfp_path path to the profile picture
  * @return bool true if successful
  */
-function update_profile_picture_by_user_id(mysqli $db_con, int $user_id, string $pfp_path): bool
+function update_profile_picture_by_user_id(mysqli $db_con, int $user_id, ?string $pfp_path): bool
 {
     $stmt = $db_con->prepare("UPDATE profiles SET profile_pic = ? WHERE user_id = ?");
     $stmt->bind_param("si", $pfp_path, $user_id);
@@ -190,7 +190,7 @@ function update_preference_by_user_id(mysqli $db_con, int $user_id, string $pref
  * @param string $bio new bio
  * @return bool true if successful
  */
-function update_bio_by_user_id(mysqli $db_con, int $user_id, string $bio): bool
+function update_bio_by_user_id(mysqli $db_con, int $user_id, ?string $bio): bool
 {
     $stmt = $db_con->prepare("UPDATE profiles SET bio = ? WHERE user_id = ?");
     $stmt->bind_param("si", $bio, $user_id);

@@ -3,6 +3,8 @@
 require_once "../database/database_connect.php";
 require_once "../database/users.php";
 require_once "../database/bans.php";
+require_once "../database/profiles.php";
+require_once "../database/user_interests.php";
 require_once "list_users.php";
 
 try {
@@ -58,7 +60,16 @@ if (isset($_POST['delete-btn'])) {
 } else if (isset($_POST['unban-btn'])) {
     unban_user($connection, $_POST['user-id']);
 } else if (isset($_POST['edit-btn'])) {
-    print_r($_POST);
+    $user_id = $_POST['user-id'];
+    if (isset($_POST['remove-pfp'])) {
+        update_profile_picture_by_user_id($connection, $user_id, NULL);
+    }
+    if (isset($_POST['remove-bio'])) {
+        update_bio_by_user_id($connection, $user_id, NULL);
+    }
+    if (isset($_POST['remove-interests'])) {
+        delete_all_user_interests($connection, $user_id);
+    }
 }
 
 ?>

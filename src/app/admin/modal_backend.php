@@ -38,9 +38,12 @@ switch ($action) {
         $ban_info = get_users_ban_info($connection, intval($_POST['id']));
         unban_account_body($user_info, $ban_info);
         exit();
+
     case 'edit-user':
+        $user_name = get_name_by_user_id($connection, intval($_POST['id']));
+        $user_info = [$_POST['id'], $user_name[0], $user_name[1]];
+        edit_account_body($user_info);
         exit();
 }
-
 
 ?>
