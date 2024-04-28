@@ -1,0 +1,94 @@
+.no-matches {
+    font-size: calc(1rem + 3vw);
+    text-align: center;
+}
+
+.name {
+    font-family: Aleo, serif;
+    font-size: calc(1rem + 1vw);
+}
+
+.info {
+    font-family: Montserrat-Light, serif;
+    font-size: calc(0.5rem + 1vw);
+}
+
+.bio {
+    width: 100%;
+    font-family: Montserrat-Light, serif;
+    font-size: calc(0.5rem + 0.75vw);
+    word-wrap: break-word;
+}
+
+.heart-button {
+    background: none;
+    border: none;
+
+    img {
+        max-width: 20vw;
+    }
+}
+
+.heart-button:hover{
+    transform: rotate(-10deg);
+}
+
+.pfp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    object-fit: contain;
+
+    img {
+        max-width: 30vw;
+        max-height: 30vh;
+    }
+}
+
+@media (max-width: 575px) {
+    .pfp {
+        img {
+            max-width: 60vw;
+        }
+    }
+
+    .heart-button {
+        img {
+            max-width: 40vw;
+        }
+    }
+
+    .interest {
+        width: 100% !important;
+    }
+
+    .report-button {
+        max-width: 30vw !important;
+    }
+}
+
+.language-box {
+    font-family: Montserrat-Light, serif;
+    width: 48%;
+    background-color: #99a1ff;
+    border-radius: 1vw;
+    color: white;
+    font-size: calc(0.5rem + 0.75vw);
+    text-align: center;
+
+    span {
+        text-decoration: underline;
+    }
+}
+
+.interest {
+    text-align: center;
+    background-color: #c6c7ff;
+    border-radius: 2vw;
+    font-size: calc(0.5rem + 0.75vw);
+}
+
+.report-button {
+    max-width: 15vw;
+    font-size: calc(0.5rem + 0.5vw);
+}
