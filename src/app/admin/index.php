@@ -79,36 +79,38 @@ $report_list = get_reports($connection);
             $report_id = $report['report_id'];
             $reporter_id = $report['reporter_id'];
             $reportee_id = $report['reportee_id'];
+            $pfp = get_profile_picture_by_user_id($connection, $reportee_id);
+            if (!$pfp) { $pfp = "../../assets/pfp-placeholder.png"; }
             $name_arr = get_name_by_user_id($connection, $reportee_id);
             $reason = $report['reason'];
 
             echo
             "
-                <div class=\"card mb-3 bg-danger-subtle\">
+                <div class=\"card m-3 bg-danger-subtle\">
             <form method=\"post\">
                 <div class=\"row align-items-center\">
                     <div class=\"col-3 pics\">
-                        <img class=\"img-fluid\" src=\"../../assets/ll-logo.png\" alt=\"...\">
+                        <img class=\"img-fluid\" src=$pfp alt=\"Profile Picture\">
                     </div>
                     <div class=\"col-9\">
                         <div class=\"row\">
                             <div class=\"col\">
                                 <div class=\"input-box mb-2\">
-                                    <span class=\"prefix\">Report ID: $report_id</span>
+                                    <span class=\"prefix\"><b>Report ID:</b> $report_id</span>
                                     <input type=\"hidden\" name=\"report_id\" value=\"$report_id\">
                                 </div>
                                 <div class=\"input-box mb-2\">
-                                    <span class=\"prefix\">Reported By: $reporter_id</span>
+                                    <span class=\"prefix\"><b>Reported By:</b> $reporter_id</span>
                                     <input type=\"hidden\" name=\"reporter_id\" value=\"$reporter_id\">
                                 </div>
                             </div>
                             <div class=\"col\">
                                 <div class=\"input-box mb-2\">
-                                    <span class=\"prefix\">User ID: $reportee_id</span>
+                                    <span class=\"prefix\"><b>User ID:</b> $reportee_id</span>
                                     <input type=\"hidden\" name=\"reportee_id\" value=\"$reportee_id\">
                                 </div>
                                 <div class=\"input-box mb-2\">
-                                    <span class=\"prefix\">Name: $name_arr[0] $name_arr[1]</span>
+                                    <span class=\"prefix\"><b>Name:</b> $name_arr[0] $name_arr[1]</span>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +118,7 @@ $report_list = get_reports($connection);
                 </div>
                 <div class=\"row mx-3\">
                     <div class=\"input-box\">
-                        <span class=\"prefix\">Report Reason: $reason</span>
+                        <span class=\"prefix\"><b>Report Reason:</b> $reason</span>
                     </div>
                 </div>
                 <div class=\"row mt-3\">
