@@ -79,8 +79,7 @@ function search(mysqli $db_con): array {
     $result = $stmt->get_result();
 
     $filtered_array = array();
-
-    $id_list = get_rated_users_by_user_id($db_con, $current_user);
+    $id_list = array();
 
     while($id = $result->fetch_assoc()) {
         if (in_array($id['user_id'], $id_list)) continue;

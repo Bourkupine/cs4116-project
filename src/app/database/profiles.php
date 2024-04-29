@@ -207,3 +207,34 @@ function get_name_by_user_id(mysqli $db_con, int $user_id): array
     return [$first_name, $surname];
 
 }
+/**
+ * Gets the country associated with the given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return string country
+ */
+function get_country_by_user_id(mysqli $db_con, int $user_id): string
+{
+    $stmt = $db_con->prepare("SELECT country FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($country);
+    $stmt->execute();
+    $stmt->fetch();
+    return $country;
+}
+
+/**
+ * Gets the preference associated with the given user id
+ * @param mysqli $db_con database connection
+ * @param int $user_id user's id
+ * @return string preference
+ */
+function get_preference_by_user_id(mysqli $db_con, int $user_id): string
+{
+    $stmt = $db_con->prepare("SELECT preference FROM profiles WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($preference);
+    $stmt->execute();
+    $stmt->fetch();
+    return $preference;
+}
