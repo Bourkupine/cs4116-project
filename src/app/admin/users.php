@@ -166,7 +166,6 @@ if (isset($_POST['delete-btn'])) {
     <div class="row">
         <table class="table table-striped">
             <?php
-            if (isset($_POST['search-button'])) {
                 $users = get_user_list($connection);
                 $banned_users = get_banned_users($connection);
 
@@ -180,7 +179,7 @@ if (isset($_POST['delete-btn'])) {
                     $users = $overlap;
                 }
 
-                if ($_POST['search-box'] != "") {
+                if (isset($_POST['search-box']) && $_POST['search-box'] != "") {
                     $name_filter = array();
                     foreach ($users as $user) {
                         $full_name = $user[1] . $user[2];
@@ -236,7 +235,6 @@ if (isset($_POST['delete-btn'])) {
                             
                         </tr>
                     ";
-                }
                 echo "</tbody>";
             }
             ?>

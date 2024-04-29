@@ -130,7 +130,7 @@
       </div>
 
       <!-- LINKS -->
-        <div class="offcanva-body">
+        <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-4 row-gap-3">
                 <?php
                 if (isset($_SESSION['logged-in']) && $_SESSION['account_type'] == 'admin') {
