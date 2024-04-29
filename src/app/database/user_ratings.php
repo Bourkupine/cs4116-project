@@ -28,7 +28,8 @@ function get_rated_users_by_user_id(mysqli $db_con, int $user_id): array
  * @param string $rating like or dislike
  * @return bool true if successful
  */
-function create_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id, string $rating): bool {
+function create_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id, string $rating): bool
+{
     $stmt = $db_con->prepare("INSERT INTO user_ratings(rating_user_id, rated_user_id, rating) 
         VALUES(?, ?, ?)");
     $stmt->bind_param("iis", $rating_user_id, $rated_user_id, $rating);
@@ -46,11 +47,19 @@ function create_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id, 
  * @param int $rated_user_id rated user
  * @return string | null rating or null if no rating exists
  */
-function get_rating_of_user(mysqli $db_con, int $rating_user_id, int $rated_user_id): ?string {
+function get_rating_of_user(mysqli $db_con, int $rating_user_id, int $rated_user_id): ?string
+{
     $stmt = $db_con->prepare("SELECT rating FROM user_ratings WHERE rating_user_id = ? AND rated_user_id = ?");
     $stmt->bind_param("ii", $rating_user_id, $rated_user_id);
     $stmt->bind_result($rating);
     $stmt->execute();
     $stmt->fetch();
     return $rating;
+}
+
+function remove_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id): void
+{
+    $stmt = $db_con->prepare("DELETE FROM user_ratings WHERE rating_user_id = ? AND rated_user_id = ?");
+    $stmt->bind_param("ii", $rating_user_id, $rated_user_id);
+    $stmt->execute();
 }

@@ -51,14 +51,16 @@ function can_create_connection(mysqli $connection, int $rating_user_id, int $rat
     return false;
 }
 
-if (isset($_POST["selected_user"])) {
-    if (create_rating($connection, $_SESSION["user_id"], $_POST["selected_user_id"], "like")) {
-        $submit_message = "Liked " . $_POST["selected_user_name"] . "!";
-        if (can_create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"])) {
-            create_connection($connection, $_SESSION["user_id"], $_POST["selected_user_id"]);
-            $submit_message = "Connected with " . $_POST["selected_user_name"] . "!";
+if (isset($_POST["match_user_btn"])) {
+    if (create_rating($connection, $_SESSION["user_id"], $_POST["match_user_id"], "like")) {
+        $submit_message = "Liked " . $_POST["match_user_name"] . "!";
+        if (can_create_connection($connection, $_SESSION["user_id"], $_POST["match_user_id"])) {
+            create_connection($connection, $_SESSION["user_id"], $_POST["match_user_id"]);
+            $submit_message = "Connected with " . $_POST["match_user_name"] . "!";
         }
     }
+} else if (isset($_POST["unmatch_user_btn"])){
+    remove_rating($connection, $_SESSION["user_id"], $_POST["match_user_id"]);
 }
 ?>
 
@@ -191,12 +193,18 @@ if (isset($_POST["selected_user"])) {
                 <?php
                 if (isset($_POST['submit'])) {
                     $users = search($connection);
+                    $liked_users = get_rated_users_by_user_id($connection, $_SESSION['user_id']);
                     foreach ($users as $user) {
 
                         $interest_str = rtrim(implode(", ", $user[6]), ",");
                         $speaks_str = rtrim(implode(", ", $user[7]), ",");
                         $learning_str = rtrim(implode(", ", $user[8]), ",");
                         $user[5] ? $profile_pic_path = $user[5] : $profile_pic_path = "../../assets/pfp-placeholder.png";
+
+                        $match_btn = in_array($user[0], $liked_users) ?
+                            "<input class='w-75 p-1 p-lg-2 p-xl-3 match-button' type='submit' name='unmatch_user_btn' value='Unmatch'>" :
+                            "<input class='w-75 p-1 p-lg-2 p-xl-3 match-button' type='submit' name='match_user_btn' value='Match'>";
+
 
                         echo "
                             <div class=\"card mb-2\" style=\"background-color: #C6C7FF\">
@@ -220,9 +228,9 @@ if (isset($_POST["selected_user"])) {
                                                 </div>
                                                 <div class=\"col d-inline-block align-content-center\">
                                                     <form method='post'>
-                                                        <input type='hidden' name='selected_user_id' value='$user[0]'>
-                                                        <input type='hidden' name='selected_user_name' value='$user[1] $user[2]'>
-                                                        <input class='w-75 p-1 p-lg-2 p-xl-3 match-button' type='submit' name='selected_user' value='Match'>
+                                                        <input type='hidden' name='match_user_id' value='$user[0]'>
+                                                        <input type='hidden' name='match_user_name' value='$user[1] $user[2]'>
+                                                        $match_btn
                                                     </form>
                                                 </div>
                                             </div>
