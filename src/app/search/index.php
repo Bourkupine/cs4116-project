@@ -78,6 +78,10 @@ if (isset($_POST["match_user_btn"])) {
         <div class="col-12 col-lg-4 filters align-content-lg-center">
             <form method="post" class="mx-5 my-5">
                 <div class="row my-3">
+                    <input type="text" class="form-control" placeholder="Name" id="search-box" aria-label="search"
+                        name="search-box">
+                </div>
+                <div class="row my-3">
                     <select name="gender" class="form-control">
                         <option value="" disabled
                             <?php if (!isset($_POST["gender"])) {
@@ -198,7 +202,19 @@ if (isset($_POST["match_user_btn"])) {
             <div class="list-group my-2">
                 <?php
                 if (isset($_POST['submit'])) {
+
                     $users = search($connection);
+                    if (isset($_POST['search-box']) && $_POST['search-box'] != "") {
+                        $name_filter = array();
+                        foreach ($users as $user) {
+                            $full_name = $user[1] . $user[2];
+                            if (str_contains(str_replace(' ', '', strtolower($full_name)),
+                                strtolower(str_replace(' ', '', $_POST['search-box'])))) {
+                                $name_filter[] = $user;
+                            }
+                        }
+                        $users = $name_filter;
+                    }
                     $liked_users = get_rated_users_by_user_id($connection, $_SESSION['user_id']);
                     foreach ($users as $user) {
 
