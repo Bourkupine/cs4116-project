@@ -74,26 +74,30 @@
 </style>
 
 <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
-  <div class="container-fluid">
-    <!-- LOGO -->
-    <a class="nav-logo-link" href="
+    <div class="container-fluid">
+        <!-- LOGO -->
+        <a class="nav-logo-link" href="
     <?php
-    if (isset($_SESSION["logged-in"])) {
-      echo "../dashboard";
-    } else {
-      echo "../home";
-    }
-    ?>">
-      <div class="nav-logo">
-        <img
-          src="../../assets/ll-logo.png"
-          height="594"
-          width="703"
-          alt="logo"
-        />
-        <span class="nav-title">Love Languages</span>
-      </div>
-    </a>
+        if (isset($_SESSION["logged-in"])) {
+            if ($_SESSION['account_type'] == 'admin') {
+                echo "../admin";
+            } else {
+                echo "../dashboard";
+            }
+        } else {
+            echo "../home";
+        }
+        ?>">
+            <div class="nav-logo">
+                <img
+                        src="../../assets/ll-logo.png"
+                        height="594"
+                        width="703"
+                        alt="logo"
+                />
+                <span class="nav-title">Love Languages</span>
+            </div>
+        </a>
 
     <!-- SIDEBAR -->
     <button
@@ -126,47 +130,59 @@
       </div>
 
       <!-- LINKS -->
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-4 row-gap-3">
-            <?php
-            if (isset($_SESSION["logged-in"])) {
-              echo "
-          <li class=\"nav-item\">
-            <a class=\"nav-link nav-link\" href=\"../search\">
-              <i class=\"fa-solid fa-magnifying-glass fa-2x\"></i>
-              <span class=\"navbar-toggler text-white border-0\">Search</span>
-            </a>
-          </li>
-          <li class=\"nav-item\">
-            <a class=\"nav-link nav-link\" href=\"../connections\">
-              <i class=\"fa-solid fa-comment-dots fa-2x\"></i>
-              <span class=\"navbar-toggler text-white border-0\">Connections</span>
-            </a>
-          </li>";
-            }
-            ?>
-          <li class="nav-item">
-            <a class="nav-link nav-link" href="../about">
-              <i class="fa-solid fa-circle-info fa-2x"></i>
-              <span class="navbar-toggler text-white border-0">About Us</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link" href="
-            <?php
-            if (isset($_SESSION["logged-in"])) {
-                echo "../profile";
-            } else {
-                echo "../login";
-            }
-            ?>">
-              <i class="fa-solid fa-user fa-2x"></i>
-              <span class="navbar-toggler text-white border-0">Profile</span>
-            </a>
-          </li>
-        </ul>
-
-      </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-4 row-gap-3">
+                <?php
+                if (isset($_SESSION['logged-in']) && $_SESSION['account_type'] == 'admin') {
+                    echo "
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link nav-link\" href=\"../admin/users.php\">
+                            <i class=\"fa-solid fa-users fa-2x\"></i>
+                            <span class=\"navbar-toggler text-white border-0\">Users</span>
+                        </a>
+                    </li>
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link nav-link\" href=\"../admin\">
+                            <i class=\"fa-solid fa-hammer fa-2x\"></i>
+                            <span class=\"navbar-toggler text-white border-0\">Admin</span>
+                        </a>
+                    </li>
+                    ";
+                } else {
+                    $profile_link = "../login";
+                    if (isset($_SESSION['logged-in'])) {
+                        $profile_link = "../profile";
+                        echo "
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link nav-link\" href=\"../search\">
+                              <i class=\"fa-solid fa-magnifying-glass fa-2x\"></i>
+                              <span class=\"navbar-toggler text-white border-0\">Search</span>
+                            </a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link nav-link\" href=\"../connections\">
+                              <i class=\"fa-solid fa-comment-dots fa-2x\"></i>
+                              <span class=\"navbar-toggler text-white border-0\">Connections</span>
+                            </a>
+                        </li>";
+                    }
+                    echo "
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link nav-link\" href=\"../about\">
+                              <i class=\"fa-solid fa-circle-info fa-2x\"></i>
+                              <span class=\"navbar-toggler text-white border-0\">About Us</span>
+                            </a>
+                        </li>
+                        <li class=\"nav-item\">
+                            <a class=\"nav-link nav-link\" href=\"$profile_link\">
+                              <i class=\"fa-solid fa-user fa-2x\"></i>
+                              <span class=\"navbar-toggler text-white border-0\">Profile</span>
+                            </a>
+                        </li>
+                        ";
+                }
+                ?>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

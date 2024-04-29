@@ -1,0 +1,25 @@
+.heading {
+    height: 6vh;
+    background-color: lightcoral;
+}
+
+.pics {
+    max-width: 20vh;
+}
+
+.buttons {
+    min-width: 10vw;
+    margin-left: 5vw;
+}
+
+.signout-btn {
+    border-radius: 5vw;
+    width: 10vw;
+    max-width: 100px;
+}
+
+.ban-btn {
+    border-radius: 5vw;
+    width: 10vw;
+    max-width: 130px;
+}

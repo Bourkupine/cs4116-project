@@ -3,6 +3,7 @@
 require_once "../database/user_interests.php";
 require_once "../database/user_languages.php";
 require_once "../database/user_ratings.php";
+require_once "../database/bans.php";
 
 function search(mysqli $db_con): array {
 
@@ -79,7 +80,7 @@ function search(mysqli $db_con): array {
     $result = $stmt->get_result();
 
     $filtered_array = array();
-    $id_list = array();
+    $id_list = get_banned_user_ids($db_con);
 
     while($id = $result->fetch_assoc()) {
         if (in_array($id['user_id'], $id_list)) continue;
