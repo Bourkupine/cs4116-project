@@ -29,7 +29,7 @@
     color: white;
     background: #99a1ff;
     font-family: Bungee, serif;
-    font-size: calc(0.75rem + 0.75vw);
+    font-size: calc(0.75rem + 0.20vw);
     transition: background 0.3s ease-in-out;
 }
 
