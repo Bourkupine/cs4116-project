@@ -42,7 +42,7 @@ switch ($action) {
     case 'edit-user':
         $user_name = get_name_by_user_id($connection, intval($_POST['id']));
         $user_info = [$_POST['id'], $user_name[0], $user_name[1]];
-        edit_account_body($user_info);
+        edit_account_body($connection, $user_info);
         exit();
 }
 
