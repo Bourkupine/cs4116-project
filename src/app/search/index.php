@@ -64,8 +64,8 @@ if (isset($_POST["match_user_btn"])) {
         $submit_message = "Unliked " . $_POST["match_user_name"] . "!";
         if (does_connection_exist($connection, $_SESSION["user_id"], $_POST["match_user_id"])) {
             delete_connection($connection, $_SESSION["user_id"], $_POST["match_user_id"]);
+            $submit_message = "Disconnected with " . $_POST["match_user_name"] . "!";
         }
-        $submit_message = "Unconnected with " . $_POST["match_user_name"] . "!";
     }
 }
 ?>
