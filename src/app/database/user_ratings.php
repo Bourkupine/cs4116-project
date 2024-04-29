@@ -57,9 +57,9 @@ function get_rating_of_user(mysqli $db_con, int $rating_user_id, int $rated_user
     return $rating;
 }
 
-function remove_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id): void
+function remove_rating(mysqli $db_con, int $rating_user_id, int $rated_user_id): bool
 {
     $stmt = $db_con->prepare("DELETE FROM user_ratings WHERE rating_user_id = ? AND rated_user_id = ?");
     $stmt->bind_param("ii", $rating_user_id, $rated_user_id);
-    $stmt->execute();
+    return $stmt->execute();
 }

@@ -59,8 +59,14 @@ if (isset($_POST["match_user_btn"])) {
             $submit_message = "Connected with " . $_POST["match_user_name"] . "!";
         }
     }
-} else if (isset($_POST["unmatch_user_btn"])){
-    remove_rating($connection, $_SESSION["user_id"], $_POST["match_user_id"]);
+} else if (isset($_POST["unmatch_user_btn"])) {
+    if (remove_rating($connection, $_SESSION["user_id"], $_POST["match_user_id"])){
+        $submit_message = "Unliked " . $_POST["match_user_name"] . "!";
+        if (does_connection_exist($connection, $_SESSION["user_id"], $_POST["match_user_id"])) {
+            delete_connection($connection, $_SESSION["user_id"], $_POST["match_user_id"]);
+        }
+        $submit_message = "Unconnected with " . $_POST["match_user_name"] . "!";
+    }
 }
 ?>
 
@@ -179,11 +185,11 @@ if (isset($_POST["match_user_btn"])) {
 
                 <div class="submit-button text-center my-4">
                     <button name="submit" type="submit" class="btn search-button text-white ll-button px-4">
-                      <i class="fa-solid fa-magnifying-glass pe-3"></i>Search
+                        <i class="fa-solid fa-magnifying-glass pe-3"></i>Search
                     </button>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <small class="text-success text-center"><?php echo $submit_message ?></small>
+                    <small class="text-success text-center"><?php echo $submit_message ?></small>
                 </div>
             </form>
         </div>
