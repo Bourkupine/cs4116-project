@@ -18,6 +18,7 @@ function check_user_banned(mysqli $db_con, int $user_id): bool
 
 function ban_user(mysqli $db_con, int $user_id, string $time, string $reason): void
 {
+    unban_user($db_con, $user_id);
     $sql = "INSERT INTO bans VALUES (?, ?, ?)";
     $stmt = $db_con->prepare($sql);
     $stmt->bind_param("iss", $user_id, $time, $reason);
