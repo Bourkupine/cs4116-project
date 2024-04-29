@@ -5,6 +5,7 @@ require_once "../database/profiles.php";
 require_once "../database/user_interests.php";
 require_once "../database/user_languages.php";
 require_once "../database/users.php";
+require_once "../database/bans.php";
 
 function get_eligible_user_ids(mysqli $db_con, string $user_preference): array
 {
@@ -35,6 +36,8 @@ function trim_eligible_users(mysqli $db_con, int $user_id, array $eligible_users
             unset($eligible_users[$key]);
         } else if (strcasecmp($eligible_user_preference, $user_sex) != 0
             && strcasecmp($eligible_user_preference, "both") != 0) {
+            unset($eligible_users[$key]);
+        } else if (check_user_banned($db_con, $eligible_user_id)) {
             unset($eligible_users[$key]);
         }
     }

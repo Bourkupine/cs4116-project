@@ -42,3 +42,16 @@ function get_users_ban_info(mysqli $db_con, $user_id): array
     $stmt->fetch();
     return [$expiry_date, $reason];
 }
+
+function get_banned_user_ids(mysqli $db_con): array
+{
+    $banned_arr = array();
+    $stmt = $db_con->prepare("SELECT user_id FROM bans");
+    $stmt->bind_result($user_id);
+    $stmt->execute();
+
+    while ($stmt->fetch()) {
+        $banned_arr[] = $user_id;
+    }
+    return $banned_arr;
+}
