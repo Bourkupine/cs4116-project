@@ -90,7 +90,7 @@ $report_list = get_reports($connection);
             <form method=\"post\">
                 <div class=\"row align-items-center\">
                     <div class=\"col-3 pics\">
-                        <img class=\"img-fluid\" src=$pfp alt=\"Profile Picture\">
+                        <img class=\"img-fluid m-1\" src=$pfp alt=\"Profile Picture\">
                     </div>
                     <div class=\"col-9\">
                         <div class=\"row\">
