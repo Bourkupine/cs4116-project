@@ -1,3 +1,15 @@
+document.querySelector("#search").addEventListener("input", () => {
+    const text = document.querySelector("#search").value.toLowerCase()
+    for (const connection of document.getElementsByClassName("connection")) {
+        if (connection.getAttribute("data-first-name").toLowerCase().includes(text) || (connection.getAttribute("data-surname").toLowerCase().includes(text))) {
+            console.log("1")
+            connection.style.display = "flex !important"
+        } else {
+            connection.style.display = "none !important"
+        }
+    }
+})
+
 function load_messages() {
     const messages_box = document.querySelector("#messages-box")
     messages_box.innerHTML = ""
@@ -40,6 +52,8 @@ for (const connection of document.getElementsByClassName("connection")) {
         load_messages()
         document.querySelector("#send-message-button").removeAttribute("disabled")
         document.querySelector("#send-message-text").removeAttribute("disabled")
+        document.querySelector("#connection-top-bar").innerHTML += `    
+        `
     })
 }
 

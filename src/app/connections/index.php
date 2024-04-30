@@ -44,7 +44,9 @@ try {
             ?>
         </div>
         <div class="col d-flex flex-column h-100">
-            <p class="text-center align-content-center display-4" id="connection-name"></p>
+            <div class="d-flex justify-content-between align-content-center" id="connection-top-bar">
+                <p class="ms-5 text-center display-4" id="connection-name"></p>
+            </div>
             <div class="container-fluid flex-grow-1 d-flex flex-column overflow-auto" id="messages-box" style="background-color: #c6c7ff">
             </div>
             <form class="d-flex" id="send-message-form">

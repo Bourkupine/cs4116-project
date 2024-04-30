@@ -1,8 +1,16 @@
 #connection-name {
     font-family: Bungee, sans-serif;
     color: #7843e6;
+}
+
+#connection-top-bar {
     background-color: #99a1ff;
     height: 10%;
+}
+
+i {
+    text-decoration: none;
+    color: black;
 }
 
 .connection:hover {
