@@ -1,0 +1,51 @@
+#connection-name {
+    font-family: Bungee, sans-serif;
+    color: #7843e6;
+}
+
+#connection-top-bar {
+    background-color: #99a1ff;
+    height: 10%;
+}
+
+i {
+    text-decoration: none;
+    color: black;
+}
+
+.connection:hover {
+    cursor: pointer;
+    background-color: #c6c7ff !important;
+    border-style: inset;
+    border-color: #99a1ff;
+    border-width: thin;
+}
+
+.connection {
+    text-decoration: none;
+    color: black;
+    width: 20%;
+    height: 100%;
+}
+
+#connections-box {
+    height: 10%;
+    background-color: #c6c7ff;
+}
+
+.message {
+    height: 10%;
+    width: 50%;
+}
+
+@media (min-width: 768px) {
+    .connection {
+        height: 12.5%;
+        width: 100%;
+    }
+
+    #connections-box {
+        height: 100% !important;
+        background-color: #99a1ff !important;
+    }
+}
