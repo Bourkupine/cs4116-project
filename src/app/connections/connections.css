@@ -1,14 +1,43 @@
-.profile-picture {
-    height: calc(3rem + 3vh);
-    width: calc(3rem + 3vw);
-}
-
-.connection-name {
+#connection-name {
     font-family: Bungee, sans-serif;
     color: #7843e6;
+    background-color: #99a1ff;
+    height: 10%;
 }
 
-.text-box {
-    background-image: linear-gradient(to right, #FFF6AE, #FFABF8);
-    font-size: calc(0.5rem + 0.5vw);
+.connection:hover {
+    cursor: pointer;
+    background-color: #c6c7ff !important;
+    border-style: inset;
+    border-color: #99a1ff;
+    border-width: thin;
+}
+
+.connection {
+    text-decoration: none;
+    color: black;
+    width: 20%;
+    height: 100%;
+}
+
+#connections-box {
+    height: 10%;
+    background-color: #c6c7ff;
+}
+
+.message {
+    height: 10%;
+    width: 50%;
+}
+
+@media (min-width: 768px) {
+    .connection {
+        height: 12.5%;
+        width: 100%;
+    }
+
+    #connections-box {
+        height: 100% !important;
+        background-color: #99a1ff !important;
+    }
 }

@@ -8,6 +8,9 @@ try {
 } catch (Exception $e) {
     echo $e;
 }
-$data = get_messages($db_con, $_POST["connection_id"]);
-echo json_encode(get_messages($db_con, $_POST["connection_id"]));
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+echo json_encode(get_messages($db_con, $data["connection_id"]));
+
 
