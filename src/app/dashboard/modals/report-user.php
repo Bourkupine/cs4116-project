@@ -12,6 +12,7 @@
         <div class="modal-body">
           <div class="form-floating">
             <input name="reason" type="text" class="form-control" id="report" placeholder="Reason for reporting" minlength="1">
+            <input id="connection-report-user-input" name="connection-user-id" type="hidden">
             <label for="report">Reason for reporting</label>
           </div>
         </div>

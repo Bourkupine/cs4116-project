@@ -43,26 +43,20 @@ function load_messages() {
         }
         messages_box.innerHTML = messages_box_html
     })
-
-    $.ajax({
-        type: "POST",
-        url: 'index.php',
-        data: {
-            'connection_id': cur_connection_id,
-        }
-    });
 }
 
 for (const connection of document.getElementsByClassName("connection")) {
     connection.addEventListener("click", () => {
         cur_connection_id = connection.getAttribute("data-connection-id")
         other_user_pfp = connection.getAttribute("data-profile-pic")
+        other_user_id = connection.getAttribute("data-user_id")
         document.querySelector("#connection-name").innerHTML = `${connection.getAttribute("data-first-name")} ${connection.getAttribute("data-surname")}`
         load_messages()
         document.querySelector("#send-message-button").removeAttribute("disabled")
         document.querySelector("#send-message-text").removeAttribute("disabled")
         document.querySelector("#connection-top-bar").innerHTML += `    
         `
+        document.querySelector("#connection-report-user-input").setAttribute("value", other_user_id)
     })
 }
 

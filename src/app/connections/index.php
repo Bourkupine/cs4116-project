@@ -22,12 +22,8 @@ try {
     echo $e;
 }
 
-$connection_id = 0;
-if (isset($_POST["connection_id"])) {
-    $connection_id = intval($_POST["connection_id"]);
-}
 if (isset($_POST["report"])) {
-    create_report($db_con, $_SESSION["user_id"], $connection_id, $_POST["reason"]);
+    create_report($db_con, $_SESSION["user_id"], $_POST["connection-user-id"], $_POST["reason"]);
 }
 ?>
 
