@@ -87,3 +87,12 @@ function check_user_exists_by_email(mysqli $db_con, string $email): bool {
     $stmt->fetch();
     return boolval($result);
 }
+
+function get_account_type_by_user_id(mysqli $db_con, int $user_id): string {
+    $stmt = $db_con->prepare("SELECT account_type FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->bind_result($result);
+    $stmt->execute();
+    $stmt->fetch();
+    return $result;
+}

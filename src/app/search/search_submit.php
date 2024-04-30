@@ -2,6 +2,8 @@
 
 require_once "../database/user_interests.php";
 require_once "../database/user_languages.php";
+require_once "../database/user_ratings.php";
+require_once "../database/bans.php";
 
 function search(mysqli $db_con): array {
 
@@ -60,7 +62,7 @@ function search(mysqli $db_con): array {
     $sql =
         "
         SELECT 
-        p.user_id, p.first_name, p.surname, p.age, p.region, p.profile_pic
+        p.user_id, p.first_name, p.surname, p.age, p.region, p.profile_pic, p.sex
         FROM profiles p
         LEFT JOIN user_interests i ON p.user_id = i.user_id
         LEFT JOIN user_languages l ON p.user_id = l.user_id
@@ -73,13 +75,12 @@ function search(mysqli $db_con): array {
 
     $stmt = $db_con->prepare($sql);
     $stmt->bind_param($param_str, $gender, $country, ...$interests, ...$languages);
-    $stmt->bind_result($user_id, $first_name, $surname, $age, $region, $profile_pic);
+    $stmt->bind_result($user_id, $first_name, $surname, $age, $region, $profile_pic, $sex);
     $stmt->execute();
     $result = $stmt->get_result();
 
     $filtered_array = array();
-
-    $id_list = array();
+    $id_list = get_banned_user_ids($db_con);
 
     while($id = $result->fetch_assoc()) {
         if (in_array($id['user_id'], $id_list)) continue;
@@ -115,7 +116,7 @@ function search(mysqli $db_con): array {
         }
 
         $filtered_array[] = array($id['user_id'], $id['first_name'], $id['surname'], $id['age'], $id['region'], $id['profile_pic'],
-            $interests_arr, $speaks_arr, $learning_arr);
+            $interests_arr, $speaks_arr, $learning_arr, $id['sex']);
         $id_list[] = $id['user_id'];
     }
 
