@@ -3,9 +3,9 @@ document.querySelector("#search").addEventListener("input", () => {
     for (const connection of document.getElementsByClassName("connection")) {
         if (connection.getAttribute("data-first-name").toLowerCase().includes(text) || (connection.getAttribute("data-surname").toLowerCase().includes(text))) {
             console.log("1")
-            connection.style.display = "flex !important"
+            connection.style.display = "block"
         } else {
-            connection.style.display = "none !important"
+            connection.style.display = "none"
         }
     }
 })
