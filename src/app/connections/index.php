@@ -30,14 +30,16 @@ try {
             <?php
             foreach ($connections as $connection) {
                 echo "
-                <a class='connection d-flex flex-column align-items-center justify-content-center my-md-3 mx-3 mx-md-0'
+                <a class='connection my-md-3 mx-3 mx-md-0 align-content-center'
                 data-first-name='$connection[first_name]'
                 data-surname='$connection[surname]'
                 data-connection-id='$connection[connection_id]'
                 data-user_id='$connection[user_id]'
                 data-profile-pic='$connection[profile_pic]'>
-                    <img src='$connection[profile_pic]' class='h-75 w-75'>
-                    <span class='fs-5 d-none d-md-inline'>$connection[first_name]</span>
+                    <div class='d-flex flex-column align-items-center text-center'>
+                        <img src='$connection[profile_pic]' class='h-75 w-75'>
+                        <span class='fs-5 d-none d-md-inline'>$connection[first_name]</span>
+                    </div>
                 </a>
                 ";
             }
