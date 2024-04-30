@@ -15,7 +15,6 @@ require_once "../database/connections.php";
 require_once "../database/messages.php";
 require_once "../dashboard/modals/report-user.php";
 require_once "../database/reports.php";
-
 try {
     $db_con = connect();
     $connections = get_connections($db_con, $_SESSION["user_id"]);
@@ -23,9 +22,12 @@ try {
     echo $e;
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
+$connection_id = 0;
+if (isset($_POST["connection_id"])) {
+    $connection_id = intval($_POST["connection_id"]);
+}
 if (isset($_POST["report"])) {
-    create_report($db_con, $_SESSION["user_id"], $data["cur_connection_id"], $_POST["reason"]);
+    create_report($db_con, $_SESSION["user_id"], $connection_id, $_POST["reason"]);
 }
 ?>
 
