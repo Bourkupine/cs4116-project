@@ -19,6 +19,7 @@ function load_messages() {
         header: {
             "Content-Type": "application/json"
         },
+        data: { "cur_connection_id": cur_connection_id },
         body: JSON.stringify({
             "connection_id": cur_connection_id
         })
@@ -54,6 +55,15 @@ for (const connection of document.getElementsByClassName("connection")) {
         document.querySelector("#send-message-text").removeAttribute("disabled")
         document.querySelector("#connection-top-bar").innerHTML += `    
         `
+        fetch("index.php", {
+            method: "POST",
+            header: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "cur_connection_id": cur_connection_id
+            })
+        })
     })
 }
 

@@ -13,12 +13,19 @@ require_once "../navbar/navbar.php";
 require_once "../database/database_connect.php";
 require_once "../database/connections.php";
 require_once "../database/messages.php";
+require_once "../dashboard/modals/report-user.php";
+require_once "../database/reports.php";
 
 try {
     $db_con = connect();
     $connections = get_connections($db_con, $_SESSION["user_id"]);
 } catch (Exception $e) {
     echo $e;
+}
+
+$data = json_decode(file_get_contents('php://input'), true);
+if (isset($_POST["report"])) {
+    create_report($db_con, $_SESSION["user_id"], $data["cur_connection_id"], $_POST["reason"]);
 }
 ?>
 
@@ -48,6 +55,9 @@ try {
         <div class="col d-flex flex-column h-100">
             <div class="d-flex justify-content-between align-content-center" id="connection-top-bar">
                 <p class="ms-5 text-center display-4" id="connection-name"></p>
+                <button class='btn btn-outline-danger me-3 me-sm-1 report-button' data-bs-toggle='modal' data-bs-target='#report-user'>
+                  Report User
+                </button>
             </div>
             <div class="container-fluid flex-grow-1 d-flex flex-column overflow-auto" id="messages-box" style="background-color: #c6c7ff">
             </div>
